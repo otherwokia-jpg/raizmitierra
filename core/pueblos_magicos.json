@@ -1,0 +1,136 @@
+{
+  "pueblos_magicos": [
+    {
+      "id": "aculco",
+      "name": "Aculco",
+      "region": "norte_bosques",
+      "year": 2006,
+      "coords": [20.1, -99.5],
+      "atractivo": "Arquitectura colonial, Casa Hidalgo, Señor del Agua, presas y cascadas.",
+      "tianguis_dia": "Domingo",
+      "gastronomia": "Barbacoa de borrego, quesos artesanales, pan de horno",
+      "img": "aculco"
+    },
+    {
+      "id": "el_oro",
+      "name": "El Oro",
+      "region": "norte_bosques",
+      "year": 2011,
+      "coords": [19.8, -100.1],
+      "atractivo": "Museo de la Minería, Mina Tiro Norte, bosques y senderismo.",
+      "tianguis_dia": "Domingo",
+      "gastronomia": "Quesadillas de hongos, tlacoyos, atole de pinole",
+      "img": "el_oro"
+    },
+    {
+      "id": "ixtapan_sal",
+      "name": "Ixtapan de la Sal",
+      "region": "sur_tierra_caliente",
+      "year": 2022,
+      "coords": [18.85, -99.68],
+      "atractivo": "Balnearios de aguas termales, observación de luciérnagas, camping, glamping, spas.",
+      "tianguis_dia": "Jueves",
+      "gastronomia": "Mixiotes, barbacoa, dulces de leche",
+      "img": "ixtapan"
+    },
+    {
+      "id": "jilotepec",
+      "name": "Jilotepec",
+      "region": "norte_bosques",
+      "year": 2023,
+      "coords": [19.95, -99.53],
+      "atractivo": "Rapel, alpinismo, ciclismo extremo, gran potencial agrícola y ganadero.",
+      "tianguis_dia": "Viernes",
+      "gastronomia": "Barbacoa, pulque, tlacoyos",
+      "img": "jilotepec"
+    },
+    {
+      "id": "malinalco",
+      "name": "Malinalco",
+      "region": "sur_tierra_caliente",
+      "year": 2010,
+      "coords": [18.95, -99.5],
+      "atractivo": "Único templo monolítico de América (Cerro de los Ídolos). Zona arqueológica donde se iniciaban guerreros águila y jaguar.",
+      "tianguis_dia": "Sábado",
+      "gastronomia": "Cecina, pulque verde, hongos silvestres",
+      "img": "malinalco"
+    },
+    {
+      "id": "metepec",
+      "name": "Metepec",
+      "region": "valle_toluca",
+      "year": 2012,
+      "coords": [19.25, -99.6],
+      "atractivo": "Cuna del Árbol de la Vida. Museo del Barro. Artesanía de barro cocido pintado a mano.",
+      "tianguis_dia": "Domingo",
+      "gastronomia": "Barbacoa, gorditas de chicharrón, pulque, tacos de plaza",
+      "img": "metepec"
+    },
+    {
+      "id": "otumba",
+      "name": "Otumba",
+      "region": "valle_mexico",
+      "year": 2023,
+      "coords": [19.7, -98.75],
+      "atractivo": "Capital otomí. Tributo a burritos (animal nativo en peligro de extinción). Descanso virreinal.",
+      "tianguis_dia": "Miércoles",
+      "gastronomia": "Barbacoa de hoyo, pulque, mixiotes",
+      "img": "otumba"
+    },
+    {
+      "id": "teotihuacan",
+      "name": "San Juan Teotihuacán",
+      "region": "valle_mexico",
+      "year": 2012,
+      "coords": [19.67, -98.87],
+      "atractivo": "Pirámides del Sol y la Luna, vuelos en globo, recorridos en bicicleta, Palacio de Quetzalpapálotl.",
+      "tianguis_dia": "Sábado",
+      "gastronomia": "Barbacoa, pulque, escamoles, gualumbos",
+      "img": "teotihuacan"
+    },
+    {
+      "id": "tepotzotlan",
+      "name": "Tepotzotlán",
+      "region": "norte_bosques",
+      "year": 2022,
+      "coords": [19.72, -99.23],
+      "atractivo": "Museo Nacional del Virreinato, Templo de San Francisco Javier con decoración en oro.",
+      "tianguis_dia": "Domingo",
+      "gastronomia": "Barbacoa, quesos, pan artesanal",
+      "img": "tepotzotlan"
+    },
+    {
+      "id": "tonatico",
+      "name": "Tonatico",
+      "region": "sur_tierra_caliente",
+      "year": 2022,
+      "coords": [18.8, -99.67],
+      "atractivo": "Grutas La Estrella, balneario municipal, representación de la Pasión de Cristo (una de las más vistas de México).",
+      "tianguis_dia": "Sábado",
+      "gastronomia": "Mixiotes, cecina, tamales de capulín",
+      "img": "tonatico"
+    },
+    {
+      "id": "valle_bravo",
+      "name": "Valle de Bravo",
+      "region": "valle_bravo",
+      "year": 2005,
+      "coords": [19.19, -100.13],
+      "atractivo": "Cascada Velo de Novia, parapente, embarcaderos, camping, presa, observación de mariposa monarca.",
+      "tianguis_dia": "Domingo",
+      "gastronomia": "Barbacoa, trucha arcoíris, quesos artesanales",
+      "img": "valle_bravo"
+    },
+    {
+      "id": "villa_carbon",
+      "name": "Villa del Carbón",
+      "region": "norte_bosques",
+      "year": 2015,
+      "coords": [19.73, -99.47],
+      "atractivo": "Bosques de pino, cascadas, clima de montaña. Huele a pino, suenan las aves. Pueblo que más obstáculos ha superado.",
+      "tianguis_dia": "Sábado",
+      "gastronomia": "Barbacoa de borrego, quesos, hongos, pan de horno",
+      "img": "villa_carbon"
+    }
+  ]
+}

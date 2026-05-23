@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RaízMiTierra — Mapa Comunitario del Edomex</title>
+
+    <!-- SEO Local -->
+    <meta name="description" content="Mapa comunitario de tianguis, trueque, barbacoa de hoyo, ropa de paca, balnearios, artesanías y Pueblos Mágicos del Estado de México. Privacidad absoluta.">
+    <meta name="keywords" content="tianguis, trueque, ropa de paca, barbacoa, balnearios, artesanías, Edomex, Pueblos Mágicos, raizmitierra, Metepec, Malinalco, Valle de Bravo">
+    <meta name="author" content="RaízMiTierra">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="RaízMiTierra — Descubre los tianguis y Pueblos Mágicos del Edomex">
+    <meta property="og:description" content="Caminar, conocer, comer y defender las costumbres de nuestra tierra. Mapa 100% privado.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E86A33">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="></script>
+
+    <!-- Seguridad: CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com data:; connect-src 'self'; font-src 'self' https://fonts.gstatic.com;">
+
+    <style>
+        /* ═══════════════════════════════════════════════
+           🌎 RAÍZMITIERRA — Diseño Cálido y Colorido
+           ═══════════════════════════════════════════════ */
+
+        /* ── Paleta de Tierra ── */
+        :root {
+            --terracota: #E86A33;
+            --naranja: #F4A261;
+            --dorado: #E9C46A;
+            --teal: #2A9D8F;
+            --verde: #58B368;
+            --crema: #FFF8F0;
+            --blanco: #FFFFFF;
+            --papel: #FEF7E9;
+            --texto: #2D3436;
+            --texto-suave: #636E72;
+            --borde: #F0E6D3;
+            --sombra: rgba(232, 106, 51, 0.12);
+            --sombra-fuerte: rgba(0,0,0,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Helvetica Neue', sans-serif;
+            background: var(--crema);
+            color: var(--texto);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HEADER GRADIENTE ── */
+        header {
+            background: linear-gradient(135deg, var(--terracota) 0%, var(--naranja) 50%, var(--dorado) 100%);
+            padding: 14px 18px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 2px 16px rgba(232, 106, 51, 0.25);
+        }
+
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        header .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            backdrop-filter: blur(4px);
+        }
+
+        header .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header h1 {
+            font-size: 1.15rem;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+
+        header .subtitle {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 0.3px;
+        }
+
+        header .day-badge {
+            background: rgba(255,255,255,0.22);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
+        }
+
+        /* ── OFFLINE BADGE ── */
+        .offline-bar {
+            display: none;
+            background: #e74c3c;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .offline-bar.show { display: block; }
+
+        /* ── MAPA ── */
+        #map {
+            flex: 1;
+            width: 100%;
+            z-index: 1;
+        }
+
+        /* ── PANEL INFERIOR ── */
+        .bottom-panel {
+            background: var(--blanco);
+            border-radius: var(--radius) var(--radius) 0 0;
+            box-shadow: 0 -4px 24px var(--sombra-fuerte);
+            max-height: 48vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            position: relative;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bottom-panel.collapsed {
+            max-height: 54px;
+        }
+
+        /* ── MANIJA DEL PANEL ── */
+        .panel-handle {
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 1px solid var(--borde);
+            min-height: 54px;
+        }
+
+        .panel-handle .privacy-badge {
+            background: linear-gradient(135deg, var(--teal), var(--verde));
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .panel-handle .result-count {
+            font-size: 0.75rem;
+            color: var(--texto-suave);
+            font-weight: 600;
+        }
+
+        /* ── CONTENIDO DEL PANEL ── */
+        .panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 18px 18px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ── BARRA DE BÚSQUEDA ── */
+        .search-box {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 14px 12px 40px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--borde);
+            background: var(--papel);
+            font-size: 0.9rem;
+            color: var(--texto);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--terracota);
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--texto-suave);
+        }
+
+        /* ── FILTROS ── */
+        .filter-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .filter-chip {
+            background: var(--papel);
+            color: var(--texto-suave);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1.5px solid var(--borde);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:active {
+            transform: scale(0.95);
+        }
+
+        .filter-chip.active {
+            background: var(--terracota);
+            color: #fff;
+            border-color: var(--terracota);
+        }
+
+        .filter-chip.active[data-filter="hoy"] { background: var(--teal); border-color: var(--teal); }
+        .filter-chip.active[data-filter="cerca"] { background: var(--verde); border-color: var(--verde); }
+        .filter-chip.active[data-filter="pueblo-magico"] { background: var(--dorado); border-color: var(--dorado); color: #5a4a1a; }
+        .filter-chip.active[data-filter="trueque"] { background: #8B4513; border-color: #8B4513; }
+        .filter-chip.active[data-filter="comida"] { background: var(--terracota); border-color: var(--terracota); }
+
+        /* ── BOTÓN GPS ── */
+        .btn-gps {
+            width: 100%;
+            background: linear-gradient(135deg, var(--teal), var(--verde));
+            color: #fff;
+            border: none;
+            padding: 13px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(42, 157, 143, 0.25);
+        }
+
+        .btn-gps:active { transform: scale(0.98); }
+        .btn-gps.active { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .btn-gps:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ── TARJETAS DE TIANGUIS ── */
+        .tianguis-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tianguis-card {
+            background: var(--papel);
+            border: 1.5px solid var(--borde);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tianguis-card:active {
+            transform: scale(0.98);
+            border-color: var(--terracota);
+        }
+
+        .tianguis-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .tianguis-card.cat-plaza-campo::before { background: #8B4513; }
+        .tianguis-card.cat-garnachas-sabor::before { background: var(--terracota); }
+        .tianguis-card.cat-pueblo-magico::before { background: var(--dorado); }
+        .tianguis-card.cat-identidad-oficios::before { background: #6B4CE6; }
+        .tianguis-card.cat-la-paca::before { background: #7C3AED; }
+        .tianguis-card.cat-hierbas-medicina::before { background: var(--verde); }
+
+        .tianguis-card h3 {
+            font-size: 0.9rem;
+            color: var(--terracota);
+            margin-bottom: 2px;
+            padding-left: 6px;
+        }
+
+        .tianguis-card .meta {
+            font-size: 0.7rem;
+            color: var(--texto-suave);
+            margin-bottom: 4px;
+            padding-left: 6px;
+        }
+
+        .tianguis-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding-left: 6px;
+        }
+
+        .tag {
+            font-size: 0.6rem;
+            background: var(--blanco);
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: var(--texto-suave);
+            border: 1px solid var(--borde);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tag.hoy {
+            background: var(--teal);
+            color: #fff;
+            border-color: var(--teal);
+        }
+
+        /* ── ESTADO VACÍO ── */
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--texto-suave);
+            font-size: 0.85rem;
+        }
+
+        /* ── POPUP DEL MAPA ── */
+        .leaflet-popup-content-wrapper {
+            border-radius: var(--radius-sm) !important;
+            box-shadow: 0 4px 20px var(--sombra-fuerte) !important;
+        }
+
+        .leaflet-popup-content {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            min-width: 220px;
+        }
+
+        .popup-content h3 {
+            font-size: 0.95rem;
+            color: var(--terracota);
+            margin: 0 0 2px;
+        }
+
+        .popup-content .popup-meta {
+            font-size: 0.7rem;
+            color: var(--texto-suave);
+            margin-bottom: 6px;
+        }
+
+        .popup-content .popup-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-bottom: 8px;
+        }
+
+        .popup-content .popup-tags span {
+            font-size: 0.55rem;
+            background: var(--papel);
+            padding: 2px 6px;
+            border-radius: 8px;
+            color: var(--texto-suave);
+        }
+
+        .popup-content .route-box {
+            background: var(--papel);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--terracota);
+        }
+
+        .popup-content .route-box b {
+            color: var(--texto);
+        }
+
+        .popup-content .popup-btn {
+            width: 100%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ── SCROLLBAR ── */
+        .panel-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        .panel-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .panel-content::-webkit-scrollbar-thumb {
+            background: var(--borde);
+            border-radius: 4px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (min-width: 768px) {
+            .bottom-panel {
+                max-height: 40vh;
+            }
+            header h1 { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 360px) {
+            header { padding: 10px 12px; }
+            header h1 { font-size: 1rem; }
+            .panel-content { padding: 8px 12px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header>
+        <div class="brand">
+            <div class="brand-icon">🌎</div>
+            <div class="brand-text">
+                <h1>RaízMiTierra</h1>
+                <span class="subtitle">Caminar, conocer, comer y defender nuestras costumbres</span>
+            </div>
+        </div>
+        <span class="day-badge" id="dayBadge">📅 Cargando...</span>
+    </header>
+
+    <!-- ═══ OFFLINE ═══ -->
+    <div class="offline-bar" id="offlineBar">📡 Sin conexión — datos en caché</div>
+
+    <!-- ═══ MAPA ═══ -->
+    <div id="map"></div>
+
+    <!-- ═══ PANEL INFERIOR ═══ -->
+    <div class="bottom-panel" id="bottomPanel">
+
+        <div class="panel-handle" onclick="togglePanel()">
+            <span class="privacy-badge">🔒 100% Privado</span>
+            <span class="result-count" id="resultCount">0 lugares</span>
+        </div>
+
+        <div class="panel-content">
+
+            <!-- Buscador -->
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="search" id="searchInput" placeholder="Buscar tianguis, pueblo, antojo..." oninput="filterTianguis()">
+            </div>
+
+            <!-- Filtros rápidos -->
+            <div class="filter-row" id="filterRow">
+                <span class="filter-chip active" data-filter="hoy" onclick="setFilter('hoy')">📅 Hoy</span>
+                <span class="filter-chip" data-filter="cerca" onclick="setFilter('cerca')">📍 Cerca</span>
+                <span class="filter-chip" data-filter="pueblo-magico" onclick="setFilter('pueblo-magico')">🏆 Pueblo Mágico</span>
+                <span class="filter-chip" data-filter="trueque" onclick="setFilter('trueque')">🤝 Trueque</span>
+                <span class="filter-chip" data-filter="comida" onclick="setFilter('comida')">🌮 Comida</span>
+                <span class="filter-chip" data-filter="ropa" onclick="setFilter('ropa')">👕 Paca</span>
+            </div>
+
+            <!-- Botón GPS -->
+            <button class="btn-gps" id="gpsBtn" onclick="toggleGPS()">
+                📍 Ver mi ubicación en el mapa
+            </button>
+
+            <!-- Lista -->
+            <div class="tianguis-list" id="tianguisList">
+                <div class="empty-state">
+                    <div class="empty-icon">🔄</div>
+                    <p>Cargando tianguis...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* ═══════════════════════════════════════════
+           🌎 RAÍZMITIERRA — App JavaScript
+           ═══════════════════════════════════════════ */
+
+        // ── CONSTANTES ──
+        const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const TAG_EMOJIS = {
+            'plaza-campo': '🐴', 'garnachas-sabor': '🌮', 'canasta-basica': '🥬',
+            'la-paca': '👕', 'chacharas-antiguedades': '🔧', 'identidad-oficios': '🏺',
+            'muebles-artesanales': '🪑', 'animales-corral': '🐑', 'cultura-tradicion': '🎭',
+            'pueblo-magico': '🏆', 'hierbas-medicina': '🌿', 'flores-plantas': '🌸'
+        };
+        const TAG_COLORS = {
+            'plaza-campo': '#8B4513', 'garnachas-sabor': '#E86A33', 'canasta-basica': '#2A9D8F',
+            'la-paca': '#7C3AED', 'chacharas-antiguedades': '#DC2626', 'identidad-oficios': '#6B4CE6',
+            'pueblo-magico': '#CA8A04', 'animales-corral': '#78716C', 'cultura-tradicion': '#BE123C'
+        };
+
+        // ── ESTADO ──
+        let tianguisData = [];
+        let currentFilter = 'hoy';
+        let userPos = null;
+        let userMarker = null;
+        let watchId = null;
+        let gpsActive = false;
+        let map;
+
+        // ── INICIALIZAR MAPA ──
+        function initMap() {
+            map = L.map('map', {
+                center: [19.3, -99.4],
+                zoom: 9,
+                zoomControl: true,
+                attributionControl: true
+            });
+
+            // Mapa base cálido (CartoDB Positron — colores claros)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>',
+                maxZoom: 19,
+                minZoom: 5
+            }).addTo(map);
+        }
+
+        // ── CARGAR DATA ──
+        async function loadData() {
+            try {
+                const resp = await fetch('data.json?_=' + Date.now());
+                const data = await resp.json();
+                tianguisData = data.tianguis || [];
+                updateDay();
+                applyFilter();
+                addMarkers();
+            } catch (err) {
+                document.getElementById('tianguisList').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <p>Error al cargar. ¿Estás offline?<br>
+                        <small style="color:#999;">Los datos en caché deberían funcionar.</small></p>
+                    </div>`;
+            }
+        }
+
+        // ── DÍA ACTUAL ──
+        function updateDay() {
+            const hoy = DIAS[new Date().getDay()];
+            document.getElementById('dayBadge').textContent = '📅 ' + hoy;
+        }
+
+        // ── FILTROS ──
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-chip').forEach(el => {
+                el.classList.toggle('active', el.dataset.filter === filter);
+            });
+            applyFilter();
+        }
+
+        function filterTianguis() {
+            applyFilter();
+        }
+
+        function applyFilter() {
+            const texto = document.getElementById('searchInput').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const hoy = DIAS[new Date().getDay()];
+
+            let results = tianguisData.filter(t => {
+                // Texto
+                if (texto) {
+                    const name = t.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const region = (t.region || '').toLowerCase();
+                    const cats = (t.categories || []).join(' ');
+                    const pm = (t.pueblo_magico || '').toLowerCase();
+                    if (!name.includes(texto) && !region.includes(texto) && !cats.includes(texto) && !pm.includes(texto)) {
+                        return false;
+                    }
+                }
+
+                // Filtro
+                if (currentFilter === 'hoy') return t.days && t.days.includes(hoy);
+                if (currentFilter === 'pueblo-magico') return t.categories && t.categories.includes('pueblo-magico');
+                if (currentFilter === 'trueque') return t.categories && t.categories.includes('plaza-campo');
+                if (currentFilter === 'comida') return t.categories && t.categories.includes('garnachas-sabor');
+                if (currentFilter === 'ropa') return t.categories && (t.categories.includes('la-paca') || t.categories.includes('chacharas-antiguedades'));
+                if (currentFilter === 'cerca') return true; // Ordenar por distancia abajo
+                return true;
+            });
+
+            // Ordenar: HOY primero, luego distancia (si GPS activo)
+            results.sort((a, b) => {
+                const aHoy = a.days && a.days.includes(hoy) ? 0 : 1;
+                const bHoy = b.days && b.days.includes(hoy) ? 0 : 1;
+                if (aHoy !== bHoy) return aHoy - bHoy;
+                if (currentFilter === 'cerca' && userPos) {
+                    const dA = distance(userPos, a.coords);
+                    const dB = distance(userPos, b.coords);
+                    return dA - dB;
+                }
+                return 0;
+            });
+
+            renderList(results);
+        }
+
+        // ── DISTANCIA (fórmula Haversine) ──
+        function distance(from, to) {
+            if (!from || !to || !to[0] || !to[1]) return 999999;
+            const R = 6371000;
+            const dLat = (to[0] - from[0]) * Math.PI / 180;
+            const dLon = (to[1] - from[1]) * Math.PI / 180;
+            const a = Math.sin(dLat/2)**2 + Math.cos(from[0]*Math.PI/180) * Math.cos(to[0]*Math.PI/180) * Math.sin(dLon/2)**2;
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        function formatDist(m) {
+            if (m >= 1000) return (m/1000).toFixed(1) + ' km';
+            return Math.round(m) + ' m';
+        }
+
+        // ── RENDERIZAR LISTA ──
+        function renderList(data) {
+            const lista = document.getElementById('tianguisList');
+            const hoy = DIAS[new Date().getDay()];
+            document.getElementById('resultCount').textContent = data.length + ' lugares';
+
+            if (data.length === 0) {
+                lista.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🔍</div>
+                        <p>No hay tianguis hoy con ese filtro.<br>
+                        <small style="color:#999;">Prueba otro día o busca otra cosa.</small></p>
+                    </div>`;
+                return;
+            }
+
+            lista.innerHTML = data.map(t => {
+                const esHoy = t.days && t.days.includes(hoy);
+                const dias = (t.days || []).map(d =>
+                    `<span class="tag ${esHoy && d === hoy ? 'hoy' : ''}">${d}</span>`
+                ).join('');
+
+                const cats = (t.categories || []).slice(0, 4).map(c =>
+                    `<span class="tag">${TAG_EMOJIS[c] || ''} ${capitalize(c.replace(/-/g, ' '))}</span>`
+                ).join('');
+
+                const dist = userPos && t.coords ? formatDist(distance(userPos, t.coords)) : '';
+                const firstCat = (t.categories && t.categories[0]) ? 'cat-' + t.categories[0] : '';
+
+                return `
+                    <div class="tianguis-card ${firstCat}" onclick="showTianguis('${t.id}')">
+                        <h3>${t.name} ${t.pueblo_magico ? '🏆' : ''}</h3>
+                        <div class="meta">
+                            📍 ${capitalize(t.region || '')}
+                            ${dist ? ' · 📏 ' + dist : ''}
+                        </div>
+                        <div class="tags">${dias} ${cats}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ── MARCAR TIANGUIS EN MAPA ──
+        let mapMarkers = [];
+
+        function addMarkers() {
+            mapMarkers.forEach(m => map.removeLayer(m));
+            mapMarkers = [];
+
+            tianguisData.forEach(t => {
+                if (!t.coords || t.coords.length !== 2) return;
+
+                const hoy = DIAS[new Date().getDay()];
+                const esHoy = t.days && t.days.includes(hoy);
+                const color = esHoy ? '#2A9D8F' : '#E86A33';
+
+                const marker = L.circleMarker(t.coords, {
+                    radius: 9,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2.5,
+                    fillOpacity: 0.9
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <div class="popup-content">
+                        <h3>${t.name}</h3>
+                        <div class="popup-meta">
+                            📅 ${(t.days || []).join(' · ')}${t.horario ? ' · ⏰ ' + t.horario : ''}
+                        </div>
+                        <div class="popup-tags">
+                            ${(t.categories || []).map(c => `<span>${TAG_EMOJIS[c] || ''} ${capitalize(c.replace(/-/g, ' '))}</span>`).join('')}
+                        </div>
+                        ${t.best_route && t.best_route.from_cdmx ? `
+                            <div class="route-box">
+                                <b>🚗 Cómo llegar</b><br>
+                                ${t.best_route.from_cdmx}<br>
+                                🅿️ ${t.best_route.parking || 'Estacionamiento comunitario'}
+                                ${t.best_route.tip ? '<br>💡 ' + t.best_route.tip : ''}
+                            </div>
+                        ` : ''}
+                        <button class="popup-btn" onclick="showDistance('${t.id}')">📍 Distancia desde mi ubicación</button>
+                    </div>
+                `);
+
+                marker.on('click', () => map.setView(t.coords, 14));
+                mapMarkers.push(marker);
+            });
+        }
+
+        // ── MOSTRAR TIANGUIS ──
+        function showTianguis(id) {
+            const t = tianguisData.find(x => x.id === id);
+            if (t && t.coords) {
+                map.setView(t.coords, 14);
+                // Abrir popup
+                mapMarkers.forEach(m => {
+                    if (m.getLatLng().lat === t.coords[0] && m.getLatLng().lng === t.coords[1]) {
+                        m.openPopup();
+                    }
+                });
+                // Colapsar panel para ver mapa
+                document.getElementById('bottomPanel').classList.remove('collapsed');
+            }
+        }
+
+        function showDistance(id) {
+            if (!gpsActive || !userPos) {
+                toggleGPS();
+                setTimeout(() => showDistance(id), 3000);
+                return;
+            }
+            const t = tianguisData.find(x => x.id === id);
+            if (t && t.coords && userPos) {
+                const d = distance(userPos, t.coords);
+                alert(`📍 Distancia a ${t.name}: ${formatDist(d)}`);
+            }
+        }
+
+        // ── GPS 100% PRIVADO ──
+        function toggleGPS() {
+            const btn = document.getElementById('gpsBtn');
+
+            if (gpsActive) {
+                if (watchId) navigator.geolocation.clearWatch(watchId);
+                if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
+                gpsActive = false;
+                userPos = null;
+                btn.innerHTML = '📍 Ver mi ubicación en el mapa';
+                btn.classList.remove('active');
+                btn.disabled = false;
+                return;
+            }
+
+            if (!navigator.geolocation) {
+                alert('Tu celular no soporta geolocalización.');
+                return;
+            }
+
+            btn.innerHTML = '⏳ Activando GPS...';
+            btn.disabled = true;
+
+            watchId = navigator.geolocation.watchPosition(
+                (pos) => {
+                    const lat = pos.coords.latitude;
+                    const lng = pos.coords.longitude;
+                    userPos = {lat, lng};
+
+                    if (userMarker) {
+                        userMarker.setLatLng([lat, lng]);
+                    } else {
+                        const icon = L.divIcon({
+                            className: '',
+                            html: '<div style="background:#E86A33;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px rgba(232,106,51,0.6);"></div>',
+                            iconSize: [18, 18]
+                        });
+                        userMarker = L.marker([lat, lng], {icon}).addTo(map);
+                        userMarker.bindPopup('<b>📍 Estás aquí</b><br><small style="color:#666;">Tu ubicación es 100% privada.</small>');
+                    }
+
+                    if (!gpsActive) {
+                        map.setView([lat, lng], 13);
+                        gpsActive = true;
+                        btn.innerHTML = '🟢 GPS activo — toca para apagar';
+                        btn.classList.add('active');
+                        btn.disabled = false;
+                        if (currentFilter === 'cerca') applyFilter();
+                    }
+                },
+                (err) => {
+                    btn.innerHTML = '📍 Ver mi ubicación en el mapa';
+                    btn.disabled = false;
+                    if (err.code === 1) {
+                        alert('🔒 Activa el GPS en los permisos de tu navegador.');
+                    }
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+            );
+        }
+
+        // ── TOGGLE PANEL ──
+        let panelOpen = true;
+        function togglePanel() {
+            panelOpen = !panelOpen;
+            document.getElementById('bottomPanel').classList.toggle('collapsed', !panelOpen);
+        }
+
+        // ── UTILERÍAS ──
+        function capitalize(s) {
+            if (!s) return '';
+            return s.replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        // ── SERVICE WORKER ──
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+
+        window.addEventListener('offline', () => {
+            document.getElementById('offlineBar').classList.add('show');
+        });
+        window.addEventListener('online', () => {
+            document.getElementById('offlineBar').classList.remove('show');
+        });
+        if (!navigator.onLine) {
+            document.getElementById('offlineBar').classList.add('show');
+        }
+
+        // ── INICIO ──
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            loadData();
+        });
+    </script>
+</body>
+</html>

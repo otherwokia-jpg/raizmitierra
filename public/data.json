@@ -1,0 +1,419 @@
+{
+  "meta": {
+    "name": "RaízMiTierra",
+    "version": "1.0.0",
+    "generated": "2026-05-23T13:14:42.994309",
+    "count": 1,
+    "count_by_region": {
+      "valle_toluca": 1
+    }
+  },
+  "tianguis": [
+    {
+      "id": "MX-EDOMEX-001",
+      "name": "Tianguis Tradicional de Santiago Tianguistengo",
+      "region": "valle_toluca",
+      "days": [
+        "Martes"
+      ],
+      "coords": [
+        19.1803,
+        -99.4661
+      ],
+      "categories": [
+        "plaza-campo",
+        "identidad-oficios",
+        "garnachas-sabor",
+        "canasta-basica",
+        "animales-corral"
+      ],
+      "safety": "Seguro y familiar",
+      "horario": "6:00 AM - 3:00 PM",
+      "pueblo_magico": null,
+      "img": "tianguistengo",
+      "summary": "El corazón vivo del trueque prehispánico y el comercio del Valle de Toluca. Un tianguis que mantiene vivas las prácticas de intercambio que vienen desde antes de la Colonia.",
+      "best_route": {
+        "from_cdmx": "Periférico → Carretera Toluca 15D → Desviación Mexicaltzingo"
+      },
+      "pois": [
+        {
+          "name": "Zona de Trueque",
+          "description": "Detrás de la iglesia, en el atrio"
+        },
+        {
+          "name": "Portales de Comida",
+          "description": "Centro del pueblo"
+        },
+        {
+          "name": "Salida a Gualupita",
+          "description": "Textiles y artesanías"
+        },
+        {
+          "name": "Estacionamiento Ejidal",
+          "description": "Entrada por Mexicaltzingo"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Trueque",
+          "fecha": "Mayo 2026",
+          "texto": "A",
+          "link": "https://youtube.com"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "Mayo 2026",
+          "texto": "E",
+          "link": "https://facebook.com"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "Abril 2026",
+          "texto": "S",
+          "link": "https://instagram.com"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "Abril 2026",
+          "texto": "L",
+          "link": "https://tiktok.com"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "Mayo 2026",
+          "texto": "E",
+          "link": "https://reddit.com"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "Abril 2026",
+          "texto": "E",
+          "link": "https://google.com"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "Abril 2026",
+          "texto": "B",
+          "link": "https://facebook.com"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "Marzo 2026",
+          "texto": "E",
+          "link": "https://blog.com"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "Marzo 2026",
+          "texto": "H",
+          "link": "https://pinterest.com"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "Mayo 2026",
+          "texto": "N",
+          "link": "https://youtube.com"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "plaza-campo",
+      "label": "Trueque y Plaza de Campo",
+      "emoji": "🐴",
+      "description": "Intercambio tradicional, trueque prehispánico, venta de animales de corral y ganado. El corazón vivo de la economía rural.",
+      "color": "#8B4513",
+      "bg": "#FEF3C7",
+      "keywords": [
+        "trueque",
+        "ganado",
+        "animales",
+        "intercambio",
+        "plaza",
+        "corral"
+      ]
+    },
+    {
+      "id": "garnachas-sabor",
+      "label": "Garnachas y Sabor",
+      "emoji": "🌮",
+      "description": "Barbacoa de hoyo, tacos de obispo, pancita, mariscos frescos, gorditas de cacahuazintle, pulque. La cocina de la calle.",
+      "color": "#D97706",
+      "bg": "#FFEDD5",
+      "keywords": [
+        "barbacoa",
+        "tacos",
+        "mariscos",
+        "antojitos",
+        "comida",
+        "pulque",
+        "gorditas"
+      ]
+    },
+    {
+      "id": "canasta-basica",
+      "label": "Canasta Básica",
+      "emoji": "🥬",
+      "description": "Verduras, frutas, carnes, semillas, huevo de rancho. El mandado de la semana a precio justo.",
+      "color": "#059669",
+      "bg": "#D1FAE5",
+      "keywords": [
+        "verduras",
+        "frutas",
+        "carnes",
+        "semillas",
+        "huevo",
+        "mandado"
+      ]
+    },
+    {
+      "id": "la-paca",
+      "label": "La Paca",
+      "emoji": "👕",
+      "description": "Ropa americana, saldos de segunda mano, moda reciclada. Economía circular popular.",
+      "color": "#7C3AED",
+      "bg": "#EDE9FE",
+      "keywords": [
+        "ropa",
+        "paca",
+        "segunda mano",
+        "americana",
+        "saldos",
+        "moda"
+      ]
+    },
+    {
+      "id": "chacharas-antiguedades",
+      "label": "Chácharas y Antigüedades",
+      "emoji": "🔧",
+      "description": "Herramientas usadas, fierro viejo, objetos retro, discos, juguetes antiguos. Tesoros escondidos.",
+      "color": "#DC2626",
+      "bg": "#FEE2E2",
+      "keywords": [
+        "herramientas",
+        "chácharas",
+        "antigüedades",
+        "fierro",
+        "retro",
+        "colección"
+      ]
+    },
+    {
+      "id": "identidad-oficios",
+      "label": "Artesanías y Oficios",
+      "emoji": "🏺",
+      "description": "Barro de Metepec, árboles de la vida, textiles, rebozos, calzado artesanal, talabartería. Saberes que no se pierden.",
+      "color": "#B45309",
+      "bg": "#FEF3C7",
+      "keywords": [
+        "artesanías",
+        "barro",
+        "textiles",
+        "rebozos",
+        "artesanos",
+        "oficios"
+      ]
+    },
+    {
+      "id": "muebles-artesanales",
+      "label": "Muebles Artesanales",
+      "emoji": "🪑",
+      "description": "Muebles de tule, equipal, otate, madera tallada, muebles rústicos. El trabajo de la carpintería tradicional.",
+      "color": "#92400E",
+      "bg": "#FFFBEB",
+      "keywords": [
+        "muebles",
+        "carpintería",
+        "tule",
+        "equipal",
+        "rústico",
+        "madera"
+      ]
+    },
+    {
+      "id": "animales-corral",
+      "label": "Animales de Corral",
+      "emoji": "🐑",
+      "description": "Borregos, gallinas, caballos, cerdos, conejos. La plaza de ganado viva.",
+      "color": "#78716C",
+      "bg": "#F5F5F4",
+      "keywords": [
+        "ganado",
+        "borregos",
+        "gallinas",
+        "caballos",
+        "animales",
+        "corral"
+      ]
+    },
+    {
+      "id": "cultura-tradicion",
+      "label": "Cultura y Tradición",
+      "emoji": "🎭",
+      "description": "Fiestas patronales, danzas, Día de Muertos, Semana Santa, ferias, música tradicional. El calendario de nuestras raíces.",
+      "color": "#BE123C",
+      "bg": "#FFE4E6",
+      "keywords": [
+        "fiesta",
+        "danza",
+        "tradición",
+        "feria",
+        "música",
+        "patronal"
+      ]
+    },
+    {
+      "id": "pueblo-magico",
+      "label": "Pueblo Mágico",
+      "emoji": "🏆",
+      "description": "Pueblos Mágicos del Edomex con tianguis, balnearios, cascadas, zonas arqueológicas y tradiciones vivas.",
+      "color": "#CA8A04",
+      "bg": "#FEF9C3",
+      "keywords": [
+        "pueblo mágico",
+        "turismo",
+        "balneario",
+        "cascada",
+        "arqueología"
+      ]
+    },
+    {
+      "id": "hierbas-medicina",
+      "label": "Hierbas y Medicina Tradicional",
+      "emoji": "🌿",
+      "description": "Hierbas medicinales, remedios tradicionales, temazcal, plantas curativas. La farmacia de la abuela.",
+      "color": "#15803D",
+      "bg": "#DCFCE7",
+      "keywords": [
+        "hierbas",
+        "medicina",
+        "remedios",
+        "temazcal",
+        "plantas",
+        "curativas"
+      ]
+    },
+    {
+      "id": "flores-plantas",
+      "label": "Flores y Plantas",
+      "emoji": "🌸",
+      "description": "Viveros, plantas de ornato, macetas, árboles frutales, cactáceas. La naturaleza en tu casa.",
+      "color": "#DB2777",
+      "bg": "#FCE7F3",
+      "keywords": [
+        "flores",
+        "plantas",
+        "vivero",
+        "macetas",
+        "jardinería",
+        "ornato"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "id": "valle_toluca",
+      "name": "Valle de Toluca",
+      "emoji": "🏔️",
+      "description": "El altiplano mexiquense, rodeado de montañas y volcanes. Tierra de trueque, barbacoa y artesanías.",
+      "municipios": [
+        "Toluca",
+        "Metepec",
+        "Zinacantepec",
+        "Mexicaltzingo",
+        "San Mateo Atenco",
+        "Lerma",
+        "Ocoyoacac",
+        "Tianguistengo",
+        "Tenango del Valle",
+        "Tenancingo",
+        "Villa Guerrero",
+        "Zumpahuacán"
+      ],
+      "center": [
+        19.1,
+        -99.6
+      ]
+    },
+    {
+      "id": "norte_bosques",
+      "name": "Norte y Bosques",
+      "emoji": "🌲",
+      "description": "Sierras, bosques de pino, pueblos con clima frío. Aculco, Villa del Carbón, El Oro. Paisajes de montaña.",
+      "municipios": [
+        "Aculco",
+        "Villa del Carbón",
+        "El Oro",
+        "Jilotepec",
+        "Tepotzotlán",
+        "Polotitlán",
+        "Soyaniquilpan",
+        "Timilpan"
+      ],
+      "center": [
+        20.0,
+        -99.5
+      ]
+    },
+    {
+      "id": "valle_mexico",
+      "name": "Valle de México y Oriente",
+      "emoji": "🏛️",
+      "description": "La cuenca oriental del Edomex. Zona arqueológica de Teotihuacán, tianguis gigantes como Ozumba, tradición otomí.",
+      "municipios": [
+        "Teotihuacán",
+        "Otumba",
+        "Ozumba",
+        "Chiconcuac",
+        "Texcoco",
+        "Nezahualcóyotl",
+        "Chimalhuacán",
+        "Atenco",
+        "Tepetlaoxtoc",
+        "Papalotla"
+      ],
+      "center": [
+        19.5,
+        -98.8
+      ]
+    },
+    {
+      "id": "sur_tierra_caliente",
+      "name": "Sur y Tierra Caliente",
+      "emoji": "🌋",
+      "description": "Zonas arqueológicas, balnearios de aguas termales, grutas y el único templo monolítico de América en Malinalco.",
+      "municipios": [
+        "Malinalco",
+        "Ixtapan de la Sal",
+        "Tonatico",
+        "Zacualpan",
+        "Tejupilco",
+        "Amatepec",
+        "Tlatlaya",
+        "Sultepec"
+      ],
+      "center": [
+        18.8,
+        -99.8
+      ]
+    },
+    {
+      "id": "valle_bravo",
+      "name": "Valle de Bravo y Lagunas",
+      "emoji": "🌊",
+      "description": "Lagunas, cascadas, deportes acuáticos y parapente. Pueblo Mágico con naturaleza extrema.",
+      "municipios": [
+        "Valle de Bravo",
+        "Amanalco",
+        "Donato Guerra",
+        "San Simón de Guerrero",
+        "Temascaltepec"
+      ],
+      "center": [
+        19.1,
+        -100.1
+      ]
+    }
+  ]
+}

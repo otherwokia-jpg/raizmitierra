@@ -1,0 +1,44 @@
+{
+  "regions": [
+    {
+      "id": "valle_toluca",
+      "name": "Valle de Toluca",
+      "emoji": "🏔️",
+      "description": "El altiplano mexiquense, rodeado de montañas y volcanes. Tierra de trueque, barbacoa y artesanías.",
+      "municipios": ["Toluca", "Metepec", "Zinacantepec", "Mexicaltzingo", "San Mateo Atenco", "Lerma", "Ocoyoacac", "Tianguistengo", "Tenango del Valle", "Tenancingo", "Villa Guerrero", "Zumpahuacán"],
+      "center": [19.1, -99.6]
+    },
+    {
+      "id": "norte_bosques",
+      "name": "Norte y Bosques",
+      "emoji": "🌲",
+      "description": "Sierras, bosques de pino, pueblos con clima frío. Aculco, Villa del Carbón, El Oro. Paisajes de montaña.",
+      "municipios": ["Aculco", "Villa del Carbón", "El Oro", "Jilotepec", "Tepotzotlán", "Polotitlán", "Soyaniquilpan", "Timilpan"],
+      "center": [20.0, -99.5]
+    },
+    {
+      "id": "valle_mexico",
+      "name": "Valle de México y Oriente",
+      "emoji": "🏛️",
+      "description": "La cuenca oriental del Edomex. Zona arqueológica de Teotihuacán, tianguis gigantes como Ozumba, tradición otomí.",
+      "municipios": ["Teotihuacán", "Otumba", "Ozumba", "Chiconcuac", "Texcoco", "Nezahualcóyotl", "Chimalhuacán", "Atenco", "Tepetlaoxtoc", "Papalotla"],
+      "center": [19.5, -98.8]
+    },
+    {
+      "id": "sur_tierra_caliente",
+      "name": "Sur y Tierra Caliente",
+      "emoji": "🌋",
+      "description": "Zonas arqueológicas, balnearios de aguas termales, grutas y el único templo monolítico de América en Malinalco.",
+      "municipios": ["Malinalco", "Ixtapan de la Sal", "Tonatico", "Zacualpan", "Tejupilco", "Amatepec", "Tlatlaya", "Sultepec"],
+      "center": [18.8, -99.8]
+    },
+    {
+      "id": "valle_bravo",
+      "name": "Valle de Bravo y Lagunas",
+      "emoji": "🌊",
+      "description": "Lagunas, cascadas, deportes acuáticos y parapente. Pueblo Mágico con naturaleza extrema.",
+      "municipios": ["Valle de Bravo", "Amanalco", "Donato Guerra", "San Simón de Guerrero", "Temascaltepec"],
+      "center": [19.1, -100.1]
+    }
+  ]
+}
