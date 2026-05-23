@@ -2,13 +2,382 @@
   "meta": {
     "name": "RaízMiTierra",
     "version": "1.0.0",
-    "generated": "2026-05-23T13:14:42.994309",
-    "count": 1,
+    "generated": "2026-05-23T13:41:19.238759",
+    "count": 9,
     "count_by_region": {
-      "valle_toluca": 1
+      "sur_tierra_caliente": 2,
+      "valle_toluca": 6,
+      "valle_bravo": 1
     }
   },
   "tianguis": [
+    {
+      "id": "MX-EDOMEX-007",
+      "name": "Tianguis de Ixtapan de la Sal — Balnearios y Aguas Termales",
+      "region": "sur_tierra_caliente",
+      "days": [
+        "Jueves",
+        "Sábado"
+      ],
+      "coords": [
+        18.845,
+        -99.68
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica"
+      ],
+      "safety": "Muy seguro, zona turística",
+      "horario": "7:00 AM - 3:00 PM",
+      "pueblo_magico": "Ixtapan de la Sal",
+      "img": "ixtapan",
+      "summary": "Pueblo Mágico de aguas termales. Balnearios populares, observación de luciérnagas, camping, glamping y un tianguis lleno de sabor suriano.",
+      "best_route": {},
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "I",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "D",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-006",
+      "name": "Tianguis Dominical de Metepec — Artesanías y Barro",
+      "region": "valle_toluca",
+      "days": [
+        "Domingo"
+      ],
+      "coords": [
+        19.25,
+        -99.6015
+      ],
+      "categories": [
+        "identidad-oficios",
+        "pueblo-magico",
+        "garnachas-sabor",
+        "canasta-basica",
+        "muebles-artesanales"
+      ],
+      "safety": "Muy seguro, familiar, turístico",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Metepec",
+      "img": "metepec",
+      "summary": "Pueblo Mágico, cuna del Árbol de la Vida. Artesanía de barro cocido pintado a mano, muebles artesanales, barbacoa, gorditas de chicharrón y el mejor ambiente dominical del Valle de Toluca.",
+      "best_route": {
+        "tip": "antes de las 9 AM. Después de las 11 el pueblo se llena de turistas."
+      },
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://youtube.com"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "M",
+          "link": ""
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "N",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-008",
+      "name": "Tianguis de Tonatico — Grutas y Balnearios Populares",
+      "region": "sur_tierra_caliente",
+      "days": [
+        "Sábado"
+      ],
+      "coords": [
+        18.8,
+        -99.67
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica"
+      ],
+      "safety": "Seguro, zona turística",
+      "horario": "7:00 AM - 3:00 PM",
+      "pueblo_magico": "Tonatico",
+      "img": "tonatico",
+      "summary": "Pueblo Mágico. Las Grutas La Estrella, balneario municipal, una de las representaciones de la Pasión de Cristo más vistas de México. El tianguis de los sábados es parada obligada.",
+      "best_route": {},
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-009",
+      "name": "Tianguis Dominical de Valle de Bravo — Velo de Novia",
+      "region": "valle_bravo",
+      "days": [
+        "Domingo"
+      ],
+      "coords": [
+        19.1925,
+        -100.131
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios"
+      ],
+      "safety": "Muy seguro, zona turística",
+      "horario": "8:00 AM - 4:00 PM",
+      "pueblo_magico": "Valle de Bravo",
+      "img": "valle_bravo",
+      "summary": "Pueblo Mágico de lago, cascadas, parapente y naturaleza extrema. El tianguis dominical en el centro es el punto de encuentro para surtir la despensa y probar lo mejor de la cocina vallebrigense.",
+      "best_route": {
+        "tip": "temprano, el pueblo se llena de turistas los domingos."
+      },
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "A",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "V",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-003",
+      "name": "Tianguis del Piojo y La Pulga — Chácharas y Tesoros",
+      "region": "valle_toluca",
+      "days": [
+        "Sábado",
+        "Domingo"
+      ],
+      "coords": [
+        19.2683,
+        -99.6383
+      ],
+      "categories": [
+        "chacharas-antiguedades",
+        "la-paca",
+        "identidad-oficios",
+        "garnachas-sabor"
+      ],
+      "safety": "Cuidado con carteristas en áreas muy concurridas",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "piojo",
+      "summary": "El tianguis de chácharas más emblemático de Toluca. Herramientas usadas, antigüedades, ropa de paca, juguetes, discos, videojuegos y un caos hermoso donde nunca sabes qué tesoro vas a encontrar.",
+      "best_route": {},
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://youtube.com"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        },
+        {
+          "tipo": "#Paca",
+          "fecha": "",
+          "texto": "M",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Flores",
+          "fecha": "",
+          "texto": "A",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-002",
+      "name": "Tianguis de Palmillas — Ropa de Paca y Mayoreo",
+      "region": "valle_toluca",
+      "days": [
+        "Jueves"
+      ],
+      "coords": [
+        19.2583,
+        -99.6417
+      ],
+      "categories": [
+        "la-paca",
+        "chacharas-antiguedades",
+        "canasta-basica"
+      ],
+      "safety": "Seguro, llegar temprano",
+      "horario": "5:00 AM - 3:00 PM",
+      "pueblo_magico": null,
+      "img": "palmillas",
+      "summary": "El paraíso de la ropa de paca en Toluca. Más de 150 distribuidores y fabricantes con ropa de dama, niños y caballero a precios de mayoreo.",
+      "best_route": {},
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Paca",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://tiktok.com"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "S",
+          "link": "https://facebook.com"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "A",
+          "link": ""
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "E",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-004",
+      "name": "Mercado Municipal de Tenancingo — Tacos de Obispo",
+      "region": "valle_toluca",
+      "days": [
+        "Domingo",
+        "Miércoles"
+      ],
+      "coords": [
+        18.9625,
+        -99.5907
+      ],
+      "categories": [
+        "garnachas-sabor",
+        "identidad-oficios",
+        "canasta-basica",
+        "pueblo-magico"
+      ],
+      "safety": "Muy seguro, ambiente familiar",
+      "horario": "7:00 AM - 5:00 PM",
+      "pueblo_magico": null,
+      "img": "tenancingo",
+      "summary": "Venir a Tenancingo y no comer un taco de obispo es como ir a Acapulco y no meterse al mar. Capital mundial del rebozo.",
+      "best_route": {
+        "tip": "antes de las 10 AM. El taco de obispo se acaba rápido."
+      },
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://instagram.com"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "T",
+          "link": ""
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        }
+      ]
+    },
     {
       "id": "MX-EDOMEX-001",
       "name": "Tianguis Tradicional de Santiago Tianguistengo",
@@ -113,6 +482,54 @@
           "fecha": "Mayo 2026",
           "texto": "N",
           "link": "https://youtube.com"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-005",
+      "name": "Mercado de Zinacantepec — Mariscos Frescos de la Región",
+      "region": "valle_toluca",
+      "days": [
+        "Viernes",
+        "Sábado",
+        "Domingo"
+      ],
+      "coords": [
+        19.2283,
+        -99.74
+      ],
+      "categories": [
+        "garnachas-sabor",
+        "canasta-basica",
+        "chacharas-antiguedades"
+      ],
+      "safety": "Seguro, familiar",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "zinacantepec",
+      "summary": "El mejor marisco fresco del Valle de Toluca. Pescado de río, mojarra, trucha, camarón. La gente viene de toda la ciudad a surtirse aquí los fines de semana.",
+      "best_route": {
+        "tip": "sábado en la mañana para pescado fresco. El domingo está más tranquilo."
+      },
+      "pois": [],
+      "comentarios": [
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "L",
+          "link": ""
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "D",
+          "link": ""
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "A",
+          "link": ""
         }
       ]
     }
