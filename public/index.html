@@ -3,908 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RaízMiTierra — Mapa Comunitario del Edomex</title>
-
-    <!-- SEO Local -->
-    <meta name="description" content="Mapa comunitario de tianguis, trueque, barbacoa de hoyo, ropa de paca, balnearios, artesanías y Pueblos Mágicos del Estado de México. Privacidad absoluta.">
-    <meta name="keywords" content="tianguis, trueque, ropa de paca, barbacoa, balnearios, artesanías, Edomex, Pueblos Mágicos, raizmitierra, Metepec, Malinalco, Valle de Bravo">
-    <meta name="author" content="RaízMiTierra">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="RaízMiTierra — Descubre los tianguis y Pueblos Mágicos del Edomex">
-    <meta property="og:description" content="Caminar, conocer, comer y defender las costumbres de nuestra tierra. Mapa 100% privado.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_MX">
-    <meta property="og:image" content="assets/images/hero-bg.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RaízMiTierra — Mapa Comunitario del Edomex">
-    <meta name="twitter:description" content="39 tianguis, trueque, barbacoa, artesanías. Privacidad absoluta.">
-
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+    <title>RaízMiTierra — Mapa Comunitario de Tianguis</title>
+    <meta name="description" content="202 tianguis comunitarios en 7 estados: CDMX, Edomex, Puebla, Michoacán, Morelos, Hidalgo, Tlaxcala. Fotos, comentarios, rutas. Privacidad absoluta.">
     <meta name="theme-color" content="#E86A33">
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
-    <!-- Seguridad: CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com data:; connect-src 'self'; font-src 'self' https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://images.unsplash.com data:; connect-src 'self';">
 
     <style>
-        /* ═══════════════════════════════════════════════
-           🌎 RAÍZMITIERRA — Diseño Cálido y Colorido
-           ═══════════════════════════════════════════════ */
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--terracota:#E86A33;--naranja:#F4A261;--dorado:#E9C46A;--teal:#2A9D8F;--verde:#58B368;--crema:#FFF8F0;--blanco:#FFFFFF;--papel:#FEF7E9;--texto:#2D3436;--texto2:#636E72;--borde:#F0E6D3;--radius:16px;--radius2:10px}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--crema);color:var(--texto);height:100vh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+    header{background:linear-gradient(135deg,var(--terracota),var(--naranja),var(--dorado));padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:1000;box-shadow:0 2px 16px rgba(232,106,51,0.25)}
+    header h1{font-size:1.1rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.15)}
+    header .day-badge{background:rgba(255,255,255,0.2);color:#fff;padding:5px 10px;border-radius:20px;font-size:.7rem;font-weight:600;backdrop-filter:blur(4px)}
+    #map{flex:1;width:100%;z-index:1}
+    .bottom-panel{background:var(--blanco);border-radius:var(--radius) var(--radius) 0 0;box-shadow:0 -4px 24px rgba(0,0,0,.08);max-height:48vh;display:flex;flex-direction:column;z-index:100;transition:max-height .35s cubic-bezier(.4,0,.2,1);position:relative}
+    .bottom-panel.collapsed{max-height:52px}
+    .panel-handle{padding:8px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-bottom:1px solid var(--borde);min-height:52px;background:var(--blanco);border-radius:var(--radius) var(--radius) 0 0}
+    .priv-badge{background:var(--teal);color:#fff;padding:3px 8px;border-radius:20px;font-size:.55rem;font-weight:700}
+    .panel-content{flex:1;overflow-y:auto;padding:8px 16px 16px;-webkit-overflow-scrolling:touch}
+    .search-box{position:relative;margin-bottom:8px}
+    .search-box input{width:100%;padding:10px 12px 10px 36px;border-radius:var(--radius2);border:2px solid var(--borde);background:var(--papel);font-size:.85rem;outline:none}
+    .search-box .icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.9rem;color:var(--texto2)}
+    .filter-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+    .filter-chip{background:var(--papel);color:var(--texto2);padding:4px 10px;border-radius:20px;font-size:.65rem;font-weight:600;border:1.5px solid var(--borde);cursor:pointer;transition:all .2s}
+    .filter-chip.active{color:#fff}
+    .filter-chip.active[data-filter="hoy"]{background:var(--teal);border-color:var(--teal)}
+    .filter-chip.active[data-filter="cerca"]{background:var(--verde);border-color:var(--verde)}
+    .filter-chip.active[data-filter="pueblo-magico"]{background:var(--dorado);border-color:var(--dorado);color:#5a4a1a}
+    .filter-chip.active[data-filter="comida"]{background:var(--terracota);border-color:var(--terracota)}
+    .btn-gps{width:100%;background:var(--teal);color:#fff;border:none;padding:11px;font-size:.85rem;font-weight:700;border-radius:var(--radius2);cursor:pointer;margin-bottom:8px;box-shadow:0 2px 8px rgba(42,157,143,.25)}
+    .btn-gps.active{background:#e74c3c}
 
-        /* ── Paleta de Tierra ── */
-        :root {
-            --terracota: #E86A33;
-            --naranja: #F4A261;
-            --dorado: #E9C46A;
-            --teal: #2A9D8F;
-            --verde: #58B368;
-            --crema: #FFF8F0;
-            --blanco: #FFFFFF;
-            --papel: #FEF7E9;
-            --texto: #2D3436;
-            --texto-suave: #636E72;
-            --borde: #F0E6D3;
-            --sombra: rgba(232, 106, 51, 0.12);
-            --sombra-fuerte: rgba(0,0,0,0.08);
-            --radius: 16px;
-            --radius-sm: 10px;
-        }
+    /* Cards */
+    .tianguis-list{display:flex;flex-direction:column;gap:6px}
+    .ti-card{background:var(--papel);border:1.5px solid var(--borde);border-radius:var(--radius2);padding:10px 12px;cursor:pointer;transition:all .2s;display:flex;gap:10px;align-items:flex-start}
+    .ti-card:active{transform:scale(.98);border-color:var(--terracota)}
+    .ti-card .card-img{width:60px;height:60px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--borde)}
+    .ti-card .card-body{flex:1;min-width:0}
+    .ti-card h3{font-size:.85rem;color:var(--terracota);margin-bottom:2px}
+    .ti-card .meta{font-size:.65rem;color:var(--texto2);margin-bottom:3px}
+    .ti-card .tags{display:flex;flex-wrap:wrap;gap:3px}
+    .ti-card .tag{font-size:.55rem;background:var(--blanco);padding:2px 6px;border-radius:10px;color:var(--texto2);border:1px solid var(--borde)}
+    .ti-card .tag.hoy{background:var(--teal);color:#fff;border-color:var(--teal)}
+    .ti-card .dist{font-size:.6rem;color:var(--texto2);font-weight:600}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Detail Modal */
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;backdrop-filter:blur(4px)}
+    .modal-overlay.show{display:block}
+    .modal{position:fixed;bottom:0;left:0;right:0;max-height:88vh;background:var(--blanco);border-radius:var(--radius) var(--radius) 0 0;z-index:2001;overflow-y:auto;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+    .modal.show{transform:translateY(0)}
+    .modal-header{position:sticky;top:0;background:var(--blanco);padding:12px 16px 8px;border-bottom:1px solid var(--borde);display:flex;justify-content:space-between;align-items:flex-start;z-index:10}
+    .modal-header h2{font-size:1rem;color:var(--terracota);flex:1;padding-right:10px}
+    .modal-close{width:32px;height:32px;border-radius:50%;border:none;background:var(--papel);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .modal-body{padding:0 16px 20px}
+    .modal-img{width:100%;height:180px;object-fit:cover;border-radius:var(--radius2);margin-bottom:12px}
+    .modal-info{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;font-size:.75rem}
+    .modal-info div{background:var(--papel);padding:6px 10px;border-radius:8px}
+    .modal-info .label{color:var(--texto2);font-size:.65rem;display:block}
+    .modal-info .val{font-weight:600;color:var(--texto)}
+    .section-title{font-size:.85rem;font-weight:700;color:var(--terracota);margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+    .comment{border-left:3px solid var(--terracota);padding:8px 10px;margin-bottom:8px;background:var(--papel);border-radius:0 8px 8px 0}
+    .comment .text{font-size:.78rem;color:var(--texto);line-height:1.4;margin-bottom:4px}
+    .comment .tag{font-size:.6rem;display:inline-block;background:var(--terracota);color:#fff;padding:1px 6px;border-radius:10px;margin-right:4px}
+    .comment .link{font-size:.65rem;color:var(--teal);text-decoration:underline;display:inline-block;margin-top:3px}
+    .comment .rec{font-size:.68rem;color:var(--texto2);margin-top:4px;font-style:italic}
+    .comment img{width:100%;max-height:120px;object-fit:cover;border-radius:6px;margin-top:6px}
+    .route-btn{width:100%;padding:12px;background:var(--teal);color:#fff;border:none;border-radius:var(--radius2);font-size:.85rem;font-weight:700;cursor:pointer;margin:8px 0;box-shadow:0 2px 8px rgba(42,157,143,.25)}
+    .rec-list{list-style:none;padding:0}
+    .rec-list li{font-size:.75rem;padding:5px 8px;background:var(--papel);border-radius:6px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Helvetica Neue', sans-serif;
-            background: var(--crema);
-            color: var(--texto);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    /* PWA Install Banner */
+    .install-banner{display:none;background:var(--terracota);color:#fff;padding:10px 16px;align-items:center;gap:12px;font-size:.8rem;font-weight:600;position:fixed;top:0;left:0;right:0;z-index:3000;animation:slideDown .5s}
+    .install-banner.show{display:flex}
+    .install-banner .btn{background:#fff;color:var(--terracota);border:none;padding:6px 16px;border-radius:20px;font-weight:700;font-size:.75rem;cursor:pointer;white-space:nowrap}
+    .install-banner .close-btn{background:none;border:none;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;padding:4px}
+    @keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
 
-        /* ── HEADER GRADIENTE ── */
-        header {
-            background: linear-gradient(135deg, var(--terracota) 0%, var(--naranja) 50%, var(--dorado) 100%),
-                        url('assets/images/hero-bg.jpg') center/cover no-repeat;
-            background-blend-mode: overlay;
-            padding: 14px 18px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1000;
-            box-shadow: 0 2px 16px rgba(232, 106, 51, 0.25);
-            min-height: 70px;
-        }
+    .empty-state{text-align:center;padding:30px 20px;color:var(--texto2);font-size:.85rem}
+    .empty-state .icon{font-size:3rem;margin-bottom:8px}
 
-        header::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(232,106,51,0.85) 0%, rgba(244,162,97,0.75) 50%, rgba(233,196,106,0.7) 100%);
-            z-index: -1;
-        }
-
-        header .brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        header .brand-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            backdrop-filter: blur(4px);
-        }
-
-        header .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        header h1 {
-            font-size: 1.15rem;
-            color: #fff;
-            letter-spacing: 0.5px;
-            line-height: 1.2;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.15);
-        }
-
-        header .subtitle {
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.85);
-            letter-spacing: 0.3px;
-        }
-
-        header .day-badge {
-            background: rgba(255,255,255,0.22);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            backdrop-filter: blur(4px);
-            white-space: nowrap;
-        }
-
-        /* ── OFFLINE BADGE ── */
-        .offline-bar {
-            display: none;
-            background: #e74c3c;
-            color: #fff;
-            text-align: center;
-            padding: 5px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        .offline-bar.show { display: block; }
-
-        /* ── MAPA ── */
-        #map {
-            flex: 1;
-            width: 100%;
-            z-index: 1;
-        }
-
-        /* ── PANEL INFERIOR ── */
-        .bottom-panel {
-            background: var(--blanco);
-            border-radius: var(--radius) var(--radius) 0 0;
-            box-shadow: 0 -4px 24px var(--sombra-fuerte);
-            max-height: 48vh;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-            position: relative;
-            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .bottom-panel.collapsed {
-            max-height: 54px;
-        }
-
-        /* ── MANIJA DEL PANEL ── */
-        .panel-handle {
-            padding: 10px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            border-bottom: 1px solid var(--borde);
-            min-height: 54px;
-        }
-
-        .panel-handle .privacy-badge {
-            background: linear-gradient(135deg, var(--teal), var(--verde));
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-
-        .panel-handle .result-count {
-            font-size: 0.75rem;
-            color: var(--texto-suave);
-            font-weight: 600;
-        }
-
-        /* ── CONTENIDO DEL PANEL ── */
-        .panel-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px 18px 18px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* ── BARRA DE BÚSQUEDA ── */
-        .search-box {
-            position: relative;
-            margin-bottom: 10px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 14px 12px 40px;
-            border-radius: var(--radius-sm);
-            border: 2px solid var(--borde);
-            background: var(--papel);
-            font-size: 0.9rem;
-            color: var(--texto);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-box input:focus {
-            border-color: var(--terracota);
-        }
-
-        .search-box .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1rem;
-            color: var(--texto-suave);
-        }
-
-        /* ── FILTROS ── */
-        .filter-row {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .filter-chip {
-            background: var(--papel);
-            color: var(--texto-suave);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border: 1.5px solid var(--borde);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-chip:active {
-            transform: scale(0.95);
-        }
-
-        .filter-chip.active {
-            background: var(--terracota);
-            color: #fff;
-            border-color: var(--terracota);
-        }
-
-        .filter-chip.active[data-filter="hoy"] { background: var(--teal); border-color: var(--teal); }
-        .filter-chip.active[data-filter="cerca"] { background: var(--verde); border-color: var(--verde); }
-        .filter-chip.active[data-filter="pueblo-magico"] { background: var(--dorado); border-color: var(--dorado); color: #5a4a1a; }
-        .filter-chip.active[data-filter="trueque"] { background: #8B4513; border-color: #8B4513; }
-        .filter-chip.active[data-filter="comida"] { background: var(--terracota); border-color: var(--terracota); }
-
-        /* ── BOTÓN GPS ── */
-        .btn-gps {
-            width: 100%;
-            background: linear-gradient(135deg, var(--teal), var(--verde));
-            color: #fff;
-            border: none;
-            padding: 13px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(42, 157, 143, 0.25);
-        }
-
-        .btn-gps:active { transform: scale(0.98); }
-        .btn-gps.active { background: linear-gradient(135deg, #e74c3c, #c0392b); }
-        .btn-gps:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        /* ── TARJETAS DE TIANGUIS ── */
-        .tianguis-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .tianguis-card {
-            background: var(--papel);
-            border: 1.5px solid var(--borde);
-            border-radius: var(--radius-sm);
-            padding: 12px 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tianguis-card:active {
-            transform: scale(0.98);
-            border-color: var(--terracota);
-        }
-
-        .tianguis-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            border-radius: 0 2px 2px 0;
-        }
-
-        .tianguis-card.cat-plaza-campo::before { background: #8B4513; }
-        .tianguis-card.cat-garnachas-sabor::before { background: var(--terracota); }
-        .tianguis-card.cat-pueblo-magico::before { background: var(--dorado); }
-        .tianguis-card.cat-identidad-oficios::before { background: #6B4CE6; }
-        .tianguis-card.cat-la-paca::before { background: #7C3AED; }
-        .tianguis-card.cat-hierbas-medicina::before { background: var(--verde); }
-
-        .tianguis-card h3 {
-            font-size: 0.9rem;
-            color: var(--terracota);
-            margin-bottom: 2px;
-            padding-left: 6px;
-        }
-
-        .tianguis-card .meta {
-            font-size: 0.7rem;
-            color: var(--texto-suave);
-            margin-bottom: 4px;
-            padding-left: 6px;
-        }
-
-        .tianguis-card .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            padding-left: 6px;
-        }
-
-        .tag {
-            font-size: 0.6rem;
-            background: var(--blanco);
-            padding: 2px 8px;
-            border-radius: 10px;
-            color: var(--texto-suave);
-            border: 1px solid var(--borde);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .tag.hoy {
-            background: var(--teal);
-            color: #fff;
-            border-color: var(--teal);
-        }
-
-        /* ── ESTADO VACÍO ── */
-        .empty-state {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .empty-state .empty-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .empty-state p {
-            color: var(--texto-suave);
-            font-size: 0.85rem;
-        }
-
-        /* ── POPUP DEL MAPA ── */
-        .leaflet-popup-content-wrapper {
-            border-radius: var(--radius-sm) !important;
-            box-shadow: 0 4px 20px var(--sombra-fuerte) !important;
-        }
-
-        .leaflet-popup-content {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            min-width: 220px;
-        }
-
-        .popup-content h3 {
-            font-size: 0.95rem;
-            color: var(--terracota);
-            margin: 0 0 2px;
-        }
-
-        .popup-content .popup-meta {
-            font-size: 0.7rem;
-            color: var(--texto-suave);
-            margin-bottom: 6px;
-        }
-
-        .popup-content .popup-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3px;
-            margin-bottom: 8px;
-        }
-
-        .popup-content .popup-tags span {
-            font-size: 0.55rem;
-            background: var(--papel);
-            padding: 2px 6px;
-            border-radius: 8px;
-            color: var(--texto-suave);
-        }
-
-        .popup-content .route-box {
-            background: var(--papel);
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            margin-bottom: 8px;
-            border-left: 3px solid var(--terracota);
-        }
-
-        .popup-content .route-box b {
-            color: var(--texto);
-        }
-
-        .popup-content .popup-btn {
-            width: 100%;
-            background: var(--teal);
-            color: #fff;
-            border: none;
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* ── SCROLLBAR ── */
-        .panel-content::-webkit-scrollbar {
-            width: 4px;
-        }
-        .panel-content::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .panel-content::-webkit-scrollbar-thumb {
-            background: var(--borde);
-            border-radius: 4px;
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (min-width: 768px) {
-            .bottom-panel {
-                max-height: 40vh;
-            }
-            header h1 { font-size: 1.3rem; }
-        }
-
-        @media (max-width: 360px) {
-            header { padding: 10px 12px; }
-            header h1 { font-size: 1rem; }
-            .panel-content { padding: 8px 12px 12px; }
-        }
+    .leaflet-routing-container{display:none !important}
     </style>
 </head>
 <body>
 
-    <!-- ═══ HEADER ═══ -->
-    <header>
-        <div class="brand">
-            <div class="brand-icon">🌎</div>
-            <div class="brand-text">
-                <h1>RaízMiTierra</h1>
-                <span class="subtitle">Caminar, conocer, comer y defender nuestras costumbres</span>
-            </div>
-        </div>
-        <span class="day-badge" id="dayBadge">📅 Cargando...</span>
-    </header>
+<div class="install-banner" id="installBanner">
+    <span>📲 ¿Quieres tener RaízMiTierra siempre a la mano?</span>
+    <button class="btn" id="installBtn">Instalar App</button>
+    <button class="close-btn" onclick="document.getElementById('installBanner').classList.remove('show')">✕</button>
+</div>
 
-    <!-- ═══ OFFLINE ═══ -->
-    <div class="offline-bar" id="offlineBar">📡 Sin conexión — datos en caché</div>
+<header>
+    <div><h1>🌎 RaízMiTierra</h1></div>
+    <span class="day-badge" id="dayBadge">📅 Cargando...</span>
+</header>
 
-    <!-- ═══ MAPA ═══ -->
-    <div id="map"></div>
+<div id="map"></div>
 
-    <!-- ═══ PANEL INFERIOR ═══ -->
-    <div class="bottom-panel" id="bottomPanel">
-
-        <div class="panel-handle" onclick="togglePanel()">
-            <span class="privacy-badge">🔒 100% Privado</span>
-            <span class="result-count" id="resultCount">0 lugares</span>
-        </div>
-
-        <div class="panel-content">
-
-            <!-- Buscador -->
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="search" id="searchInput" placeholder="Buscar tianguis, pueblo, antojo..." oninput="filterTianguis()">
-            </div>
-
-            <!-- Filtros rápidos -->
-            <div class="filter-row" id="filterRow">
-                <span class="filter-chip active" data-filter="hoy" onclick="setFilter('hoy')">📅 Hoy</span>
-                <span class="filter-chip" data-filter="cerca" onclick="setFilter('cerca')">📍 Cerca</span>
-                <span class="filter-chip" data-filter="pueblo-magico" onclick="setFilter('pueblo-magico')">🏆 Pueblo Mágico</span>
-                <span class="filter-chip" data-filter="trueque" onclick="setFilter('trueque')">🤝 Trueque</span>
-                <span class="filter-chip" data-filter="comida" onclick="setFilter('comida')">🌮 Comida</span>
-                <span class="filter-chip" data-filter="ropa" onclick="setFilter('ropa')">👕 Paca</span>
-            </div>
-
-            <!-- Botón GPS -->
-            <button class="btn-gps" id="gpsBtn" onclick="toggleGPS()">
-                📍 Ver mi ubicación en el mapa
-            </button>
-
-            <!-- Lista -->
-            <div class="tianguis-list" id="tianguisList">
-                <div class="empty-state">
-                    <div class="empty-icon">🔄</div>
-                    <p>Cargando tianguis...</p>
-                </div>
-            </div>
-
-        </div>
+<div class="bottom-panel" id="bottomPanel">
+    <div class="panel-handle" onclick="togglePanel()">
+        <span class="priv-badge">🔒 Privado</span>
+        <span style="font-size:.7rem;color:var(--texto2)" id="resultCount">0 lugares</span>
     </div>
+    <div class="panel-content">
+        <div class="search-box">
+            <span class="icon">🔍</span>
+            <input type="search" id="searchInput" placeholder="Buscar tianguis, pueblo, antojo..." oninput="filterTianguis()">
+        </div>
+        <div class="filter-row" id="filterRow">
+            <span class="filter-chip active" data-filter="hoy" onclick="setFilter('hoy')">📅 Hoy</span>
+            <span class="filter-chip" data-filter="cerca" onclick="setFilter('cerca')">📍 Cerca</span>
+            <span class="filter-chip" data-filter="comida" onclick="setFilter('comida')">🌮 Comida</span>
+            <span class="filter-chip" data-filter="pueblo-magico" onclick="setFilter('pueblo-magico')">🏆 P. Mágico</span>
+            <span class="filter-chip" data-filter="trueque" onclick="setFilter('trueque')">🤝 Trueque</span>
+            <span class="filter-chip" data-filter="ropa" onclick="setFilter('ropa')">👕 Paca</span>
+        </div>
+        <button class="btn-gps" id="gpsBtn" onclick="toggleGPS()">📍 Mostrar mi ubicación</button>
+        <div class="tianguis-list" id="tianguisList"><div class="empty-state"><div class="icon">🔄</div><p>Cargando 202 tianguis...</p></div></div>
+    </div>
+</div>
 
-    <script>
-        /* ═══════════════════════════════════════════
-           🌎 RAÍZMITIERRA — App JavaScript
-           ═══════════════════════════════════════════ */
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="detailModal">
+    <div class="modal-header">
+        <h2 id="modalTitle">Cargando...</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+</div>
 
-        // ── CONSTANTES ──
-        const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-        const TAG_EMOJIS = {
-            'plaza-campo': '🐴', 'garnachas-sabor': '🌮', 'canasta-basica': '🥬',
-            'la-paca': '👕', 'chacharas-antiguedades': '🔧', 'identidad-oficios': '🏺',
-            'muebles-artesanales': '🪑', 'animales-corral': '🐑', 'cultura-tradicion': '🎭',
-            'pueblo-magico': '🏆', 'hierbas-medicina': '🌿', 'flores-plantas': '🌸'
-        };
-        const TAG_COLORS = {
-            'plaza-campo': '#8B4513', 'garnachas-sabor': '#E86A33', 'canasta-basica': '#2A9D8F',
-            'la-paca': '#7C3AED', 'chacharas-antiguedades': '#DC2626', 'identidad-oficios': '#6B4CE6',
-            'pueblo-magico': '#CA8A04', 'animales-corral': '#78716C', 'cultura-tradicion': '#BE123C'
-        };
+<script>
+const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+let tianguis = [], currentFilter = 'hoy', gpsActive = false, userPos = null, userMarker = null, watchId = null;
+let map, routingControl = null;
 
-        // ── ESTADO ──
-        let tianguisData = [];
-        let currentFilter = 'hoy';
-        let userPos = null;
-        let userMarker = null;
-        let watchId = null;
-        let gpsActive = false;
-        let map;
+function initMap() {
+    map = L.map('map', {center:[19.3,-99.2], zoom:8, zoomControl:true});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution:'© OSM © CARTO', maxZoom:19
+    }).addTo(map);
+}
 
-        // ── INICIALIZAR MAPA ──
-        function initMap() {
-            map = L.map('map', {
-                center: [19.3, -99.4],
-                zoom: 9,
-                zoomControl: true,
-                attributionControl: true
-            });
+async function loadData() {
+    try {
+        const r = await fetch('data.json?_='+Date.now());
+        const d = await r.json();
+        tianguis = d.tianguis || [];
+        document.getElementById('resultCount').textContent = tianguis.length + ' lugares';
+        updateDay(); applyFilter(); addMarkers();
+    } catch(e) {
+        document.getElementById('tianguisList').innerHTML='<div class="empty-state"><div class="icon">⚠️</div><p>Error al cargar datos. ¿Sin conexión?</p></div>';
+    }
+}
 
-            // Mapa base cálido (CartoDB Positron — colores claros)
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>',
-                maxZoom: 19,
-                minZoom: 5
-            }).addTo(map);
+function updateDay() {
+    document.getElementById('dayBadge').textContent = '📅 '+DIAS[new Date().getDay()];
+}
+
+function setFilter(f) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-chip').forEach(el => el.classList.toggle('active',el.dataset.filter===f));
+    applyFilter();
+}
+
+function filterTianguis() { applyFilter(); }
+
+function applyFilter() {
+    const texto = document.getElementById('searchInput').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const hoy = DIAS[new Date().getDay()];
+    let r = tianguis.filter(t => {
+        if(texto) {
+            const n=(t.name||'').toLowerCase(), reg=(t.region||'').toLowerCase(), cats=(t.categories||[]).join(' ');
+            if(!n.includes(texto)&&!reg.includes(texto)&&!cats.includes(texto)) return false;
         }
+        if(currentFilter==='hoy') return t.days&&t.days.includes(hoy);
+        if(currentFilter==='cerca') return true;
+        if(currentFilter==='comida') return t.categories&&t.categories.includes('garnachas-sabor');
+        if(currentFilter==='pueblo-magico') return t.categories&&t.categories.includes('pueblo-magico');
+        if(currentFilter==='trueque') return t.categories&&t.categories.includes('plaza-campo');
+        if(currentFilter==='ropa') return t.categories&&(t.categories.includes('la-paca'));
+        return true;
+    });
+    r.sort((a,b)=>{const aH=a.days&&a.days.includes(hoy)?0:1,bH=b.days&&b.days.includes(hoy)?0:1;if(aH!==bH)return aH-bH;if(currentFilter==='cerca'&&userPos&&a.coords&&b.coords)return dist(userPos,a.coords)-dist(userPos,b.coords);return 0});
+    renderList(r);
+}
 
-        // ── CARGAR DATA ──
-        async function loadData() {
-            try {
-                const resp = await fetch('data.json?_=' + Date.now());
-                const data = await resp.json();
-                tianguisData = data.tianguis || [];
-                updateDay();
-                applyFilter();
-                addMarkers();
-            } catch (err) {
-                document.getElementById('tianguisList').innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">⚠️</div>
-                        <p>Error al cargar. ¿Estás offline?<br>
-                        <small style="color:#999;">Los datos en caché deberían funcionar.</small></p>
-                    </div>`;
-            }
-        }
+function dist(f,t){if(!f||!t)return 999999;const R=6371000;const dL=(t[0]-f.lat||0)*Math.PI/180,dL2=(t[1]-f.lng||0)*Math.PI/180;const a=Math.sin(dL/2)**2+Math.cos(f.lat*Math.PI/180)*Math.cos(t[0]*Math.PI/180)*Math.sin(dL2/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
+function fmtD(m){if(!m||m>999999)return'';if(m>=1000)return(m/1000).toFixed(1)+' km';return Math.round(m)+' m'}
 
-        // ── DÍA ACTUAL ──
-        function updateDay() {
-            const hoy = DIAS[new Date().getDay()];
-            document.getElementById('dayBadge').textContent = '📅 ' + hoy;
-        }
+const TAG_EMOJI={'plaza-campo':'🐴','garnachas-sabor':'🌮','canasta-basica':'🥬','la-paca':'👕','chacharas-antiguedades':'🔧','identidad-oficios':'🏺','muebles-artesanales':'🪑','animales-corral':'🐑','cultura-tradicion':'🎭','pueblo-magico':'🏆','hierbas-medicina':'🌿','flores-plantas':'🌸'};
 
-        // ── FILTROS ──
-        function setFilter(filter) {
-            currentFilter = filter;
-            document.querySelectorAll('.filter-chip').forEach(el => {
-                el.classList.toggle('active', el.dataset.filter === filter);
-            });
-            applyFilter();
-        }
+function renderList(data) {
+    const el = document.getElementById('tianguisList');
+    const hoy = DIAS[new Date().getDay()];
+    document.getElementById('resultCount').textContent = data.length + ' lugares';
+    if(!data.length) {el.innerHTML='<div class="empty-state"><div class="icon">🔍</div><p>No hay tianguis hoy con ese filtro.</p></div>';return}
+    el.innerHTML = data.map(t => {
+        const esHoy = t.days && t.days.includes(hoy);
+        const d = (t.days||[]).map(dd => `<span class="tag ${esHoy&&dd===hoy?'hoy':''}">${dd}</span>`).join('');
+        const c = (t.categories||[]).slice(0,3).map(cat => `<span class="tag">${TAG_EMOJI[cat]||''} ${cat.replace(/-/g,' ')}</span>`).join('');
+        const img = t.img || 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=100&h=100&fit=crop';
+        const distancia = userPos && t.coords ? fmtD(dist(userPos, t.coords)) : '';
+        return `<div class="ti-card" onclick="showDetail('${t.id}')">
+            <img class="card-img" src="${img}" alt="${t.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=100&h=100&fit=crop'">
+            <div class="card-body">
+                <h3>${t.name}</h3>
+                <div class="meta">📍 ${cap(t.region||'')}${distancia ? ' · 📏 '+distancia : ''}${t.pueblo_magico?' · 🏆':''}</div>
+                <div class="tags">${d} ${c}</div>
+            </div>
+        </div>`;
+    }).join('');
+}
 
-        function filterTianguis() {
-            applyFilter();
-        }
+let mapMarkers = [];
+function addMarkers() {
+    mapMarkers.forEach(m=>map.removeLayer(m)); mapMarkers=[];
+    tianguis.forEach(t => {
+        if(!t.coords||t.coords.length!==2) return;
+        const esHoy = t.days&&t.days.includes(DIAS[new Date().getDay()]);
+        const m = L.circleMarker(t.coords, {radius:7, fillColor: esHoy?'#2A9D8F':'#E86A33', color:'#fff', weight:2, fillOpacity:.9}).addTo(map);
+        m.bindPopup(`<b style="color:#000;">${t.name}</b><br><span style="color:#666;">📅 ${(t.days||[]).join(', ')}</span>`);
+        m.on('click',()=>{map.setView(t.coords,13); showDetail(t.id)});
+        mapMarkers.push(m);
+    });
+}
 
-        function applyFilter() {
-            const texto = document.getElementById('searchInput').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const hoy = DIAS[new Date().getDay()];
-
-            let results = tianguisData.filter(t => {
-                // Texto
-                if (texto) {
-                    const name = t.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                    const region = (t.region || '').toLowerCase();
-                    const cats = (t.categories || []).join(' ');
-                    const pm = (t.pueblo_magico || '').toLowerCase();
-                    if (!name.includes(texto) && !region.includes(texto) && !cats.includes(texto) && !pm.includes(texto)) {
-                        return false;
-                    }
-                }
-
-                // Filtro
-                if (currentFilter === 'hoy') return t.days && t.days.includes(hoy);
-                if (currentFilter === 'pueblo-magico') return t.categories && t.categories.includes('pueblo-magico');
-                if (currentFilter === 'trueque') return t.categories && t.categories.includes('plaza-campo');
-                if (currentFilter === 'comida') return t.categories && t.categories.includes('garnachas-sabor');
-                if (currentFilter === 'ropa') return t.categories && (t.categories.includes('la-paca') || t.categories.includes('chacharas-antiguedades'));
-                if (currentFilter === 'cerca') return true; // Ordenar por distancia abajo
-                return true;
-            });
-
-            // Ordenar: HOY primero, luego distancia (si GPS activo)
-            results.sort((a, b) => {
-                const aHoy = a.days && a.days.includes(hoy) ? 0 : 1;
-                const bHoy = b.days && b.days.includes(hoy) ? 0 : 1;
-                if (aHoy !== bHoy) return aHoy - bHoy;
-                if (currentFilter === 'cerca' && userPos) {
-                    const dA = distance(userPos, a.coords);
-                    const dB = distance(userPos, b.coords);
-                    return dA - dB;
-                }
-                return 0;
-            });
-
-            renderList(results);
-        }
-
-        // ── DISTANCIA (fórmula Haversine) ──
-        function distance(from, to) {
-            if (!from || !to || !to[0] || !to[1]) return 999999;
-            const R = 6371000;
-            const dLat = (to[0] - from[0]) * Math.PI / 180;
-            const dLon = (to[1] - from[1]) * Math.PI / 180;
-            const a = Math.sin(dLat/2)**2 + Math.cos(from[0]*Math.PI/180) * Math.cos(to[0]*Math.PI/180) * Math.sin(dLon/2)**2;
-            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        }
-
-        function formatDist(m) {
-            if (m >= 1000) return (m/1000).toFixed(1) + ' km';
-            return Math.round(m) + ' m';
-        }
-
-        // ── RENDERIZAR LISTA ──
-        function renderList(data) {
-            const lista = document.getElementById('tianguisList');
-            const hoy = DIAS[new Date().getDay()];
-            document.getElementById('resultCount').textContent = data.length + ' lugares';
-
-            if (data.length === 0) {
-                lista.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">🔍</div>
-                        <p>No hay tianguis hoy con ese filtro.<br>
-                        <small style="color:#999;">Prueba otro día o busca otra cosa.</small></p>
-                    </div>`;
-                return;
-            }
-
-            lista.innerHTML = data.map(t => {
-                const esHoy = t.days && t.days.includes(hoy);
-                const dias = (t.days || []).map(d =>
-                    `<span class="tag ${esHoy && d === hoy ? 'hoy' : ''}">${d}</span>`
-                ).join('');
-
-                const cats = (t.categories || []).slice(0, 4).map(c =>
-                    `<span class="tag">${TAG_EMOJIS[c] || ''} ${capitalize(c.replace(/-/g, ' '))}</span>`
-                ).join('');
-
-                const dist = userPos && t.coords ? formatDist(distance(userPos, t.coords)) : '';
-                const firstCat = (t.categories && t.categories[0]) ? 'cat-' + t.categories[0] : '';
-
-                return `
-                    <div class="tianguis-card ${firstCat}" onclick="showTianguis('${t.id}')">
-                        <h3>${t.name} ${t.pueblo_magico ? '🏆' : ''}</h3>
-                        <div class="meta">
-                            📍 ${capitalize(t.region || '')}
-                            ${dist ? ' · 📏 ' + dist : ''}
-                        </div>
-                        <div class="tags">${dias} ${cats}</div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // ── MARCAR TIANGUIS EN MAPA ──
-        let mapMarkers = [];
-
-        function addMarkers() {
-            mapMarkers.forEach(m => map.removeLayer(m));
-            mapMarkers = [];
-
-            tianguisData.forEach(t => {
-                if (!t.coords || t.coords.length !== 2) return;
-
-                const hoy = DIAS[new Date().getDay()];
-                const esHoy = t.days && t.days.includes(hoy);
-                const color = esHoy ? '#2A9D8F' : '#E86A33';
-
-                const marker = L.circleMarker(t.coords, {
-                    radius: 9,
-                    fillColor: color,
-                    color: '#fff',
-                    weight: 2.5,
-                    fillOpacity: 0.9
-                }).addTo(map);
-
-                marker.bindPopup(`
-                    <div class="popup-content">
-                        <h3>${t.name}</h3>
-                        <div class="popup-meta">
-                            📅 ${(t.days || []).join(' · ')}${t.horario ? ' · ⏰ ' + t.horario : ''}
-                        </div>
-                        <div class="popup-tags">
-                            ${(t.categories || []).map(c => `<span>${TAG_EMOJIS[c] || ''} ${capitalize(c.replace(/-/g, ' '))}</span>`).join('')}
-                        </div>
-                        ${t.best_route && t.best_route.from_cdmx ? `
-                            <div class="route-box">
-                                <b>🚗 Cómo llegar</b><br>
-                                ${t.best_route.from_cdmx}<br>
-                                🅿️ ${t.best_route.parking || 'Estacionamiento comunitario'}
-                                ${t.best_route.tip ? '<br>💡 ' + t.best_route.tip : ''}
-                            </div>
-                        ` : ''}
-                        <button class="popup-btn" onclick="showDistance('${t.id}')">📍 Distancia desde mi ubicación</button>
-                    </div>
-                `);
-
-                marker.on('click', () => map.setView(t.coords, 14));
-                mapMarkers.push(marker);
-            });
-        }
-
-        // ── MOSTRAR TIANGUIS ──
-        function showTianguis(id) {
-            const t = tianguisData.find(x => x.id === id);
-            if (t && t.coords) {
-                map.setView(t.coords, 14);
-                // Abrir popup
-                mapMarkers.forEach(m => {
-                    if (m.getLatLng().lat === t.coords[0] && m.getLatLng().lng === t.coords[1]) {
-                        m.openPopup();
-                    }
-                });
-                // Colapsar panel para ver mapa
-                document.getElementById('bottomPanel').classList.remove('collapsed');
-            }
-        }
-
-        function showDistance(id) {
-            if (!gpsActive || !userPos) {
-                toggleGPS();
-                setTimeout(() => showDistance(id), 3000);
-                return;
-            }
-            const t = tianguisData.find(x => x.id === id);
-            if (t && t.coords && userPos) {
-                const d = distance(userPos, t.coords);
-                alert(`📍 Distancia a ${t.name}: ${formatDist(d)}`);
-            }
-        }
-
-        // ── GPS 100% PRIVADO ──
-        function toggleGPS() {
-            const btn = document.getElementById('gpsBtn');
-
-            if (gpsActive) {
-                if (watchId) navigator.geolocation.clearWatch(watchId);
-                if (userMarker) { map.removeLayer(userMarker); userMarker = null; }
-                gpsActive = false;
-                userPos = null;
-                btn.innerHTML = '📍 Ver mi ubicación en el mapa';
-                btn.classList.remove('active');
-                btn.disabled = false;
-                return;
-            }
-
-            if (!navigator.geolocation) {
-                alert('Tu celular no soporta geolocalización.');
-                return;
-            }
-
-            btn.innerHTML = '⏳ Activando GPS...';
-            btn.disabled = true;
-
-            watchId = navigator.geolocation.watchPosition(
-                (pos) => {
-                    const lat = pos.coords.latitude;
-                    const lng = pos.coords.longitude;
-                    userPos = {lat, lng};
-
-                    if (userMarker) {
-                        userMarker.setLatLng([lat, lng]);
-                    } else {
-                        const icon = L.divIcon({
-                            className: '',
-                            html: '<div style="background:#E86A33;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px rgba(232,106,51,0.6);"></div>',
-                            iconSize: [18, 18]
-                        });
-                        userMarker = L.marker([lat, lng], {icon}).addTo(map);
-                        userMarker.bindPopup('<b>📍 Estás aquí</b><br><small style="color:#666;">Tu ubicación es 100% privada.</small>');
-                    }
-
-                    if (!gpsActive) {
-                        map.setView([lat, lng], 13);
-                        gpsActive = true;
-                        btn.innerHTML = '🟢 GPS activo — toca para apagar';
-                        btn.classList.add('active');
-                        btn.disabled = false;
-                        if (currentFilter === 'cerca') applyFilter();
-                    }
-                },
-                (err) => {
-                    btn.innerHTML = '📍 Ver mi ubicación en el mapa';
-                    btn.disabled = false;
-                    if (err.code === 1) {
-                        alert('🔒 Activa el GPS en los permisos de tu navegador.');
-                    }
-                },
-                { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
-            );
-        }
-
-        // ── TOGGLE PANEL ──
-        let panelOpen = true;
-        function togglePanel() {
-            panelOpen = !panelOpen;
-            document.getElementById('bottomPanel').classList.toggle('collapsed', !panelOpen);
-        }
-
-        // ── UTILERÍAS ──
-        function capitalize(s) {
-            if (!s) return '';
-            return s.replace(/\b\w/g, c => c.toUpperCase());
-        }
-
-        // ── SERVICE WORKER ──
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(() => {});
-        }
-
-        window.addEventListener('offline', () => {
-            document.getElementById('offlineBar').classList.add('show');
+function showDetail(id) {
+    const t = tianguis.find(x => x.id === id);
+    if(!t) return;
+    document.getElementById('modalTitle').textContent = t.name.length > 40 ? t.name.slice(0,37)+'...' : t.name;
+    const body = document.getElementById('modalBody');
+    const img = t.img || 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=400&fit=crop';
+    const cats = (t.categories||[]).map(c => `${TAG_EMOJI[c]||''} ${cap(c.replace(/-/g,' '))}`).join(' · ');
+    
+    // Comments HTML
+    let commentsHtml = '';
+    if(t.comentarios && t.comentarios.length) {
+        t.comentarios.slice(0,8).forEach(c => {
+            const tag = c.tipo || '#Comunitario';
+            const texto = c.texto || '';
+            const link = c.link || '';
+            // Generate unique unsplash for each comment
+            const imgId = Math.floor(Math.random()*20)+1;
+            const photo = `https://images.unsplash.com/photo-${['1488459716781-31db52582fe9','1540420773420-3366772f4999','1565123409695-7b5ef63a2efb','1498837167922-ddd27525d352','1504672400261-21f0e5889e43','1476224203421-9ac39bcb3327','1505253711362-2874c156e9e7','1490645935967-10de6ba17061','1515003197210-e0cd71810b5f','1495147466323-ac5c8b8fc485','1507048331197-7d4ac70811cf','1590779033100-38b9e3f3d09e','1476718406336-b509b50b7a0b','1482049016688-2d3e1b311943','1540189549336-e6e99c3679fe','1473093295043-cdd812d0e601','1504754524779-5dfc2b9c5c2a','1512621772771-1de8e0f5c5a8','1523419409543-f1c6a67b7dd1','1506808547685-e2ba3a1e1f0a'][imgId%20]}?w=400&q=80`;
+            
+            commentsHtml += `<div class="comment">
+                <span class="tag">${tag}</span>
+                <div class="text">"${texto}"</div>
+                ${link ? `<a class="link" href="${link}" target="_blank" rel="noopener">🔗 Ver evidencia</a>` : ''}
+                <img src="${photo}" alt="Foto del tianguis" loading="lazy" onerror="this.style.display='none'">
+            </div>`;
         });
-        window.addEventListener('online', () => {
-            document.getElementById('offlineBar').classList.remove('show');
-        });
-        if (!navigator.onLine) {
-            document.getElementById('offlineBar').classList.add('show');
-        }
+    } else {
+        commentsHtml = '<p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">💬 No hay comentarios aún para este tianguis. ¡Sé el primero!</p>';
+    }
 
-        // ── INICIO ──
-        document.addEventListener('DOMContentLoaded', () => {
-            initMap();
-            loadData();
-        });
-    </script>
+    body.innerHTML = `
+        <img class="modal-img" src="${img}" alt="${t.name}" onerror="this.src='https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=400&fit=crop'">
+        <div class="modal-info">
+            <div><span class="label">📅 Días</span><span class="val">${(t.days||[]).join(', ')}</span></div>
+            <div><span class="label">⏰ Horario</span><span class="val">${t.horario||'6:00 AM'}</span></div>
+            <div><span class="label">📍 Región</span><span class="val">${cap(t.region||'')}</span></div>
+            <div><span class="label">🏛️ Estado</span><span class="val">${cap(t.state||'edomex')}</span></div>
+            <div><span class="label">🛍️ Categorías</span><span class="val">${cats}</span></div>
+            <div><span class="label">👥 Ambiente</span><span class="val">${t.safety||'Seguro'}</span></div>
+        </div>
+        ${t.best_route&&t.best_route.parking?`<div style="background:var(--papel);padding:8px 10px;border-radius:8px;font-size:.75rem;margin-bottom:6px;border-left:3px solid var(--teal)">🅿️ ${t.best_route.parking}</div>`:''}
+
+        <button class="route-btn" onclick="getRoute('${t.id}')">🗺️ Ver ruta desde mi ubicación</button>
+
+        <div class="section-title">💬 Bitácora Comunitaria</div>
+        ${commentsHtml}
+
+        <div class="section-title">📝 Recomendaciones</div>
+        <ul class="rec-list">
+            <li>🕐 Llegar antes de las 9 AM para encontrar lo mejor</li>
+            <li>💵 Llevar efectivo — muchos puestos no aceptan tarjeta</li>
+            <li>🛍️ Comparar precios entre puestos</li>
+            <li>🌮 Probar la comida local — es parte de la experiencia</li>
+            <li>👜 Llevar bolsas reutilizables para la despensa</li>
+        </ul>
+    `;
+    document.getElementById('modalOverlay').classList.add('show');
+    document.getElementById('detailModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.getElementById('detailModal').classList.remove('show');
+}
+
+function getRoute(id) {
+    closeModal();
+    if(!gpsActive||!userPos) { toggleGPS(); setTimeout(()=>getRoute(id),3000); return }
+    const t = tianguis.find(x=>x.id===id);
+    if(!t||!t.coords) return;
+    map.setView(userPos, 13);
+    if(routingControl) map.removeControl(routingControl);
+    routingControl = L.Routing.control({
+        waypoints: [L.latLng(userPos.lat, userPos.lng), L.latLng(t.coords[0], t.coords[1])],
+        language: 'es',
+        show: false,
+        routeWhileDragging: true,
+        lineOptions: {styles:[{color:'#E86A33',opacity:.8,weight:4}]}
+    }).addTo(map);
+}
+
+function toggleGPS() {
+    const btn = document.getElementById('gpsBtn');
+    if(gpsActive) {
+        if(watchId) navigator.geolocation.clearWatch(watchId);
+        if(userMarker){map.removeLayer(userMarker);userMarker=null}
+        userPos=null;gpsActive=false;
+        btn.innerHTML='📍 Mostrar mi ubicación';btn.classList.remove('active');
+        if(routingControl){map.removeControl(routingControl);routingControl=null}
+        return;
+    }
+    if(!navigator.geolocation){alert('Tu celular no soporta GPS.');return}
+    btn.innerHTML='⏳ Activando GPS...';btn.disabled=true;
+    watchId = navigator.geolocation.watchPosition(
+        p => {
+            userPos={lat:p.coords.latitude,lng:p.coords.longitude};
+            if(userMarker) userMarker.setLatLng([userPos.lat,userPos.lng]);
+            else {
+                const icon=L.divIcon({className:'',html:'<div style="background:#E86A33;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px rgba(232,106,51,.6)"></div>',iconSize:[18,18]});
+                userMarker=L.marker([userPos.lat,userPos.lng],{icon}).addTo(map);
+                userMarker.bindPopup('<b>📍 Estás aquí</b><br><small>Ubicación 100% privada.</small>');
+                map.setView([userPos.lat,userPos.lng],12);
+            }
+            gpsActive=true;
+            btn.innerHTML='🟢 GPS activo — toca para apagar';btn.classList.add('active');btn.disabled=false;
+            if(currentFilter==='cerca') applyFilter();
+        },
+        e => {btn.innerHTML='📍 Mostrar mi ubicación';btn.disabled=false;if(e.code===1)alert('🔒 Activa el GPS en los permisos del navegador.')},
+        {enableHighAccuracy:true,timeout:10000,maximumAge:30000}
+    );
+}
+
+let panelOpen=true;
+function togglePanel(){panelOpen=!panelOpen;document.getElementById('bottomPanel').classList.toggle('collapsed',!panelOpen)}
+
+function cap(s){if(!s)return'';return s.replace(/\b\w/g,c=>c.toUpperCase())}
+
+// PWA Install
+let installPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    installPrompt = e;
+    document.getElementById('installBanner').classList.add('show');
+});
+document.getElementById('installBtn').addEventListener('click', async () => {
+    if(!installPrompt) return;
+    installPrompt.prompt();
+    const result = await installPrompt.userChoice;
+    if(result.outcome === 'accepted') {
+        document.getElementById('installBanner').classList.remove('show');
+        installPrompt = null;
+    }
+});
+window.addEventListener('appinstalled', () => {
+    document.getElementById('installBanner').classList.remove('show');
+    installPrompt = null;
+});
+
+// Service Worker
+if('serviceWorker'in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+document.addEventListener('DOMContentLoaded',()=>{initMap();loadData()});
+</script>
 </body>
 </html>
