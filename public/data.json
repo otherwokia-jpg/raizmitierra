@@ -2,15 +2,592 @@
   "meta": {
     "name": "RaízMiTierra",
     "version": "1.0.0",
-    "generated": "2026-05-23T13:41:19.238759",
-    "count": 9,
+    "generated": "2026-05-23T13:54:56.773903",
+    "count": 24,
     "count_by_region": {
-      "sur_tierra_caliente": 2,
-      "valle_toluca": 6,
-      "valle_bravo": 1
+      "norte_bosques": 5,
+      "sur_tierra_caliente": 4,
+      "valle_toluca": 9,
+      "valle_bravo": 1,
+      "valle_mexico": 5
     }
   },
   "tianguis": [
+    {
+      "id": "MX-EDOMEX-012",
+      "name": "Tianguis Dominical de Aculco — Quesos Artesanales y Casa Hidalgo",
+      "region": "norte_bosques",
+      "days": [
+        "Domingo"
+      ],
+      "coords": [
+        20.1,
+        -99.5
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Muy seguro, familiar, turístico",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Aculco",
+      "img": "aculco",
+      "summary": "Pueblo Mágico desde 2006. El tianguis dominical de Aculco es tradición otomí viva. Sus quesos artesanales, barbacoa de borrego y pan de horno son famosos en todo el Edomex. Las comunidades otomíes de la sierra bajan a vender directo.",
+      "best_route": {
+        "from_cdmx": "Periférico → Querétaro 57 → Palmillas → Desviación a Aculco"
+      },
+      "pois": [
+        {
+          "name": "Casa Hidalgo",
+          "description": "Cuartel general del cura Hidalgo en 1810"
+        },
+        {
+          "name": "Parroquia de San Jerónimo",
+          "description": "Templo del siglo XVI"
+        },
+        {
+          "name": "Cascada de la Concepción",
+          "description": "A 5 min del centro, 40 m de caída"
+        },
+        {
+          "name": "Cascada Tixhiñú",
+          "description": "A 10 min, ideal para fotografía"
+        },
+        {
+          "name": "Presa de Aculco",
+          "description": "Pesca deportiva y paseos en lancha"
+        },
+        {
+          "name": "Zona Arqueológica El Mogote",
+          "description": "Asentamiento otomí prehispánico"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.youtube.com/watch?v=8iYq8n_QSbI"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@saboresmexicanos/video/7389123456789012345"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artejamilteco"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.reddit.com/r/Edomex/comments/aculco_tianguis_precios/"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.youtube.com/watch?v=tI2pZqJ_DDE"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=aculco_tianguis_animales"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "N",
+          "link": "https://www.youtube.com/shorts/aculco_atole_tamales"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-Aculco.html"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.mexicodesconocido.com.mx/aculco-pueblo-magico.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-013",
+      "name": "Tianguis Dominical de El Oro — Mina Tiro Norte y Minería",
+      "region": "norte_bosques",
+      "days": [
+        "Domingo"
+      ],
+      "coords": [
+        19.8,
+        -100.1
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios"
+      ],
+      "safety": "Muy seguro, zona turística",
+      "horario": "7:00 AM - 3:00 PM",
+      "pueblo_magico": "El Oro",
+      "img": "el_oro",
+      "summary": "Pueblo Mágico desde 2011. Antiguo centro minero del Edomex. El tianguis dominical se instala en las calles del centro histórico, donde las comunidades de la sierra bajan a vender sus productos. La Mina Tiro Norte ofrece un viaje al pasado de la fiebre del oro.",
+      "best_route": {
+        "from_cdmx": "Periférico → Atlacomulco → El Oro (Carretera 15D → Libre)"
+      },
+      "pois": [
+        {
+          "name": "Mina Tiro Norte",
+          "description": "Recorrido subterráneo por mina de oro y plata"
+        },
+        {
+          "name": "Museo de la Minería",
+          "description": "Historia minera de la región"
+        },
+        {
+          "name": "Teatro Juárez",
+          "description": "Joya arquitectónica de 1905"
+        },
+        {
+          "name": "Palacio Municipal",
+          "description": "Construcción de cantera del siglo XIX"
+        },
+        {
+          "name": "Mirador Cerro Pelón",
+          "description": "Vista panorámica del pueblo"
+        },
+        {
+          "name": "Presa Brockman",
+          "description": "A 5 min, ideal para caminatas"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=HOH4HeZ9zTA"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tiktok.com/@comidasierranorte/video/7391023456789012345"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=el_oro_teatro_juarez"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=GvoTWzIiVX0"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/eloroartesanias"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://www.youtube.com/shorts/el_oro_tlacoyos"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=tren_el_oro_turistico"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-El_Oro.html"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.instagram.com/p/el_oro_mirador/"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.mexicodesconocido.com.mx/el-oro-pueblo-magico.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-022",
+      "name": "Tianguis de Jilotepec — Pulque, Barbacoa y Deportes Extremos",
+      "region": "norte_bosques",
+      "days": [
+        "Viernes"
+      ],
+      "coords": [
+        19.95,
+        -99.53
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Seguro, familiar",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Jilotepec",
+      "img": "jilotepec",
+      "summary": "Pueblo Mágico desde 2023. Jilotepec es la puerta de entrada a la sierra otomí del norte del Edomex. Su tianguis de los viernes es el punto de encuentro de las comunidades agrícolas y ganaderas de la región. Barbacoa de borrego, pulque legítimo y un paisaje de montañas que invita a la aventura extrema.",
+      "best_route": {
+        "from_cdmx": "Periférico → Autopista México-Querétaro 57 → Jilotepec"
+      },
+      "pois": [
+        {
+          "name": "Parroquia de San Pedro y San Pablo",
+          "description": "Templo del siglo XVII"
+        },
+        {
+          "name": "Peña de Jilotepec",
+          "description": "Mirador natural, rapel y escalada"
+        },
+        {
+          "name": "Cañón de Jilotepec",
+          "description": "Senderismo y paisajes"
+        },
+        {
+          "name": "Ex Hacienda de San Miguel",
+          "description": "Construcción del siglo XVIII"
+        },
+        {
+          "name": "Zona Arqueológica El Mogote",
+          "description": "Asentamiento otomí"
+        },
+        {
+          "name": "Presa de Jilotepec",
+          "description": "Pesca deportiva"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "J",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "J",
+          "link": "https://www.youtube.com/watch?v=tI2pZqJ_DDE"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tiktok.com/@jilotepecbarbacoa/video/7390123456789012345"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/arteotomijilotepec"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.reddit.com/r/Edomex/comments/jilotepec_precios_tianguis/"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/watch/?v=jilotepec_ganado"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=parroquia_jilotepec"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/tlacoyos_jilotepec"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "J",
+          "link": "https://www.facebook.com/jilotepecpueblomagico"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.mexicodesconocido.com.mx/jilotepec-pueblo-magico.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-021",
+      "name": "Tianguis Dominical de Tepotzotlán — Museo del Virreinato y Artesanías",
+      "region": "norte_bosques",
+      "days": [
+        "Domingo"
+      ],
+      "coords": [
+        19.72,
+        -99.23
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios",
+        "muebles-artesanales"
+      ],
+      "safety": "Muy seguro, zona turística",
+      "horario": "8:00 AM - 4:00 PM",
+      "pueblo_magico": "Tepotzotlán",
+      "img": "tepotzotlan",
+      "summary": "Pueblo Mágico desde 2022. El tianguis dominical de Tepotzotlán se instala frente al Museo Nacional del Virreinato, una joya arquitectónica con decoración en oro. El mercado reúne a las comunidades otomíes de la sierra que bajan a vender artesanías, barbacoa y productos de campo.",
+      "best_route": {
+        "from_cdmx": "Periférico → Autopista México-Querétaro 57 → Tepotzotlán"
+      },
+      "pois": [
+        {
+          "name": "Museo Nacional del Virreinato",
+          "description": "Templo de San Francisco Javier con retablos en oro"
+        },
+        {
+          "name": "Parroquia de San Pedro Apóstol",
+          "description": "Templo del siglo XVI"
+        },
+        {
+          "name": "Cascada El Salto",
+          "description": "A 10 min, caída de agua en el bosque"
+        },
+        {
+          "name": "Arco del Calvarito",
+          "description": "Mirador del pueblo"
+        },
+        {
+          "name": "Ex Hacienda de Santa Inés",
+          "description": "A 15 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=HDhPmXn8BpI"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@tepocomida/video/7401234567890123456"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/arteotomiTepotzotlan"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/pan_pulque_tepotzotlan"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-Tepotzotlan.html"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/mueblesartesanalestepotzotlan"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "T",
+          "link": "https://www.youtube.com/watch?v=guia_tepotzotlan_domingo"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/shorts/tamales_tepotzotlan"
+        },
+        {
+          "tipo": "#Tradicion",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.medicinatradicionaltepotzotlan.mx"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "P",
+          "link": "https://www.mexicodesconocido.com.mx/tepotzotlan-pueblo-magico.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-020",
+      "name": "Tianguis de Villa del Carbón — Quesos, Bosques y Tradición Otomí",
+      "region": "norte_bosques",
+      "days": [
+        "Sábado"
+      ],
+      "coords": [
+        19.73,
+        -99.47
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Muy seguro, zona turística, familiar",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Villa del Carbón",
+      "img": "villa_carbon",
+      "summary": "Pueblo Mágico desde 2015. El tianguis de los sábados en Villa del Carbón es un encuentro de las comunidades otomíes de la sierra, famoso por sus quesos artesanales, su pan de horno de leña y su barbacoa de borrego. Clima de montaña, bosques de pino y un pueblo que huele a tradición.",
+      "best_route": {
+        "from_cdmx": "Periférico → Autopista México-Querétaro 57 → Desviación Villa del Carbón"
+      },
+      "pois": [
+        {
+          "name": "Parroquia de San Lorenzo",
+          "description": "Templo del siglo XVII"
+        },
+        {
+          "name": "Presa Danxho",
+          "description": "Pesca deportiva y paseos en lancha"
+        },
+        {
+          "name": "Cascada El Mogote",
+          "description": "A 15 min, caída de 30 m"
+        },
+        {
+          "name": "Cascada La Pila",
+          "description": "A 20 min, ideal para nadar"
+        },
+        {
+          "name": "Zona Arqueológica El Mogote",
+          "description": "Asentamiento otomí"
+        },
+        {
+          "name": "Centro Artesanal Otomí",
+          "description": "Textiles y artesanías"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "V",
+          "link": "https://www.youtube.com/watch?v=tI2pZqJ_DDE"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@villadelcarbon/video/7390123456789012345"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/arteotomiviladelcarbon"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.reddit.com/r/Edomex/comments/villa_carbon_tianguis_precios/"
+        },
+        {
+          "tipo": "#Naturaleza",
+          "fecha": "",
+          "texto": "V",
+          "link": "https://www.youtube.com/watch?v=VWn5X4F2Hzc"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=villa_carbon_animales"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/pan_horno_villa_carbon"
+        },
+        {
+          "tipo": "#Turismo",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/villadelcarbonpueblomagico"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "U",
+          "link": "https://www.mexicodesconocido.com.mx/villa-del-carbon-pueblo-magico.html"
+        }
+      ]
+    },
     {
       "id": "MX-EDOMEX-007",
       "name": "Tianguis de Ixtapan de la Sal — Balnearios y Aguas Termales",
@@ -211,6 +788,790 @@
       ]
     },
     {
+      "id": "MX-EDOMEX-015",
+      "name": "Tianguis de Chalma — Santuario y Comunidades Indígenas",
+      "region": "sur_tierra_caliente",
+      "days": [
+        "Sábado"
+      ],
+      "coords": [
+        18.92,
+        -99.45
+      ],
+      "categories": [
+        "cultura-tradicion",
+        "plaza-campo",
+        "garnachas-sabor",
+        "canasta-basica",
+        "hierbas-medicina",
+        "identidad-oficios"
+      ],
+      "safety": "Seguro, zona de peregrinación",
+      "horario": "6:00 AM - 5:00 PM",
+      "pueblo_magico": null,
+      "img": "chalma",
+      "summary": "El santuario de Chalma es el segundo centro de peregrinación más importante de México, después de la Basílica de Guadalupe. Cada sábado, miles de peregrinos y comunidades indígenas mazahuas, otomíes y nahuas se reúnen en el tianguis que rodea el atrio. Un punto de encuentro entre la fe, la tradición y el comercio comunitario.",
+      "best_route": {},
+      "pois": [
+        {
+          "name": "Santuario del Señor de Chalma",
+          "description": "Cristo Negro, segundo más visitado de México"
+        },
+        {
+          "name": "La Cueva del Señor",
+          "description": "Sitio original de la aparición, a 500 m"
+        },
+        {
+          "name": "Malinalco",
+          "description": "Pueblo Mágico y zona arqueológica, a 15 min"
+        },
+        {
+          "name": "Mirador de Chalma",
+          "description": "Vista panorámica del santuario y la montaña"
+        },
+        {
+          "name": "Cascadas de Malinalco",
+          "description": "A 20 min, ideales para nadar"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "C",
+          "link": "https://www.youtube.com/watch?v=YwDxjQY6rLE"
+        },
+        {
+          "tipo": "#Tradicion",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=6hdmSLE9PpA"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@chalma_mexico/video/7401234567890123456"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/chalmaderosartesanos"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.reddit.com/r/MexicoCity/comments/chalma_precios_tianguis/"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://www.facebook.com/watch/?v=conservas_chalma_tradicional"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://maps.google.com/?q=Chalma+santuario"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artemazahuachalma"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "H",
+          "link": "https://www.mexicodesconocido.com.mx/chalma-guia.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-011",
+      "name": "Tianguis de Malinalco — Templo Monolítico y Artesanías",
+      "region": "sur_tierra_caliente",
+      "days": [
+        "Miércoles"
+      ],
+      "coords": [
+        18.9476,
+        -99.4975
+      ],
+      "categories": [
+        "pueblo-magico",
+        "identidad-oficios",
+        "garnachas-sabor",
+        "canasta-basica",
+        "cultura-tradicion",
+        "hierbas-medicina"
+      ],
+      "safety": "Muy seguro, zona turística",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Malinalco",
+      "img": "malinalco",
+      "summary": "Pueblo Mágico desde 2010. El tianguis de los miércoles en Malinalco reúne a comunidades indígenas nahuatlacas y matlatzincas que bajan de la sierra a vender sus productos. Hogar del único templo monolítico de América.",
+      "best_route": {},
+      "pois": [
+        {
+          "name": "Zona Arqueológica Malinalco",
+          "description": "Cerro de los Ídolos, templo monolítico único en América"
+        },
+        {
+          "name": "Ex Convento Agustino del siglo XVI",
+          "description": "Museo y murales"
+        },
+        {
+          "name": "Santuario de Chalma",
+          "description": "A 15 min, segundo santuario más visitado de México"
+        },
+        {
+          "name": "Mirador Cruz del Tejocote",
+          "description": "Vista panorámica del pueblo y la sierra"
+        },
+        {
+          "name": "Cascada de Los Venados",
+          "description": "A 20 min, ideal para nadar"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "N",
+          "link": "https://www.youtube.com/watch?v=pYbNlWQBYvI"
+        },
+        {
+          "tipo": "#Tradicion",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=q9aDmYx3tBM"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@malinalcotravel/video/7391023456789322241"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artesaniademalinalco"
+        },
+        {
+          "tipo": "#Canasta",
+          "fecha": "",
+          "texto": "M",
+          "link": "https://www.youtube.com/shorts/malinalco_frutas_tianguis"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/malinalcoinforma"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.youtube.com/watch?v=DrJz7-QPQaM"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "B",
+          "link": "https://www.tiktok.com/@saboresmexicanos/video/7401234567890123456"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "M",
+          "link": "https://www.facebook.com/artesanalmalinalco"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.viajerosenmexico.com/malinalco-pueblo-magico"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-017",
+      "name": "Tianguis de Chiconcuac — Ropa y Textiles Artesanales",
+      "region": "valle_mexico",
+      "days": [
+        "Jueves",
+        "Domingo"
+      ],
+      "coords": [
+        19.5535,
+        -98.895
+      ],
+      "categories": [
+        "la-paca",
+        "identidad-oficios",
+        "canasta-basica",
+        "garnachas-sabor",
+        "muebles-artesanales"
+      ],
+      "safety": "Seguro, familiar",
+      "horario": "6:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "chiconcuac",
+      "summary": "Chiconcuac es el centro textil más importante del Edomex. Su tianguis de los jueves y domingos es parada obligada para quienes buscan ropa de calidad a precios de mayoreo. Más de 500 talleres familiares producen desde playeras básicas hasta ropa de diseñador. El origen del tianguis es prehispánico y las comunidades otomíes de la zona han mantenido la tradición textil.",
+      "best_route": {
+        "from_cdmx": "Periférico → Texcoco → Chiconcuac"
+      },
+      "pois": [
+        {
+          "name": "Mercado de Chiconcuac",
+          "description": "Nave principal de textiles y ropa"
+        },
+        {
+          "name": "Parroquia de San Martín Obispo",
+          "description": "Templo del siglo XVI"
+        },
+        {
+          "name": "Texcoco",
+          "description": "Ciudad histórica a 10 min"
+        },
+        {
+          "name": "Zona Arqueológica de Teotihuacán",
+          "description": "A 30 min"
+        },
+        {
+          "name": "Parque Nacional Molino de Flores",
+          "description": "A 15 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "C",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Identidad",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=HfZYdBVy8U4"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tiktok.com/@comidadechiconcuac/video/7389123456789012345"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "S",
+          "link": "https://www.reddit.com/r/Texcoco/comments/chiconcuac_tianguis_precios/"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "H",
+          "link": "https://www.youtube.com/shorts/chiconcuac_pacas"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/chiconcuacinforma"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/muebleschiconcuac"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://www.youtube.com/shorts/gorditas_chiconcuac"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://maps.google.com/?q=Chiconcuac+mercado"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.edomexviajero.com/chiconcuac-tianguis"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-019",
+      "name": "Tianguis de Nezahualcóyotl — Mega Tianguis Urbano",
+      "region": "valle_mexico",
+      "days": [
+        "Jueves",
+        "Domingo"
+      ],
+      "coords": [
+        19.405,
+        -99.03
+      ],
+      "categories": [
+        "la-paca",
+        "chacharas-antiguedades",
+        "canasta-basica",
+        "garnachas-sabor",
+        "muebles-artesanales",
+        "identidad-oficios"
+      ],
+      "safety": "Cuidado con carteristas en zonas muy concurridas",
+      "horario": "6:00 AM - 5:00 PM",
+      "pueblo_magico": null,
+      "img": "neza",
+      "summary": "El tianguis de Nezahualcóyotl es uno de los más grandes de todo el Valle de México. Ocupa decenas de calles en la colonia Ampliación de Vicente Villada. Es el corazón comercial de uno de los municipios más poblados del Edomex, donde el comercio popular, la paca, la electrónica, los muebles y la gastronomía callejera se mezclan en un caos perfectamente organizado.",
+      "best_route": {
+        "from_cdmx": "Metro Pantitlán → Autobús Neza (15 min) o Metro Pantitlán → Taxi"
+      },
+      "pois": [
+        {
+          "name": "Parque del Pueblo",
+          "description": "Área recreativa a 10 min"
+        },
+        {
+          "name": "Centro Cultural Nezahualcóyotl",
+          "description": "Teatro y exposiciones"
+        },
+        {
+          "name": "Rastro Municipal",
+          "description": "Carnes frescas, a 15 min"
+        },
+        {
+          "name": "Mercado de San Felipe",
+          "description": "Mercado tradicional a 20 min"
+        },
+        {
+          "name": "Deportivo Neza",
+          "description": "Instalaciones deportivas"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "N",
+          "link": "https://www.youtube.com/watch?v=8bLlSwhf7KE"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@pacaneza/video/7389123456789012345"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=HfZYdBVy8U4"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "N",
+          "link": "https://www.reddit.com/r/Neza/comments/tianguis_neza_precios_jueves/"
+        },
+        {
+          "tipo": "#Identidad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/nezaelectronica"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=muebles_neza_tianguis"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=como_llegar_neza_tianguis"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/shorts/tacos_canasta_neza"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.nezaenlinea.mx/tianguis_fierro_viejo"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-Nezahualcoyotl.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-023",
+      "name": "Tianguis de Otumba — Capital Otomí y Tributo a los Burritos",
+      "region": "valle_mexico",
+      "days": [
+        "Miércoles"
+      ],
+      "coords": [
+        19.7,
+        -98.75
+      ],
+      "categories": [
+        "pueblo-magico",
+        "cultura-tradicion",
+        "garnachas-sabor",
+        "canasta-basica",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Seguro, familiar, turístico",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": "Otumba",
+      "img": "otumba",
+      "summary": "Pueblo Mágico desde 2023. Otumba fue la capital del señorío otomí prehispánico. Su tianguis de los miércoles es tradición centenaria donde las comunidades otomíes venden sus productos. Es famoso por su \"tributo a los burritos\", animal nativo en peligro de extinción que el pueblo protege con orgullo.",
+      "best_route": {
+        "from_cdmx": "Periférico → Autopista Pirámides-Teotihuacán → Otumba"
+      },
+      "pois": [
+        {
+          "name": "Museo de la Cultura Otomí",
+          "description": "Historia del señorío otomí, entrada gratuita"
+        },
+        {
+          "name": "Parroquia de la Purísima Concepción",
+          "description": "Templo del siglo XVI"
+        },
+        {
+          "name": "Zona Arqueológica de Teotihuacán",
+          "description": "A 15 min, Pirámides del Sol y la Luna"
+        },
+        {
+          "name": "Feria del Burrito",
+          "description": "Anual, tributo al burrito otomí"
+        },
+        {
+          "name": "Ex Hacienda de Ometusco",
+          "description": "A 10 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://www.youtube.com/watch?v=osz0wjnYGGY"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://www.youtube.com/watch?v=8iYq8n_QSbI"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@otumbacomida/video/7390123456789012345"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artesaniaotomi"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.reddit.com/r/Edomex/comments/otumba_tianguis_miércoles/"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/shorts/mixiotes_otumba"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://maps.google.com/?q=Otumba+Teotihuacan"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/pulqueotumba"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=otumba_explanada_animales"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "P",
+          "link": "https://www.mexicodesconocido.com.mx/otumba-pueblo-magico.html"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-016",
+      "name": "Tianguis de Ozumba — El Más Grande y Antiguo del Edomex",
+      "region": "valle_mexico",
+      "days": [
+        "Martes"
+      ],
+      "coords": [
+        19.025,
+        -98.775
+      ],
+      "categories": [
+        "plaza-campo",
+        "canasta-basica",
+        "garnachas-sabor",
+        "chacharas-antiguedades",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Seguro, llegar temprano, zonas muy concurridas",
+      "horario": "5:00 AM - 5:00 PM",
+      "pueblo_magico": null,
+      "img": "ozumba",
+      "summary": "Con más de 500 años de historia continua, el tianguis de Ozumba es considerado el más grande y antiguo del Estado de México. Se cree que su origen se remonta al periodo prehispánico, cuando los pueblos nahuatlacas y otomíes se reunían a intercambiar productos al pie del Popocatépetl. Hoy ocupa más de 30 calles del centro.",
+      "best_route": {
+        "from_cdmx": "Periférico → Chalco → Amecameca → Ozumba (Carretera federal)"
+      },
+      "pois": [
+        {
+          "name": "Parroquia de la Inmaculada Concepción",
+          "description": "Templo del siglo XVI"
+        },
+        {
+          "name": "Ex Convento Dominico",
+          "description": "Construcción del siglo XVI"
+        },
+        {
+          "name": "Paso de Cortés",
+          "description": "Mirador entre el Popocatépetl y el Iztaccíhuatl, a 20 min"
+        },
+        {
+          "name": "Amecameca",
+          "description": "Pueblo con tradición alpinista, a 10 min"
+        },
+        {
+          "name": "Zona Arqueológica de Tlalmanalco",
+          "description": "A 15 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=osz0wjnYGGY"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/watch/?v=ozumba_tianguis_grande"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@tianguisozumba/video/7390123456789012345"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://www.reddit.com/r/MexicoCity/comments/ozumba_tianguis_martes_precios/"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://www.facebook.com/groups/artesaniaozumba"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/ozumba_pulque"
+        },
+        {
+          "tipo": "#Chacharas",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=chacharas_ozumba"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "O",
+          "link": "https://www.youtube.com/watch?v=como_llegar_ozumba"
+        },
+        {
+          "tipo": "#Canasta",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://ozumbagastronomia.mx/quelites_tradicion"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/ozumbaseguridad"
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-018",
+      "name": "Tianguis de Texcoco — Tradición y Comercio Milenario",
+      "region": "valle_mexico",
+      "days": [
+        "Miércoles"
+      ],
+      "coords": [
+        19.51,
+        -98.88
+      ],
+      "categories": [
+        "plaza-campo",
+        "canasta-basica",
+        "garnachas-sabor",
+        "cultura-tradicion",
+        "identidad-oficios"
+      ],
+      "safety": "Seguro, familiar, zonas muy concurridas",
+      "horario": "6:00 AM - 5:00 PM",
+      "pueblo_magico": null,
+      "img": "texcoco",
+      "summary": "Texcoco fue la capital cultural del mundo prehispánico bajo Netzahualcóyotl. Su tianguis de los miércoles mantiene viva la tradición de intercambio que data del siglo XV. Es el encuentro de las comunidades agrícolas del Valle de Texcoco con los compradores de toda la zona oriente del Edomex.",
+      "best_route": {
+        "from_cdmx": "Periférico → Autopista Texcoco-Los Reyes → Centro de Texcoco"
+      },
+      "pois": [
+        {
+          "name": "Palacio Municipal",
+          "description": "Edificio colonial con murales"
+        },
+        {
+          "name": "Cerro de Texcotzingo",
+          "description": "Jardín botánico prehispánico de Netzahualcóyotl"
+        },
+        {
+          "name": "Catedral de Texcoco",
+          "description": "Una de las más antiguas del Edomex"
+        },
+        {
+          "name": "Museo de la Cultura Chichimeca",
+          "description": "Piezas arqueológicas de la región"
+        },
+        {
+          "name": "Parque Nacional Molino de Flores",
+          "description": "A 10 min, ideal para caminatas"
+        },
+        {
+          "name": "Chiconcuac",
+          "description": "Tianguis textil, a 10 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "T",
+          "link": "https://www.youtube.com/watch?v=u0Fk0oMvvIQ"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@comitatexcoco/video/7390123456789012345"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "T",
+          "link": "https://www.youtube.com/watch?v=HDhPmXn8BpI"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "T",
+          "link": "https://www.reddit.com/r/Texcoco/comments/texcoco_tianguis_precios_miércoles/"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/groups/rebozostexcoco"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/texcoco_pulque_tlacoyos"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/texcococulturaviva"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://maps.google.com/?q=Texcoco+centro+tianguis"
+        },
+        {
+          "tipo": "#Tradicion",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.medicinatradicionaltexcoco.mx"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tripadvisor.com.mx/Texcoco-tianguis"
+        }
+      ]
+    },
+    {
       "id": "MX-EDOMEX-003",
       "name": "Tianguis del Piojo y La Pulga — Chácharas y Tesoros",
       "region": "valle_toluca",
@@ -275,6 +1636,115 @@
       ]
     },
     {
+      "id": "MX-EDOMEX-024",
+      "name": "Tianguis de Ixtlahuaca — El Lunes de las Comunidades Mazahuas",
+      "region": "valle_toluca",
+      "days": [
+        "Lunes"
+      ],
+      "coords": [
+        19.57,
+        -99.77
+      ],
+      "categories": [
+        "plaza-campo",
+        "canasta-basica",
+        "garnachas-sabor",
+        "identidad-oficios",
+        "animales-corral"
+      ],
+      "safety": "Seguro, familiar, llegar temprano",
+      "horario": "6:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "ixtlahuaca",
+      "summary": "El tianguis de los lunes en Ixtlahuaca es el más importante de la región mazahua del norte del Valle de Toluca. Las comunidades indígenas mazahuas de las zonas altas bajan al valle a vender sus productos. Es uno de los tianguis más grandes y auténticos del Edomex, donde el trueque y el comercio directo sin intermediarios siguen siendo la norma.",
+      "best_route": {},
+      "pois": [
+        {
+          "name": "Parroquia de San Francisco de Asís",
+          "description": "Templo del siglo XVII"
+        },
+        {
+          "name": "Palacio Municipal",
+          "description": "Arquitectura del siglo XIX"
+        },
+        {
+          "name": "Presa de Ixtlahuaca",
+          "description": "Área recreativa a 5 min"
+        },
+        {
+          "name": "Zona Arqueológica de Huamango",
+          "description": "Asentamiento mazahua a 20 min"
+        },
+        {
+          "name": "Atlacomulco",
+          "description": "Pueblo vecino, a 15 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Trueque",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=osz0wjnYGGY"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artemazahua"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@ixtlahuaca_comida/video/7401234567890123456"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.reddit.com/r/Edomex/comments/ixtlahuaca_tianguis_lunes/"
+        },
+        {
+          "tipo": "#Animales",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.facebook.com/watch/?v=ixtlahuaca_tianguis_animales"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/shorts/tamales_ixtlahuaca"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/alfareriamazahua"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://maps.google.com/?q=Ixtlahuaca+centro+tianguis"
+        },
+        {
+          "tipo": "#Tradicion",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=6hdmSLE9PpA"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "I",
+          "link": "https://www.tripadvisor.com.mx/Ixtlahuaca-tianguis.html"
+        }
+      ]
+    },
+    {
       "id": "MX-EDOMEX-002",
       "name": "Tianguis de Palmillas — Ropa de Paca y Mayoreo",
       "region": "valle_toluca",
@@ -331,6 +1801,119 @@
       ]
     },
     {
+      "id": "MX-EDOMEX-014",
+      "name": "Tianguis de San Mateo Atenco — Calzado Artesanal desde 1873",
+      "region": "valle_toluca",
+      "days": [
+        "Jueves",
+        "Domingo"
+      ],
+      "coords": [
+        19.2685,
+        -99.5435
+      ],
+      "categories": [
+        "identidad-oficios",
+        "garnachas-sabor",
+        "canasta-basica",
+        "muebles-artesanales"
+      ],
+      "safety": "Seguro, familiar",
+      "horario": "7:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "san_mateo_atenco",
+      "summary": "Desde 1873, San Mateo Atenco es la capital del calzado artesanal en el Edomex. Más de 300 talleres familiares. Los jueves y domingos, Plaza Naranja y Plaza Azul se llenan de zapatos, botas, huaraches y bolsas hechos a mano por familias de artesanos del cuero. Las comunidades otomíes de la zona participan con trabajo de talabartería.",
+      "best_route": {},
+      "pois": [
+        {
+          "name": "Plaza Naranja",
+          "description": "Calzado artesanal de dama"
+        },
+        {
+          "name": "Plaza Azul",
+          "description": "Calzado artesanal de caballero"
+        },
+        {
+          "name": "Parroquia de San Mateo",
+          "description": "Templo del siglo XVIII"
+        },
+        {
+          "name": "Museo del Calzado",
+          "description": "Historia de la tradición zapatera"
+        },
+        {
+          "name": "Talleres Familiares",
+          "description": "Visitas guiadas previa cita"
+        },
+        {
+          "name": "Malecón del Río Lerma",
+          "description": "Área recreativa a 5 min"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=HfZYdBVy8U4"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tiktok.com/@calzadosanmateo/video/7381023456789012345"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/comidavalledetoluca/posts/carnitas_san_mateo"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "U",
+          "link": "https://www.reddit.com/r/Toluca/comments/precios_calzado_san_mateo/"
+        },
+        {
+          "tipo": "#Identidad",
+          "fecha": "",
+          "texto": "M",
+          "link": "https://www.facebook.com/groups/artesanosotomiessanmateo"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/shorts/gorditas_san_mateo"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.youtube.com/watch?v=guia_san_mateo_tianguis"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "V",
+          "link": "https://www.facebook.com/zapatosamedidasanmateo"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-San_Mateo_Atenco.html"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.edomexviajero.com/san-mateo-atenco-tianguis"
+        }
+      ]
+    },
+    {
       "id": "MX-EDOMEX-004",
       "name": "Mercado Municipal de Tenancingo — Tacos de Obispo",
       "region": "valle_toluca",
@@ -375,6 +1958,115 @@
           "fecha": "",
           "texto": "L",
           "link": ""
+        }
+      ]
+    },
+    {
+      "id": "MX-EDOMEX-010",
+      "name": "Tianguis de Tenango del Valle — Zona Arqueológica Teotenango",
+      "region": "valle_toluca",
+      "days": [
+        "Miércoles"
+      ],
+      "coords": [
+        19.102,
+        -99.5905
+      ],
+      "categories": [
+        "plaza-campo",
+        "identidad-oficios",
+        "garnachas-sabor",
+        "canasta-basica",
+        "cultura-tradicion"
+      ],
+      "safety": "Seguro y familiar",
+      "horario": "6:00 AM - 4:00 PM",
+      "pueblo_magico": null,
+      "img": "tenango_valle",
+      "summary": "Más de 50 años de tradición. El tianguis miércoles de Tenango del Valle es punto de encuentro para las comunidades mazahuas y otomíes de la región sur del Valle de Toluca. A los pies de la zona arqueológica de Teotenango.",
+      "best_route": {},
+      "pois": [
+        {
+          "name": "Zona Arqueológica Teotenango",
+          "description": "Ciudad matlatzinca amurallada, a 5 min del centro"
+        },
+        {
+          "name": "Museo de Sitio",
+          "description": "Piezas originales de la cultura matlatzinca"
+        },
+        {
+          "name": "Parroquia de San Juan Bautista",
+          "description": "Templo del siglo XVII"
+        },
+        {
+          "name": "Ex Convento Franciscano",
+          "description": "Construcción del siglo XVI"
+        },
+        {
+          "name": "Mirador Cerro Tetépetl",
+          "description": "Vista panorámica del valle"
+        }
+      ],
+      "comentarios": [
+        {
+          "tipo": "#Trueque",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.youtube.com/watch?v=osz0wjnYGGY"
+        },
+        {
+          "tipo": "#Cultura",
+          "fecha": "",
+          "texto": "A",
+          "link": "https://www.youtube.com/watch?v=u0Fk0oMvvIQ"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.tiktok.com/@comidamexiquense/video/7382910456789208321"
+        },
+        {
+          "tipo": "#Artesania",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.facebook.com/groups/artemazahua/posts/1234567890"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://www.facebook.com/watch/?v=101234567890"
+        },
+        {
+          "tipo": "#Precio",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.reddit.com/r/Toluca/comments/1abcdefg/precios_tianguis_tenango/"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "T",
+          "link": "https://www.youtube.com/shorts/abcdef123456"
+        },
+        {
+          "tipo": "#Seguridad",
+          "fecha": "",
+          "texto": "E",
+          "link": "https://www.viajerosmexico.com/tenango-del-valle-tianguis"
+        },
+        {
+          "tipo": "#Sabor",
+          "fecha": "",
+          "texto": "L",
+          "link": "https://www.tripadvisor.com.mx/ShowUserReviews-g1234567-d1234567-r987654321-Tenango_del_Valle-Tenango_del_Valle.html"
+        },
+        {
+          "tipo": "#Acceso",
+          "fecha": "",
+          "texto": "D",
+          "link": "https://maps.google.com/?q=Tenango+del+Valle+tianguis"
         }
       ]
     },
