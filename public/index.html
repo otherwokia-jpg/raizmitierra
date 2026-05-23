@@ -81,6 +81,21 @@
     .rec-list{list-style:none;padding:0}
     .rec-list li{font-size:.75rem;padding:5px 8px;background:var(--papel);border-radius:6px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
 
+    /* Comment resumen */
+    .comment .resumen{font-size:.72rem;color:var(--texto);line-height:1.35;margin:4px 0 3px;font-weight:500}
+
+    /* Share buttons row */
+    .share-row{display:flex;gap:6px;margin:6px 0 10px}
+    .share-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:var(--radius2);text-decoration:none;font-size:.65rem;font-weight:600;transition:all .2s}
+    .share-btn:active{transform:scale(.95)}
+    .share-btn .share-icon{font-size:1.1rem}
+    .share-btn.wa{background:#e8f5e9;color:#075e54}
+    .share-btn.gm{background:#e3f2fd;color:#1a73e8}
+    .share-btn.wz{background:#fce4ec;color:#e91e63}
+    .share-btn.wa:active{background:#c8e6c9}
+    .share-btn.gm:active{background:#bbdefb}
+    .share-btn.wz:active{background:#f8bbd0}
+
     /* PWA Install Banner */
     .install-banner{display:none;background:var(--terracota);color:#fff;padding:10px 16px;align-items:center;gap:12px;font-size:.8rem;font-weight:600;position:fixed;top:0;left:0;right:0;z-index:3000;animation:slideDown .5s}
     .install-banner.show{display:flex}
@@ -252,21 +267,50 @@ function showDetail(id) {
         t.comentarios.slice(0,8).forEach(c => {
             const tag = c.tipo || '#Comunitario';
             const texto = c.texto || '';
+            const resumen = c.resumen || '';
             const link = c.link || '';
-            // Generate unique unsplash for each comment
-            const imgId = Math.floor(Math.random()*20)+1;
-            const photo = `https://images.unsplash.com/photo-${['1488459716781-31db52582fe9','1540420773420-3366772f4999','1565123409695-7b5ef63a2efb','1498837167922-ddd27525d352','1504672400261-21f0e5889e43','1476224203421-9ac39bcb3327','1505253711362-2874c156e9e7','1490645935967-10de6ba17061','1515003197210-e0cd71810b5f','1495147466323-ac5c8b8fc485','1507048331197-7d4ac70811cf','1590779033100-38b9e3f3d09e','1476718406336-b509b50b7a0b','1482049016688-2d3e1b311943','1540189549336-e6e99c3679fe','1473093295043-cdd812d0e601','1504754524779-5dfc2b9c5c2a','1512621772771-1de8e0f5c5a8','1523419409543-f1c6a67b7dd1','1506808547685-e2ba3a1e1f0a'][imgId%20]}?w=400&q=80`;
+            const recomendacion = c.recomendacion || '';
+            const emojitag = tag.replace('#','').toLowerCase();
+            const emojis = {'sabor':'🌮','precio':'💰','artesania':'🏺','cultura':'🎭','tradicion':'🏆','acceso':'📍','seguridad':'🛡️','trueque':'🤝','chacharas':'🔧','lapaca':'👕','canasta':'🥬','animales':'🐑','flores':'🌸','naturaleza':'🌿','comunitario':'💬'};
+            const emoji = emojis[emojitag] || '💬';
             
             commentsHtml += `<div class="comment">
-                <span class="tag">${tag}</span>
+                <span class="tag">${emoji} ${tag}</span>
+                ${resumen ? `<div class="resumen">✨ ${resumen}</div>` : ''}
                 <div class="text">"${texto}"</div>
+                ${recomendacion ? `<div class="rec">💡 ${recomendacion}</div>` : ''}
                 ${link ? `<a class="link" href="${link}" target="_blank" rel="noopener">🔗 Ver evidencia</a>` : ''}
-                <img src="${photo}" alt="Foto del tianguis" loading="lazy" onerror="this.style.display='none'">
             </div>`;
         });
     } else {
         commentsHtml = '<p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">💬 No hay comentarios aún para este tianguis. ¡Sé el primero!</p>';
     }
+
+    // Share & Navigate buttons
+    const coords = t.coords || [];
+    const lat = coords[0] || 19.3;
+    const lng = coords[1] || -99.2;
+    const shareText = encodeURIComponent(`🌮 ${t.name}\n📍 ${cap(t.region||'')}, ${cap(t.state||'')}\n📅 ${(t.days||[]).join(', ')}\n🔗 Descúbrelo en RaízMiTierra: ${window.location.href}`);
+    const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    const wazeUrl = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+    const waUrl = `https://wa.me/?text=${shareText}`;
+
+    const shareHtml = `
+        <div class="section-title">📲 Compartir y navegar</div>
+        <div class="share-row">
+            <a href="${waUrl}" target="_blank" rel="noopener" class="share-btn wa">
+                <span class="share-icon">💬</span>
+                <span class="share-label">WhatsApp</span>
+            </a>
+            <a href="${mapsUrl}" target="_blank" rel="noopener" class="share-btn gm">
+                <span class="share-icon">🗺️</span>
+                <span class="share-label">Google Maps</span>
+            </a>
+            <a href="${wazeUrl}" target="_blank" rel="noopener" class="share-btn wz">
+                <span class="share-icon">🚗</span>
+                <span class="share-label">Waze</span>
+            </a>
+        </div>`;
 
     body.innerHTML = `
         <img class="modal-img" src="${img}" alt="${t.name}" onerror="this.src='https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=400&fit=crop'">
@@ -281,6 +325,8 @@ function showDetail(id) {
         ${t.best_route&&t.best_route.parking?`<div style="background:var(--papel);padding:8px 10px;border-radius:8px;font-size:.75rem;margin-bottom:6px;border-left:3px solid var(--teal)">🅿️ ${t.best_route.parking}</div>`:''}
 
         <button class="route-btn" onclick="getRoute('${t.id}')">🗺️ Ver ruta desde mi ubicación</button>
+
+        ${shareHtml}
 
         <div class="section-title">💬 Bitácora Comunitaria</div>
         ${commentsHtml}
