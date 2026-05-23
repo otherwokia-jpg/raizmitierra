@@ -47,6 +47,7 @@ def parse_md(filepath):
 
     name_match = re.search(r'name:\s*"([^"]+)"', content)
     region_match = re.search(r'region:\s*"([^"]+)"', content)
+    state_match = re.search(r'state:\s*"([^"]+)"', content)
     days_match = re.search(r'days:\s*\[(.+)\]', content)
     coords_match = re.search(r'coords:\s*\[([^\]]+)\]', content)
     cats_match = re.search(r'categories:\s*\[(.+)\]', content)
@@ -57,6 +58,7 @@ def parse_md(filepath):
 
     name = name_match.group(1) if name_match else "Sin nombre"
     region = region_match.group(1) if region_match else "desconocida"
+    state = state_match.group(1) if state_match else "edomex"
     days = [d.strip().strip('"') for d in days_match.group(1).split(",")] if days_match else []
     try:
         coords = [float(x.strip()) for x in coords_match.group(1).split(",")] if coords_match else []
@@ -68,58 +70,41 @@ def parse_md(filepath):
     pueblo_magico = pm_match.group(1).strip() if pm_match and pm_match.group(1) != "null" else None
     img = img_match.group(1).strip() if img_match else ""
 
-    # Extraer resumen (primer párrafo después del blockquote)
     summary = ""
     summary_match = re.search(r'> (.+?)\n', content)
     if summary_match:
         summary = summary_match.group(1)
 
-    # Extraer cómo llegar
     best_route = {}
     route_text = re.search(r'## 🚗 Cómo Llegar\n(.+?)(?=\n##|\Z)', content, re.DOTALL)
     if route_text:
         rt = route_text.group(1)
-        from_cdmx_m = re.search(r'Ruta desde CDMX.*?\n(.+?)(?:\n|$)', rt)
-        sin_caseta_m = re.search(r'Ruta sin caseta.*?\n(.+?)(?:\n|$)', rt)
         parking_m = re.search(r'🅿️.*?\n(.+?)(?:\n|$)', rt)
-        tip_m = re.search(r'Llegar\s*(.+?)(?:\n|$)', rt)
-        if from_cdmx_m: best_route['from_cdmx'] = from_cdmx_m.group(1).strip()
-        if sin_caseta_m: best_route['sin_caseta'] = sin_caseta_m.group(1).strip()
+        tip_m = re.search(r'Recomendación.*?\n(.+?)(?:\n|$)', rt)
         if parking_m: best_route['parking'] = parking_m.group(1).strip()
         if tip_m: best_route['tip'] = tip_m.group(1).strip()
 
-    # Extraer POIs
-    pois = []
-    poi_section = re.search(r'## 🏪 Sitios de Interés Cercanos\n(.+?)(?=\n##|\Z)', content, re.DOTALL)
-    if poi_section:
-        for line in poi_section.group(1).strip().split('\n'):
-            line = line.strip()
-            m = re.match(r'[-*]\s*\*?\*?(.+?)\*?\*?\s*[—–-]\s*(.+)$', line)
-            if m:
-                pois.append({"name": m.group(1).strip(), "description": m.group(2).strip()})
-
-    # Extraer comentarios
+    # Extract community comments
     comentarios = []
     comment_section = re.search(r'## 💬 Bitácora Comunitaria\n(.+?)(?=\n## 🚗|\Z)', content, re.DOTALL)
     if comment_section:
-        blocks = re.split(r'\n###\s+', comment_section.group(1))
-        for block in blocks:
+        blocks = comment_section.group(1).split('###')
+        for block in blocks[1:]:
             tipo_m = re.search(r'\*\*Tipo:\*\*\s*(.+?)(?:\n|$)', block)
-            fecha_m = re.search(r'\*\*Fecha:\*\*\s*(.+?)(?:\n|$)', block)
             texto_m = re.search(r'> \*?"?(.+?)"?\*?', block)
-            link_m = re.search(r'Evidencia.*?\[([^\]]+)\]\(([^)]+)\)', block)
+            link_m = re.search(r'Evidencia.*?\]\(([^)]+)\)', block)
             if texto_m:
                 comentarios.append({
                     "tipo": tipo_m.group(1).strip() if tipo_m else "#Comunitario",
-                    "fecha": fecha_m.group(1).strip() if fecha_m else "",
                     "texto": texto_m.group(1).strip() if texto_m else "",
-                    "link": link_m.group(2) if link_m else ""
+                    "link": link_m.group(1) if link_m else ""
                 })
 
     return {
         "id": id_val,
         "name": name,
         "region": region,
+        "state": state,
         "days": days,
         "coords": coords,
         "categories": categories,
@@ -129,8 +114,7 @@ def parse_md(filepath):
         "img": img,
         "summary": summary,
         "best_route": best_route,
-        "pois": pois,
-        "comentarios": comentarios[:10],  # Máximo 10
+        "comentarios": comentarios[:10],
     }, None
 
 # ═══════════════════════════════════════════════════════════
@@ -147,7 +131,11 @@ def cmd_build():
         regs_data = json.load(f)
 
     valid_cats = {c["id"] for c in cats_data["categories"]}
-    valid_regions = {r["id"] for r in regs_data["regions"]}
+    # Nuevo formato regions.json: estados con subregiones
+    valid_regions = set()
+    for state, sdata in regs_data.items():
+        for subreg in sdata.get("subregions", {}):
+            valid_regions.add(subreg)
 
     tianguis_list = []
     errors = []
@@ -210,7 +198,7 @@ def cmd_build():
         },
         "tianguis": tianguis_list,
         "categories": cats_data["categories"],
-        "regions": regs_data["regions"]
+        "regions": regs_data
     }
 
     # Contar por región
