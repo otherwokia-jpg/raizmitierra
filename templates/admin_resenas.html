@@ -18,6 +18,7 @@
     <div style="font-size:.75rem;color:var(--texto2);margin-top:4px">
         Sobre: <strong>{{ rev.place_name }}</strong>
         {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
+        {% if rev.link %}<span style="margin-left:6px">🔗 <a href="{{ rev.link }}" target="_blank" style="color:var(--accent)">{{ rev.link[:30] }}{% if rev.link|length > 30 %}...{% endif %}</a></span>{% endif %}
     </div>
     <div style="margin-top:8px;display:flex;gap:6px">
         <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/aprobar" style="display:inline">
@@ -43,9 +44,15 @@
     <div class="rev-meta">
         <span class="badge badge-success">Aprobada</span>
         <span>{{ rev.author }}</span>
+        <span>★{{ rev.rating }}</span>
         <span>{{ rev.tipo }}</span>
     </div>
     <div class="review-text">"{{ rev.texto[:100] }}{% if rev.texto|length > 100 %}...{% endif %}"</div>
+    <div style="font-size:.75rem;color:var(--texto2);margin-top:4px">
+        Sobre: <strong>{{ rev.place_name }}</strong>
+        {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
+        {% if rev.link %}<span style="margin-left:6px">🔗 <a href="{{ rev.link }}" target="_blank" style="color:var(--accent)">{{ rev.link[:30] }}{% if rev.link|length > 30 %}...{% endif %}</a></span>{% endif %}
+    </div>
     <div style="margin-top:4px">
         <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar?')">
             <button type="submit" class="btn btn-outline btn-sm">🗑️</button>
@@ -62,8 +69,13 @@
     <div class="rev-meta">
         <span class="badge badge-danger">Rechazada</span>
         <span>{{ rev.author }}</span>
+        <span>{{ rev.tipo }}</span>
     </div>
     <div class="review-text">"{{ rev.texto[:60] }}{% if rev.texto|length > 60 %}...{% endif %}"</div>
+    <div style="font-size:.75rem;color:var(--texto2);margin-top:4px">
+        Sobre: <strong>{{ rev.place_name }}</strong>
+        {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
+    </div>
 </div>
 {% endfor %}
 {% endif %}

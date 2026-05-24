@@ -642,6 +642,13 @@ def admin_regiones():
         user=session.get("full_name", "Admin"))
 
 # ── Reseñas ──
+@app.route("/api/reviews/<place_id>")
+def api_get_reviews(place_id):
+    """Public endpoint to get approved reviews for a place"""
+    reviews = load_reviews()
+    approved = [r for r in reviews if r.get("status") == "approved" and r.get("place_id") == place_id]
+    return jsonify({"reviews": approved, "count": len(approved)})
+
 @app.route("/api/review", methods=["POST"])
 def api_submit_review():
     """Public endpoint to submit a review"""
@@ -661,6 +668,7 @@ def api_submit_review():
         "tipo": data.get("tipo", "#Comunitario"),
         "texto": data.get("texto", "").strip(),
         "rating": min(5, max(1, int(data.get("rating", 5)))),
+        "link": data.get("link", "").strip(),
         "status": "pending",
         "created_at": datetime.now().isoformat(),
         "ip": request.remote_addr or ""

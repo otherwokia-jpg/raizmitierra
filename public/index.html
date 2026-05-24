@@ -434,12 +434,12 @@ const PHOTO_POOL = {
     ],
     'balneario-cascada': [
         'assets/cascada.jpg',
-'assets/cacahuamilpa.jpg'
+        'assets/cacahuamilpa.jpg',
         'assets/vallebravo.jpg',
     ],
     'mirador-naturaleza': [
         'assets/montana.jpg',
-'assets/santuario.jpg'
+        'assets/santuario.jpg',
         'assets/vallebravo.jpg',
     ],
 };
@@ -606,9 +606,45 @@ function showDetail(id) {
             <li>🕐 Llegar temprano para disfrutar con calma</li>
             ${t.type==='lugar'?'<li>💵 Llevar efectivo para la entrada y recuerdos</li><li>👟 Calzado cómodo para caminar</li>':'<li>💵 Llevar efectivo — muchos puestos no aceptan tarjeta</li><li>🛍️ Comparar precios entre puestos</li><li>🌮 Probar la comida local — es parte de la experiencia</li><li>👜 Llevar bolsas reutilizables para la despensa</li>'}
         </ul>
+
+        <div class="section-title">🗣️ Reseñas de la comunidad</div>
+        <div id="userReviews-${t.id}" class="user-reviews">
+            <p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">🔄 Cargando reseñas...</p>
+        </div>
+
+        <button class="route-btn" onclick="toggleReviewForm('${t.id}')">✍️ Dejar reseña</button>
+        <div id="reviewForm-${t.id}" class="review-form" style="display:none;margin-top:8px">
+            <div style="background:var(--papel);padding:12px;border-radius:8px;border:1px solid var(--borde)">
+                <input type="text" id="reviewAuthor-${t.id}" placeholder="Tu nombre (opcional)" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
+                <textarea id="reviewTexto-${t.id}" placeholder="¿Qué te pareció? Cuenta tu experiencia..." rows="3" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto);resize:vertical"></textarea>
+                <div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">
+                    <select id="reviewTipo-${t.id}" style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
+                        <option value="#Comunitario">💬 Comunitario</option>
+                        <option value="#Sabor">🌮 Sabor</option>
+                        <option value="#Precio">💰 Precio</option>
+                        <option value="#Artesania">🏺 Artesanía</option>
+                        <option value="#Cultura">🎭 Cultura</option>
+                        <option value="#Seguridad">🛡️ Seguridad</option>
+                        <option value="#Acceso">📍 Acceso</option>
+                    </select>
+                    <select id="reviewRating-${t.id}" style="width:80px;padding:8px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
+                </div>
+                <input type="text" id="reviewLink-${t.id}" placeholder="🔗 Link a evidencia (opcional)" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
+                <button onclick="submitReview('${t.id}')" class="btn" style="width:100%;padding:10px;background:linear-gradient(135deg,var(--naranja),var(--teal));color:white;border:none;border-radius:6px;cursor:pointer">📨 Enviar reseña</button>
+                <div id="reviewStatus-${t.id}" style="margin-top:6px;font-size:.8rem"></div>
+            </div>
+        </div>
     `;
     document.getElementById('modalOverlay').classList.add('show');
     document.getElementById('detailModal').classList.add('show');
+    // Cargar reseñas aprobadas
+    loadApprovedReviews(t.id);
 }
 
 function closeModal() {
@@ -670,7 +706,19 @@ function togglePanel(){panelOpen=!panelOpen;document.getElementById('bottomPanel
 
 function cap(s){if(!s)return'';return s.replace(/\b\w/g,c=>c.toUpperCase())}
 
-document.addEventListener('DOMContentLoaded',()=>{initMap();loadData()});
+document.addEventListener('DOMContentLoaded',()=>{initMap();loadData();});
+// ── Auto-abrir detalle si viene ?lugar=PLACE_ID ──
+const urlParams = new URLSearchParams(window.location.search);
+const lugarId = urlParams.get('lugar');
+if (lugarId) {
+    // Esperar a que carguen los datos y abrir el modal
+    const waitForData = setInterval(() => {
+        if (tianguis && tianguis.length > 0) {
+            clearInterval(waitForData);
+            setTimeout(() => showDetail(lugarId), 300);
+        }
+    }, 100);
+}
 // ── Botón oculto admin (solo visible con sesión) ──
 fetch('api/admin-status').then(r=>r.json()).then(d=>{
   if(d.is_admin){
@@ -685,6 +733,88 @@ fetch('api/admin-status').then(r=>r.json()).then(d=>{
     document.body.appendChild(btn);
   }
 }).catch(()=>{});
+
+// ── Reseñas comunitarias ──
+function toggleReviewForm(id) {
+    const form = document.getElementById('reviewForm-' + id);
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function submitReview(id) {
+    const author = document.getElementById('reviewAuthor-' + id).value || 'Anónimo';
+    const texto = document.getElementById('reviewTexto-' + id).value.trim();
+    const tipo = document.getElementById('reviewTipo-' + id).value;
+    const rating = document.getElementById('reviewRating-' + id).value;
+    const link = document.getElementById('reviewLink-' + id).value.trim();
+    const statusDiv = document.getElementById('reviewStatus-' + id);
+    const t = tianguis.find(x => x.id === id);
+
+    if (!texto) { statusDiv.innerHTML = '<span style="color:var(--rojo)">❌ Escribe tu experiencia</span>'; return; }
+
+    statusDiv.innerHTML = '<span style="color:var(--texto2)">⏳ Enviando...</span>';
+
+    fetch('/raiz/api/review', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            place_id: id,
+            place_name: t ? t.name : '',
+            author: author,
+            tipo: tipo,
+            texto: texto,
+            rating: parseInt(rating),
+            link: link
+        })
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.success) {
+            statusDiv.innerHTML = '<span style="color:var(--verde)">✅ Reseña enviada. Pendiente de moderación.</span>';
+            document.getElementById('reviewTexto-' + id).value = '';
+            document.getElementById('reviewAuthor-' + id).value = '';
+            document.getElementById('reviewLink-' + id).value = '';
+            setTimeout(() => { document.getElementById('reviewForm-' + id).style.display = 'none'; statusDiv.innerHTML = ''; }, 3000);
+        } else {
+            statusDiv.innerHTML = '<span style="color:var(--rojo)">❌ ' + (d.error || 'Error al enviar') + '</span>';
+        }
+    })
+    .catch(e => {
+        statusDiv.innerHTML = '<span style="color:var(--rojo)">❌ Error de conexión</span>';
+    });
+}
+
+function loadApprovedReviews(placeId) {
+    const container = document.getElementById('userReviews-' + placeId);
+    if (!container) return;
+
+    fetch('/raiz/api/reviews/' + placeId)
+    .then(r => r.json())
+    .then(d => {
+        if (d.reviews && d.reviews.length > 0) {
+            let html = '';
+            d.reviews.forEach(r => {
+                const tag = r.tipo || '#Comunitario';
+                const emojis = {'sabor':'🌮','precio':'💰','artesania':'🏺','cultura':'🎭','tradicion':'🏆','acceso':'📍','seguridad':'🛡️','comunitario':'💬'};
+                const emoji = emojis[tag.replace('#','').toLowerCase()] || '💬';
+                const stars = '★'.repeat(r.rating||5) + '☆'.repeat(5-(r.rating||5));
+                html += `<div class="comment" style="border-left:2px solid var(--naranja)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+                        <span style="font-size:.75rem;color:var(--texto2)">${r.author||'Anónimo'} · ${stars}</span>
+                        <span class="tag">${emoji} ${tag}</span>
+                    </div>
+                    <div class="text">"${r.texto}"</div>
+                    ${r.link ? `<a class="link" href="${r.link}" target="_blank" rel="noopener">🔗 Ver evidencia</a>` : ''}
+                </div>`;
+            });
+            container.innerHTML = html;
+        } else {
+            container.innerHTML = '<p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">💬 Aún no hay reseñas. ¡Sé el primero!</p>';
+        }
+    })
+    .catch(() => {
+        container.innerHTML = '<p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">⚠️ Error al cargar reseñas</p>';
+    });
+}
 </script>
 </body>
 </html>
