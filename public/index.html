@@ -2,6 +2,7 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
+    <base href="/raiz/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RaízMiTierra — Mapa de Tianguis y Lugares de México</title>
     <meta name="description" content="Mapa comunitario de tianguis, mercados, pueblos y lugares de México. 259 lugares. Sin registro, 100% privado.">
@@ -9,7 +10,7 @@
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="/assets/icon-mexico-512.svg">
+    <link rel="apple-touch-icon" href="assets/icon-mexico-512.svg">
     <meta name="mobile-web-app-capable" content="yes">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -368,78 +369,78 @@ const TAG_EMOJI={'plaza-campo':'🐴','garnachas-sabor':'🌮','canasta-basica':
 // Fotos 100% locales para carga rápida
 const PHOTO_POOL = {
     default: [
-        '/assets/mercado.jpg',
-        '/assets/tianguis.jpg',
-        '/assets/piramide.jpg',
-        '/assets/malinalco-pueblo.jpg',
-        '/assets/pueblo.jpg',
-        '/assets/cascada.jpg',
-        '/assets/vallebravo.jpg',
+        'assets/mercado.jpg',
+        'assets/tianguis.jpg',
+        'assets/piramide.jpg',
+        'assets/malinalco-pueblo.jpg',
+        'assets/pueblo.jpg',
+        'assets/cascada.jpg',
+        'assets/vallebravo.jpg',
     ],
     'canasta-basica': [
-        '/assets/mercado.jpg',
-        '/assets/tianguis.jpg',
+        'assets/mercado.jpg',
+        'assets/tianguis.jpg',
     ],
     'garnachas-sabor': [
-        '/assets/tianguis.jpg',
-        '/assets/mercado.jpg',
+        'assets/tianguis.jpg',
+        'assets/mercado.jpg',
     ],
     'plaza-campo': [
-        '/assets/mercado.jpg',
-        '/assets/tianguis.jpg',
+        'assets/mercado.jpg',
+        'assets/tianguis.jpg',
     ],
     'la-paca': [
-        '/assets/mercado.jpg',
+        'assets/mercado.jpg',
     ],
     'chacharas-antiguedades': [
-        '/assets/mercado.jpg',
+        'assets/mercado.jpg',
     ],
     'identidad-oficios': [
-        '/assets/otomi.jpg',
+        'assets/otomi.jpg',
     ],
     'muebles-artesanales': [
-        '/assets/otomi.jpg',
+        'assets/otomi.jpg',
     ],
     'animales-corral': [
-        '/assets/montana.jpg',
+        'assets/montana.jpg',
     ],
     'cultura-tradicion': [
-        '/assets/otomi.jpg',
-        '/assets/malinalco-pueblo.jpg',
+        'assets/otomi.jpg',
+        'assets/malinalco-pueblo.jpg',
     ],
     'pueblo-magico': [
-        '/assets/malinalco-pueblo.jpg',
-        '/assets/vallebravo.jpg',
-        '/assets/pueblo.jpg',
+        'assets/malinalco-pueblo.jpg',
+        'assets/vallebravo.jpg',
+        'assets/pueblo.jpg',
     ],
     'hierbas-medicina': [
-        '/assets/mercado.jpg',
+        'assets/mercado.jpg',
     ],
     'flores-plantas': [
-        '/assets/mercado.jpg',
+        'assets/mercado.jpg',
     ],
     'zona-arqueologica': [
-        '/assets/piramide.jpg',
-        '/assets/malinalco.jpg',
+        'assets/piramide.jpg',
+"assets/malinalco.jpg"
     ],
     'pueblo-tradicional': [
-        '/assets/vallebravo.jpg',
-        '/assets/malinalco-pueblo.jpg',
-        '/assets/pueblo.jpg',
+        'assets/vallebravo.jpg',
+        'assets/malinalco-pueblo.jpg',
+        'assets/pueblo.jpg',
     ],
     'centro-otomi': [
-        '/assets/otomi.jpg',
-        '/assets/tianguis.jpg',
+        'assets/otomi.jpg',
+        'assets/tianguis.jpg',
     ],
     'balneario-cascada': [
-        '/assets/cascada.jpg',
-        '/assets/cacahuamilpa.jpg',
-        '/assets/vallebravo.jpg',
+        'assets/cascada.jpg',
+'assets/cacahuamilpa.jpg'
+        'assets/vallebravo.jpg',
     ],
     'mirador-naturaleza': [
-        '/assets/montana.jpg',
-        '/assets/santuario.jpg',
-        '/assets/vallebravo.jpg',
+        'assets/montana.jpg',
+'assets/santuario.jpg'
+        'assets/vallebravo.jpg',
     ],
 };
 
@@ -671,10 +672,10 @@ function cap(s){if(!s)return'';return s.replace(/\b\w/g,c=>c.toUpperCase())}
 
 document.addEventListener('DOMContentLoaded',()=>{initMap();loadData()});
 // ── Botón oculto admin (solo visible con sesión) ──
-fetch('/api/admin-status').then(r=>r.json()).then(d=>{
+fetch('api/admin-status').then(r=>r.json()).then(d=>{
   if(d.is_admin){
     var btn=document.createElement('a');
-    btn.href='/admin/';
+    btn.href='admin/';
     btn.style.cssText='position:fixed;bottom:60px;right:12px;z-index:9999;width:36px;height:36px;border-radius:50%;background:rgba(232,106,51,.15);border:1px solid rgba(232,106,51,.3);display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;opacity:.35;transition:opacity .2s;color:var(--terracota)';
     btn.onmouseover=function(){this.style.opacity='1'};
     btn.onmouseout=function(){this.style.opacity='.35'};
