@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy app code
 COPY . .
 
+# Fix ownership so nobody user can write to data files
+RUN chown -R nobody:nogroup /app/database/
+
 # Run as non-root user for security
 USER nobody
 
