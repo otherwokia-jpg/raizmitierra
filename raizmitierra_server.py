@@ -64,6 +64,7 @@ app = Flask(__name__,
     static_folder=str(PUBLIC_DIR),
     static_url_path='')
 app.secret_key = os.environ.get('RAIZ_SECRET') or secrets.token_hex(32)
+app.config['SESSION_COOKIE_NAME'] = 'session_raiz'
 app.wsgi_app = PrefixMiddleware(app.wsgi_app)
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB max upload
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
