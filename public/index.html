@@ -612,8 +612,8 @@ function showDetail(id) {
             <p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">🔄 Cargando reseñas...</p>
         </div>
 
-        <button class="route-btn" onclick="toggleReviewForm('${t.id}')">✍️ Dejar reseña</button>
-        <div id="reviewForm-${t.id}" class="review-form" style="display:none;margin-top:8px">
+        <button class="route-btn" onclick="scrollToReviews('${t.id}')">✍️ Dejar reseña</button>
+        <div id="reviewForm-${t.id}" class="review-form" style="margin-top:8px">
             <div style="background:var(--papel);padding:12px;border-radius:8px;border:1px solid var(--borde)">
                 <input type="text" id="reviewAuthor-${t.id}" placeholder="Tu nombre (opcional)" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
                 <textarea id="reviewTexto-${t.id}" placeholder="¿Qué te pareció? Cuenta tu experiencia..." rows="3" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto);resize:vertical"></textarea>
@@ -645,6 +645,11 @@ function showDetail(id) {
     document.getElementById('detailModal').classList.add('show');
     // Cargar reseñas aprobadas
     loadApprovedReviews(t.id);
+    // Scroll automático a reseñas de la comunidad
+    setTimeout(() => {
+        const el = document.getElementById('userReviews-' + t.id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 500);
 }
 
 function closeModal() {
@@ -734,10 +739,12 @@ fetch('api/admin-status').then(r=>r.json()).then(d=>{
   }
 }).catch(()=>{});
 
+const API_BASE = 'https://datacenter.hubmultiteck.io/raiz/api';
+
 // ── Reseñas comunitarias ──
-function toggleReviewForm(id) {
-    const form = document.getElementById('reviewForm-' + id);
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+function scrollToReviews(id) {
+    const el = document.getElementById('reviewForm-' + id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function submitReview(id) {
@@ -753,7 +760,7 @@ function submitReview(id) {
 
     statusDiv.innerHTML = '<span style="color:var(--texto2)">⏳ Enviando...</span>';
 
-    fetch('/raiz/api/review', {
+    fetch(API_BASE + '/review', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -787,7 +794,7 @@ function loadApprovedReviews(placeId) {
     const container = document.getElementById('userReviews-' + placeId);
     if (!container) return;
 
-    fetch('/raiz/api/reviews/' + placeId)
+    fetch(API_BASE + '/reviews/' + placeId)
     .then(r => r.json())
     .then(d => {
         if (d.reviews && d.reviews.length > 0) {

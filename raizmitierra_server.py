@@ -67,6 +67,18 @@ app.secret_key = os.environ.get('RAIZ_SECRET') or secrets.token_hex(32)
 app.config['SESSION_COOKIE_NAME'] = 'session_raiz'
 app.wsgi_app = PrefixMiddleware(app.wsgi_app)
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB max upload
+
+# ── CORS para peticiones desde raizmitierra.pages.dev ──
+@app.after_request
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    # No-cache forzar evitar caché del navegador
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 VALID_DAYS = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"]
