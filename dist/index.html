@@ -612,8 +612,8 @@ function showDetail(id) {
             <p style="color:var(--texto2);font-size:.8rem;text-align:center;padding:12px">🔄 Cargando reseñas...</p>
         </div>
 
-        <button class="route-btn" onclick="scrollToReviews('${t.id}')">✍️ Dejar reseña</button>
-        <div id="reviewForm-${t.id}" class="review-form" style="margin-top:8px">
+        <button class="route-btn" onclick="toggleReviewForm('${t.id}')">✍️ Dejar reseña</button>
+        <div id="reviewForm-${t.id}" class="review-form" style="display:none;margin-top:8px">
             <div style="background:var(--papel);padding:12px;border-radius:8px;border:1px solid var(--borde)">
                 <input type="text" id="reviewAuthor-${t.id}" placeholder="Tu nombre (opcional)" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
                 <textarea id="reviewTexto-${t.id}" placeholder="¿Qué te pareció? Cuenta tu experiencia..." rows="3" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto);resize:vertical"></textarea>
@@ -742,9 +742,13 @@ fetch('api/admin-status').then(r=>r.json()).then(d=>{
 const API_BASE = 'https://datacenter.hubmultiteck.io/raiz/api';
 
 // ── Reseñas comunitarias ──
-function scrollToReviews(id) {
-    const el = document.getElementById('reviewForm-' + id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+function toggleReviewForm(id) {
+    const form = document.getElementById('reviewForm-' + id);
+    if (form) {
+        const isHidden = form.style.display === 'none';
+        form.style.display = isHidden ? 'block' : 'none';
+        if (isHidden) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
 
 function submitReview(id) {
