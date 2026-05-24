@@ -524,7 +524,7 @@ function showDetail(id) {
     if(!t) return;
     document.getElementById('modalTitle').textContent = t.name.length > 40 ? t.name.slice(0,37)+'...' : t.name;
     const body = document.getElementById('modalBody');
-    const img = pickPhoto(t);
+    const img = pickPhoto(t).replace('w=800','w=1200').replace('h=400','h=600');
     const cats = (t.categories||[]).map(c => `${TAG_EMOJI[c]||''} ${cap(c.replace(/-/g,' '))}`).join(' · ');
     
     // Comments HTML
