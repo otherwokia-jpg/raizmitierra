@@ -445,6 +445,14 @@ const PHOTO_POOL = {
 };
 
 function pickPhoto(t) {
+    // Primero: foto subida por admin (específica del lugar)
+    if (t.img && !t.img.startsWith('http')) {
+        const base = document.querySelector('base')?.getAttribute('href') || '/';
+        return base.replace(/\/+$/,'') + '/' + t.img.replace(/^\//,'');
+    }
+    if (t.img && t.img.startsWith('http')) {
+        return t.img;
+    }
     const cats = t.categories || [];
     for (const cat of cats) {
         if (PHOTO_POOL[cat]) {
