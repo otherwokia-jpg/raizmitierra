@@ -446,22 +446,20 @@ const PHOTO_POOL = {
 
 function pickPhoto(t) {
     // Primero: foto subida por admin (específica del lugar)
-    if (t.img && !t.img.startsWith('http')) {
-        const base = document.querySelector('base')?.getAttribute('href') || '/';
-        return base.replace(/\/+$/,'') + '/' + t.img.replace(/^\//,'');
+    if (t.img) {
+        if (t.img.startsWith('http')) return t.img;
+        // Relativa → apuntar al datacenter (funciona en Docker y pages.dev)
+        return 'https://datacenter.hubmultiteck.io/raiz' + (t.img.startsWith('/') ? '' : '/') + t.img;
     }
-    if (t.img && t.img.startsWith('http')) {
-        return t.img;
-    }
+    // Si no hay foto subida: foto genérica por categoría
     const cats = t.categories || [];
     for (const cat of cats) {
         if (PHOTO_POOL[cat]) {
             const idx = Math.abs((t.id || t.name).split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % PHOTO_POOL[cat].length;
-            return PHOTO_POOL[cat][idx];
+            return 'https://datacenter.hubmultiteck.io/raiz' + PHOTO_POOL[cat][idx];
         }
     }
-    const idx = Math.abs((t.id || t.name).split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % PHOTO_POOL.default.length;
-    return PHOTO_POOL.default[idx];
+    return 'https://datacenter.hubmultiteck.io/raiz' + PHOTO_POOL.default[0];
 }
 
 function renderList(data) {
