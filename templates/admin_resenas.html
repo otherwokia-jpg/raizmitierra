@@ -19,6 +19,7 @@
         Sobre: <strong>{{ rev.place_name }}</strong>
         {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
         {% if rev.link %}<span style="margin-left:6px">🔗 <a href="{{ rev.link }}" target="_blank" style="color:var(--accent)">{{ rev.link[:30] }}{% if rev.link|length > 30 %}...{% endif %}</a></span>{% endif %}
+        <span style="margin-left:6px">🌐 <a href="https://datacenter.hubmultiteck.io/raiz/#{{ rev.place_id }}" target="_blank" style="color:var(--accent)">Ver lugar</a></span>
     </div>
     <div style="margin-top:8px;display:flex;gap:6px">
         <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/aprobar" style="display:inline">
@@ -52,6 +53,7 @@
         Sobre: <strong>{{ rev.place_name }}</strong>
         {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
         {% if rev.link %}<span style="margin-left:6px">🔗 <a href="{{ rev.link }}" target="_blank" style="color:var(--accent)">{{ rev.link[:30] }}{% if rev.link|length > 30 %}...{% endif %}</a></span>{% endif %}
+        <span style="margin-left:6px">🌐 <a href="https://datacenter.hubmultiteck.io/raiz/#{{ rev.place_id }}" target="_blank" style="color:var(--accent)">Ver lugar</a></span>
     </div>
     <div style="margin-top:4px">
         <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar?')">
