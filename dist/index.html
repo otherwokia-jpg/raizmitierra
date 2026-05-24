@@ -444,14 +444,13 @@ const PHOTO_POOL = {
     ],
 };
 
-function pickPhoto(t) {
-    // Primero: foto subida por admin (específica del lugar)
-    if (t.img) {
+function pickPhoto(t, isThumb=false) {
+    // Modal/detalle: usar foto real del lugar si existe (Unsplash o subida por admin)
+    if (!isThumb && t.img) {
         if (t.img.startsWith('http')) return t.img;
-        // Relativa → apuntar al datacenter (funciona en Docker y pages.dev)
         return 'https://datacenter.hubmultiteck.io/raiz' + (t.img.startsWith('/') ? '' : '/') + t.img;
     }
-    // Si no hay foto subida: foto genérica por categoría
+    // Miniaturas y popups: usar foto genérica por categoría (rápido, consistente)
     const cats = t.categories || [];
     for (const cat of cats) {
         if (PHOTO_POOL[cat]) {
@@ -477,7 +476,7 @@ function renderList(data) {
         const esHoy = t.days && t.days.includes(hoy);
         const d = (t.days||[]).map(dd => `<span class="tag ${esHoy&&dd===hoy?'hoy':''}">${dd}</span>`).join('');
         const c = (t.categories||[]).slice(0,3).map(cat => `<span class="tag">${TAG_EMOJI[cat]||''} ${cat.replace(/-/g,' ')}</span>`).join('');
-        const img = pickPhoto(t).replace('w=800','w=100').replace('h=400','h=100');
+        const img = pickPhoto(t, true).replace('w=800','w=100').replace('h=400','h=100');
         const distancia = userPos && t.coords ? fmtD(dist(userPos, t.coords)) : '';
         const typeIcon = t.type==='lugar' ? '📍' : '🌮';
         const typeLabel = t.type==='lugar' ? (t.subtype||'Lugar') : 'Tianguis';
@@ -507,7 +506,7 @@ function addMarkers() {
         const icon = isTianguis ? '●' : (t.subtype === 'arqueologico' ? '🏛️' : (t.subtype === 'balneario'||t.subtype==='cascada' ? '🏊' : (t.subtype === 'centro-otomi' ? '🏮' : (t.subtype === 'mirador' ? '⛰️' : '🏘️'))));
         const m = L.circleMarker(t.coords, {radius:size, fillColor:color, color:'#fff', weight:2, fillOpacity:.9}).addTo(map);
         // Popup con minitarjeta + imagen
-        const popupImg = pickPhoto(t).replace('w=800','w=200').replace('h=400','h=120');
+        const popupImg = pickPhoto(t, true).replace('w=800','w=200').replace('h=400','h=120');
         const popupDays = isTianguis ? (t.days||[]).join(', ') : (t.subtype||'lugar');
         m.bindPopup(`<div onclick="showDetail('${t.id}')" style="cursor:pointer;max-width:200px;font-family:sans-serif">
           <img src="${popupImg}" style="width:100%;height:80px;object-fit:cover;border-radius:8px;margin-bottom:6px" onerror="this.style.display='none'">
