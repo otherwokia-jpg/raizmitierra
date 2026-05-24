@@ -95,25 +95,25 @@
 </div>
 <div class="admin-layout">
     <nav class="admin-sidebar">
-        <a href="/admin/" class="{% if request.path == '/admin/' %}active{% endif %}">
+        <a href="/raiz/admin/" class="{% if request.path == '/raiz/admin/' %}active{% endif %}">
             📊 <span>Dashboard</span>
         </a>
-        <a href="/admin/lugares" class="{% if '/lugares' in request.path and '/nuevo' not in request.path %}active{% endif %}">
+        <a href="/raiz/admin/lugares" class="{% if '/lugares' in request.path and '/nuevo' not in request.path %}active{% endif %}">
             📍 <span>Lugares</span>
         </a>
-        <a href="/admin/lugares/nuevo" class="{% if '/nuevo' in request.path %}active{% endif %}">
+        <a href="/raiz/admin/lugares/nuevo" class="{% if '/nuevo' in request.path %}active{% endif %}">
             ➕ <span>Nuevo Lugar</span>
         </a>
-        <a href="/admin/categorias" class="{% if '/categorias' in request.path %}active{% endif %}">
+        <a href="/raiz/admin/categorias" class="{% if '/categorias' in request.path %}active{% endif %}">
             🏷️ <span>Categorías</span>
         </a>
-        <a href="/admin/regiones" class="{% if '/regiones' in request.path %}active{% endif %}">
+        <a href="/raiz/admin/regiones" class="{% if '/regiones' in request.path %}active{% endif %}">
             🗺️ <span>Regiones</span>
         </a>
-        <a href="/admin/resenas" class="{% if '/resenas' in request.path %}active{% endif %}">
+        <a href="/raiz/admin/resenas" class="{% if '/resenas' in request.path %}active{% endif %}">
             💬 <span>Reseñas</span>
         </a>
-        <a href="/admin/build" class="{% if '/build' in request.path %}active{% endif %}">
+        <a href="/raiz/admin/build" class="{% if '/build' in request.path %}active{% endif %}">
             🔨 <span>Recompilar</span>
         </a>
     </nav>

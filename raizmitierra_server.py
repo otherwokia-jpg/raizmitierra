@@ -324,7 +324,7 @@ def check_sso():
                 session["allowed_portals"] = allowed
                 # Redirect limpio (sin sso_token en URL) a la dashboard admin
                 # Si hay un parámetro 'next', úsalo; por defecto va a /admin/
-                next_target = request.args.get("next", "/admin/")
+                next_target = request.args.get("next", "/raiz/admin/")
                 # Limpiar sso_token y next de la query string
                 clean = {k: v for k, v in request.args.items() if k not in ("sso_token", "next")}
                 qs = "&".join(f"{k}={v}" for k, v in clean.items())
@@ -373,7 +373,7 @@ def sso_login():
     sso_token = request.args.get("sso_token")
     if not sso_token:
         return redirect("https://datacenter.hubmultiteck.io/login?next=https://datacenter.hubmultiteck.io/raiz/")
-    return redirect(f"/admin/?sso_token={sso_token}")
+    return redirect(f"/raiz/admin/?sso_token={sso_token}")
 
 @app.route("/login")
 def login_page():
@@ -462,19 +462,19 @@ def admin_lugar_nuevo():
         f.write(md_from_data(place))
 
     flash(f"✅ Lugar «{place['name']}» creado correctamente. Recompila para verlo.", "success")
-    return redirect("/admin/")
+    return redirect("/raiz/admin/")
 
 @app.route("/admin/lugares/<place_id>/editar", methods=["GET", "POST"])
 def admin_lugar_editar(place_id):
     md_file, content = get_place_md(place_id)
     if not md_file:
         flash("❌ Lugar no encontrado.", "error")
-        return redirect("/admin/lugares")
+        return redirect("/raiz/admin/lugares")
 
     lugar = parse_md_content(content)
     if not lugar:
         flash("❌ Error al parsear el lugar.", "error")
-        return redirect("/admin/lugares")
+        return redirect("/raiz/admin/lugares")
 
     if request.method == "GET":
         cats = load_categories()
@@ -538,7 +538,7 @@ def admin_lugar_editar(place_id):
             pass
 
     flash(f"✅ Lugar «{updated['name']}» actualizado. Recompila para ver cambios.", "success")
-    return redirect("/admin/lugares")
+    return redirect("/raiz/admin/lugares")
 
 @app.route("/admin/lugares/<place_id>/borrar", methods=["POST"])
 def admin_lugar_borrar(place_id):
@@ -546,7 +546,7 @@ def admin_lugar_borrar(place_id):
     if md_file:
         md_file.unlink()
         flash(f"🗑️ Lugar eliminado.", "success")
-    return redirect("/admin/lugares")
+    return redirect("/raiz/admin/lugares")
 
 # ── Categorías ──
 @app.route("/admin/categorias", methods=["GET", "POST"])
@@ -585,7 +585,7 @@ def admin_categorias():
             cats = [c for c in cats if c["id"] != cat_id]
             save_categories(cats)
             flash(f"🗑️ Categoría eliminada.", "success")
-        return redirect("/admin/categorias")
+        return redirect("/raiz/admin/categorias")
 
     return render_template("admin_categorias.html", categories=cats,
         user=session.get("full_name", "Admin"))
@@ -636,7 +636,7 @@ def admin_regiones():
                 del regs[state_id]["subregions"][sub_id]
                 save_regions(regs)
                 flash(f"🗑️ Subregión eliminada.", "success")
-        return redirect("/admin/regiones")
+        return redirect("/raiz/admin/regiones")
 
     return render_template("admin_regiones.html", regions=regs,
         user=session.get("full_name", "Admin"))
@@ -694,7 +694,7 @@ def admin_resena_aprobar(review_id):
         with open(rpath, "w", encoding="utf-8") as f:
             json.dump(rev, f, ensure_ascii=False, indent=2)
         flash("✅ Reseña aprobada.", "success")
-    return redirect("/admin/resenas")
+    return redirect("/raiz/admin/resenas")
 
 @app.route("/admin/resenas/<review_id>/rechazar", methods=["POST"])
 def admin_resena_rechazar(review_id):
@@ -708,7 +708,7 @@ def admin_resena_rechazar(review_id):
         with open(rpath, "w", encoding="utf-8") as f:
             json.dump(rev, f, ensure_ascii=False, indent=2)
         flash("❌ Reseña rechazada.", "error")
-    return redirect("/admin/resenas")
+    return redirect("/raiz/admin/resenas")
 
 @app.route("/admin/resenas/<review_id>/borrar", methods=["POST"])
 def admin_resena_borrar(review_id):
@@ -716,7 +716,7 @@ def admin_resena_borrar(review_id):
     if rpath.exists():
         rpath.unlink()
         flash("🗑️ Reseña eliminada.", "success")
-    return redirect("/admin/resenas")
+    return redirect("/raiz/admin/resenas")
 
 # ── Build ──
 @app.route("/admin/build", methods=["GET", "POST"])

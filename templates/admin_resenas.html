@@ -1,6 +1,6 @@
 {% extends "admin_base.html" %}
 {% block content %}
-<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<div class="return-link"><a href="/raiz/admin/">← Dashboard</a></div>
 <h2>💬 Reseñas <span style="font-size:.8rem;font-weight:400;color:var(--texto2)">— Moderación</span></h2>
 
 {% if pending %}
@@ -20,13 +20,13 @@
         {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
     </div>
     <div style="margin-top:8px;display:flex;gap:6px">
-        <form method="POST" action="/admin/resenas/{{ rev.id }}/aprobar" style="display:inline">
+        <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/aprobar" style="display:inline">
             <button type="submit" class="btn btn-success btn-sm">✅ Aprobar</button>
         </form>
-        <form method="POST" action="/admin/resenas/{{ rev.id }}/rechazar" style="display:inline">
+        <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/rechazar" style="display:inline">
             <button type="submit" class="btn btn-danger btn-sm">❌ Rechazar</button>
         </form>
-        <form method="POST" action="/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar esta reseña definitivamente?')">
+        <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar esta reseña definitivamente?')">
             <button type="submit" class="btn btn-outline btn-sm">🗑️ Eliminar</button>
         </form>
     </div>
@@ -47,7 +47,7 @@
     </div>
     <div class="review-text">"{{ rev.texto[:100] }}{% if rev.texto|length > 100 %}...{% endif %}"</div>
     <div style="margin-top:4px">
-        <form method="POST" action="/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar?')">
+        <form method="POST" action="/raiz/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar?')">
             <button type="submit" class="btn btn-outline btn-sm">🗑️</button>
         </form>
     </div>

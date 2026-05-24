@@ -1,9 +1,9 @@
 {% extends "admin_base.html" %}
 {% block content %}
-<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<div class="return-link"><a href="/raiz/admin/">← Dashboard</a></div>
 <h2>📍 Lugares</h2>
 <div style="margin-bottom:12px">
-    <a href="/admin/lugares/nuevo" class="btn btn-primary">➕ Nuevo Lugar</a>
+    <a href="/raiz/admin/lugares/nuevo" class="btn btn-primary">➕ Nuevo Lugar</a>
 </div>
 
 {% if lugares %}
@@ -28,8 +28,8 @@
             <td style="font-size:.75rem">{% for d in lugar.days %}{{ d }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
             <td>
                 <div class="actions">
-                    <a href="/admin/lugares/{{ lugar.id }}/editar" class="btn btn-outline btn-sm">✏️</a>
-                    <form method="POST" action="/admin/lugares/{{ lugar.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar {{ lugar.name }}?')">
+                    <a href="/raiz/admin/lugares/{{ lugar.id }}/editar" class="btn btn-outline btn-sm">✏️</a>
+                    <form method="POST" action="/raiz/admin/lugares/{{ lugar.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar {{ lugar.name }}?')">
                         <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
                     </form>
                 </div>
@@ -42,7 +42,7 @@
 <div class="empty-state">
     <div class="icon">📍</div>
     <p>No hay lugares aún. ¡Crea el primero!</p>
-    <a href="/admin/lugares/nuevo" class="btn btn-primary" style="margin-top:12px">➕ Nuevo Lugar</a>
+    <a href="/raiz/admin/lugares/nuevo" class="btn btn-primary" style="margin-top:12px">➕ Nuevo Lugar</a>
 </div>
 {% endif %}
 {% endblock %}
