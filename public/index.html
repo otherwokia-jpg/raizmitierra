@@ -369,78 +369,78 @@ const TAG_EMOJI={'plaza-campo':'🐴','garnachas-sabor':'🌮','canasta-basica':
 // Fotos 100% locales para carga rápida
 const PHOTO_POOL = {
     default: [
-        'assets/mercado.jpg',
-        'assets/tianguis.jpg',
-        'assets/piramide.jpg',
-        'assets/malinalco-pueblo.jpg',
-        'assets/pueblo.jpg',
-        'assets/cascada.jpg',
-        'assets/vallebravo.jpg',
+        '/assets/mercado.jpg',
+        '/assets/tianguis.jpg',
+        '/assets/piramide.jpg',
+        '/assets/malinalco-pueblo.jpg',
+        '/assets/pueblo.jpg',
+        '/assets/cascada.jpg',
+        '/assets/vallebravo.jpg',
     ],
     'canasta-basica': [
-        'assets/mercado.jpg',
-        'assets/tianguis.jpg',
+        '/assets/mercado.jpg',
+        '/assets/tianguis.jpg',
     ],
     'garnachas-sabor': [
-        'assets/tianguis.jpg',
-        'assets/mercado.jpg',
+        '/assets/tianguis.jpg',
+        '/assets/mercado.jpg',
     ],
     'plaza-campo': [
-        'assets/mercado.jpg',
-        'assets/tianguis.jpg',
+        '/assets/mercado.jpg',
+        '/assets/tianguis.jpg',
     ],
     'la-paca': [
-        'assets/mercado.jpg',
+        '/assets/mercado.jpg',
     ],
     'chacharas-antiguedades': [
-        'assets/mercado.jpg',
+        '/assets/mercado.jpg',
     ],
     'identidad-oficios': [
-        'assets/otomi.jpg',
+        '/assets/otomi.jpg',
     ],
     'muebles-artesanales': [
-        'assets/otomi.jpg',
+        '/assets/otomi.jpg',
     ],
     'animales-corral': [
-        'assets/montana.jpg',
+        '/assets/montana.jpg',
     ],
     'cultura-tradicion': [
-        'assets/otomi.jpg',
-        'assets/malinalco-pueblo.jpg',
+        '/assets/otomi.jpg',
+        '/assets/malinalco-pueblo.jpg',
     ],
     'pueblo-magico': [
-        'assets/malinalco-pueblo.jpg',
-        'assets/vallebravo.jpg',
-        'assets/pueblo.jpg',
+        '/assets/malinalco-pueblo.jpg',
+        '/assets/vallebravo.jpg',
+        '/assets/pueblo.jpg',
     ],
     'hierbas-medicina': [
-        'assets/mercado.jpg',
+        '/assets/mercado.jpg',
     ],
     'flores-plantas': [
-        'assets/mercado.jpg',
+        '/assets/mercado.jpg',
     ],
     'zona-arqueologica': [
-        'assets/piramide.jpg',
-"assets/malinalco.jpg"
+        '/assets/piramide.jpg',
+        '/assets/malinalco.jpg',
     ],
     'pueblo-tradicional': [
-        'assets/vallebravo.jpg',
-        'assets/malinalco-pueblo.jpg',
-        'assets/pueblo.jpg',
+        '/assets/vallebravo.jpg',
+        '/assets/malinalco-pueblo.jpg',
+        '/assets/pueblo.jpg',
     ],
     'centro-otomi': [
-        'assets/otomi.jpg',
-        'assets/tianguis.jpg',
+        '/assets/otomi.jpg',
+        '/assets/tianguis.jpg',
     ],
     'balneario-cascada': [
-        'assets/cascada.jpg',
-        'assets/cacahuamilpa.jpg',
-        'assets/vallebravo.jpg',
+        '/assets/cascada.jpg',
+        '/assets/cacahuamilpa.jpg',
+        '/assets/vallebravo.jpg',
     ],
     'mirador-naturaleza': [
-        'assets/montana.jpg',
-        'assets/santuario.jpg',
-        'assets/vallebravo.jpg',
+        '/assets/montana.jpg',
+        '/assets/santuario.jpg',
+        '/assets/vallebravo.jpg',
     ],
 };
 
@@ -449,13 +449,11 @@ function pickPhoto(t) {
     for (const cat of cats) {
         if (PHOTO_POOL[cat]) {
             const idx = Math.abs((t.id || t.name).split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % PHOTO_POOL[cat].length;
-            const u = PHOTO_POOL[cat][idx];
-            return u.startsWith('/') ? u : u + '?w=800&h=400&fit=crop';
+            return PHOTO_POOL[cat][idx];
         }
     }
     const idx = Math.abs((t.id || t.name).split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % PHOTO_POOL.default.length;
-    const u = PHOTO_POOL.default[idx];
-    return u.startsWith('/') ? u : u + '?w=800&h=400&fit=crop';
+    return PHOTO_POOL.default[idx];
 }
 
 function renderList(data) {
