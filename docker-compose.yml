@@ -11,13 +11,8 @@ services:
       # SSO secret + Landing users (never baked into image)
       - ${SSO_SECRET_FILE}:${SSO_SECRET_FILE}:ro
       - ${USERS_FILE}:${USERS_FILE}:ro
-      # Reviews data persistence
+      # Reviews data persistence (created at runtime)
       - reviews_data:/app/database/reviews
-      # Uploaded photos
-      - uploads:/app/public/assets/img/lugares
-      # Static build output
-      - ./dist:/app/dist:ro
-      - ./public:/app/public:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9500/health"]
@@ -28,4 +23,3 @@ services:
 
 volumes:
   reviews_data:
-  uploads:

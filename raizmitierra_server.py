@@ -4,7 +4,7 @@ RaízMiTierra — CMS Backend
 Puerto 9500 · SSO desde Landing (8888)
 Sirve el sitio público + /admin/ protegido para gestión de contenidos.
 """
-|import os, sys, json, re, shutil, secrets, hashlib
+import os, sys, json, re, shutil, secrets, hashlib
 from pathlib import Path
 from datetime import datetime, timedelta
 from io import BytesIO
