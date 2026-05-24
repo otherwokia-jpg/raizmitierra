@@ -15,11 +15,11 @@ services:
       - reviews_data:/app/database/reviews
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9500/health"]
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9500/health')"]
       interval: 30s
       timeout: 5s
-      retries: 3
       start_period: 10s
+      retries: 3
 
 volumes:
   reviews_data:

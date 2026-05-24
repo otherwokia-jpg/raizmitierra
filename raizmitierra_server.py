@@ -47,7 +47,17 @@ class PrefixMiddleware:
         if path.startswith(self.prefix):
             environ['PATH_INFO'] = path[len(self.prefix):]
             environ['SCRIPT_NAME'] = self.prefix
-        return self.app(environ, start_response)
+
+        def rewrite_location(status, headers, exc_info=None):
+            new_headers = []
+            for name, value in headers:
+                if name.lower() == 'location' and value.startswith('/') and not value.startswith(self.prefix):
+                    # Prepend the prefix to redirects so they go through the tunnel
+                    value = self.prefix + value
+                new_headers.append((name, value))
+            return start_response(status, new_headers, exc_info)
+
+        return self.app(environ, rewrite_location)
 
 # ── Flask App ──
 app = Flask(__name__,
@@ -311,10 +321,13 @@ def check_sso():
                 session["email"] = payload.get("email", f"{username}@hubmultiteck.io")
                 session["role"] = payload.get("role", "viewer")
                 session["allowed_portals"] = allowed
-                # Redirect limpio (sin sso_token en URL)
-                clean = {k: v for k, v in request.args.items() if k != "sso_token"}
+                # Redirect limpio (sin sso_token en URL) a la dashboard admin
+                # Si hay un parámetro 'next', úsalo; por defecto va a /admin/
+                next_target = request.args.get("next", "/admin/")
+                # Limpiar sso_token y next de la query string
+                clean = {k: v for k, v in request.args.items() if k not in ("sso_token", "next")}
                 qs = "&".join(f"{k}={v}" for k, v in clean.items())
-                target = request.path + ("?" + qs if qs else "")
+                target = next_target + ("?" + qs if qs else "")
                 return redirect(target)
         except Exception:
             pass
