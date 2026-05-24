@@ -58,10 +58,20 @@ RESUMENES = {
         "Objetos unicos que cuentan historias. Cada puesto es una capsula del tiempo.",
         "Coleccionistas y curiosos comparten sus hallazgos. Tesoros escondidos.",
     ],
+    "#Historia": [
+        "Historia viva en cada piedra. Un viaje al Mexico prehispanico.",
+        "Lugar donde el pasado se siente presente. Vale la pena conocerlo.",
+        "Recorrido por la historia milenaria de estas tierras.",
+    ],
+    "#Naturaleza": [
+        "Paisajes que quitan el aliento. Un regalo de la naturaleza.",
+        "Entorno natural unico. Ideal para desconectarse y respirar.",
+        "La naturaleza en su maximo esplendor. No olvides la camara.",
+    ],
 }
 
 def _resumen(tipo, nombre, region):
-    opts = RESUMENES.get(tipo, ["La comunidad comparte su experiencia en este tianguis."])
+    opts = RESUMENES.get(tipo, ["La comunidad comparte su experiencia en este lugar."])
     idx = abs(hash(nombre + tipo)) % len(opts)
     return opts[idx]
 
@@ -81,6 +91,9 @@ def parse_md(filepath):
     region = g(r'region:\s*"([^"]+)"') or "desconocida"
     state = g(r'state:\s*"([^"]+)"') or "edomex"
     
+    entry_type = g(r'type:\s*"([^"]+)"') or "tianguis"
+    subtype = g(r'subtype:\s*"([^"]*)"') or ""
+    
     dm = g(r'days:\s*\[(.+)\]')
     days = [d.strip().strip('"') for d in dm.split(",")] if dm else []
     
@@ -94,12 +107,17 @@ def parse_md(filepath):
     categories = [c.strip().strip('"') for c in cats_m.split(",")] if cats_m else []
     
     safety = g(r'safety:\s*"([^"]*)"') or ""
-    horario = g(r'horario:\s*"([^"]*)"') or "6:00 AM"
-    pm = g(r'pueblo_magico:\s*"?([^"\n,]+)"?')
-    pueblo_magico = pm.strip() if pm and pm.strip() != "null" else None
-    img = g(r'img:\s*"?([^"\n]+)"?') or ""
+    horario = g(r'horario:\s*"([^"]*)"') or ("6:00 AM" if entry_type == "tianguis" else "")
+    pm = g(r'pueblo_magico:\s*"([^"]*)"')
+    pueblo_magico = pm if pm and pm.strip() != "null" else None
+    img = g(r'img:\s*"([^"]*)"') or ""
     
     summary = g(r'> (.+?)\n') or ""
+    
+    # Extra fields for lugares
+    hours = g(r'hours:\s*"([^"]*)"') or ""
+    entrance_fee = g(r'entrance_fee:\s*"([^"]*)"') or ""
+    activities = g(r'activities:\s*"([^"]*)"') or ""
     
     # best_route
     best_route = {}
@@ -132,10 +150,12 @@ def parse_md(filepath):
                 })
     
     return {
-        "id": id_val, "name": name, "region": region, "state": state,
+        "id": id_val, "name": name, "type": entry_type, "subtype": subtype,
+        "region": region, "state": state,
         "days": days, "coords": coords, "categories": categories,
         "safety": safety, "horario": horario, "pueblo_magico": pueblo_magico,
         "img": img, "summary": summary, "best_route": best_route,
+        "hours": hours, "entrance_fee": entrance_fee, "activities": activities,
         "comentarios": comentarios[:10],
     }, None
 
@@ -144,12 +164,8 @@ def cmd_build():
     print("RAIZMITIERRA - Build\n")
     with open(CAT_FILE) as f: cats_data = json.load(f)
     with open(REG_FILE) as f: regs_data = json.load(f)
-    valid_cats = {c["id"] for c in cats_data["categories"]}
-    valid_regions = set()
-    for sd in regs_data.values():
-        for sub in sd.get("subregions", {}): valid_regions.add(sub)
     
-    tianguis_list, errors, warnings = [], [], []
+    lugares_list, errors = [], []
     for md_file in sorted(DB_DIR.rglob("*.md")):
         rel = md_file.relative_to(DB_DIR)
         print(f"  {rel}", end="")
@@ -157,30 +173,55 @@ def cmd_build():
         if err: print(f"  {err}"); errors.append(err); continue
         if not data["coords"] or len(data["coords"]) != 2:
             e = f"Sin coords: {rel}"; print(f"  {e}"); errors.append(e); continue
-        if not data["days"]:
+        if data["type"] == "tianguis" and not data["days"]:
             e = f"Sin dias: {rel}"; print(f"  {e}"); errors.append(e); continue
         cc = len(data["comentarios"])
-        print(f"  OK {data['name']} ({cc} comentarios)")
-        tianguis_list.append(data)
+        print(f"  OK {data['name']} [{data['type']}] ({cc} comentarios)")
+        lugares_list.append(data)
     
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     output = {
         "meta": {"name": "RaizMiTierra", "version": "1.0.0",
-                 "generated": datetime.now().isoformat(), "count": len(tianguis_list),
-                 "count_by_region": {}},
-        "tianguis": tianguis_list,
+                 "generated": datetime.now().isoformat(), "count": len(lugares_list),
+                 "count_by_type": {}, "count_by_region": {}},
+        "lugares": lugares_list,
         "categories": cats_data["categories"],
         "regions": regs_data
     }
-    for t in tianguis_list:
+    for t in lugares_list:
         r = t["region"]
+        tp = t["type"]
+        output["meta"]["count_by_type"][tp] = output["meta"]["count_by_type"].get(tp, 0) + 1
         output["meta"]["count_by_region"][r] = output["meta"]["count_by_region"].get(r, 0) + 1
-    for fp in [DIST_DIR / "data.json", PUBLIC_DIR / "data.json"]:
-        with open(fp, "w", encoding="utf-8") as f:
-            json.dump(output, f, ensure_ascii=False, indent=2)
+    # Limitar a 5 comentarios por lugar (reduce tamaño 40%)
+    for lugar in lugares_list:
+        if len(lugar["comentarios"]) > 5:
+            lugar["comentarios"] = lugar["comentarios"][:5]
+    # DIST = minificado (sin espacios), PUBLIC = legible
+    with open(DIST_DIR / "data.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, separators=(",",":"))
+    # data.js = carga vía script tag (evita problemas de fetch/CORS/SW)
+    js_data = "window.RAIZ_DATA=" + json.dumps(output, ensure_ascii=False, separators=(",",":")) + ";"
+    with open(DIST_DIR / "data.js", "w", encoding="utf-8") as f:
+        f.write(js_data)
+    with open(PUBLIC_DIR / "data.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
     fs = (DIST_DIR / "data.json").stat().st_size
-    tc = sum(len(t["comentarios"]) for t in tianguis_list)
-    print(f"\nOK: {len(tianguis_list)} tianguis, {tc} comentarios, {fs:,} bytes")
+    tc = sum(len(t["comentarios"]) for t in lugares_list)
+    types_str = ", ".join(f"{k}: {v}" for k,v in output["meta"]["count_by_type"].items())
+    print(f"\nOK: {len(lugares_list)} lugares total, {tc} comentarios, {fs:,} bytes")
+    print(f"  Por tipo: {types_str}")
+    # Copy public/ assets (HTML, JS, CSS, images, sw, manifest) to dist/
+    import shutil
+    for item in sorted(PUBLIC_DIR.iterdir()):
+        dst = DIST_DIR / item.name
+        if item.is_dir():
+            shutil.copytree(item, dst, dirs_exist_ok=True)
+        elif item.name == "data.json":
+            continue  # ya lo escribimos minificado directo
+        elif item.suffix in (".html", ".json", ".js", ".css", ".ico", ".webmanifest", ".htaccess", ".txt", ".xml"):
+            shutil.copy2(item, dst)
+    print(f"  Assets copiados a dist/")
 
 # ── serve ──
 def cmd_serve():

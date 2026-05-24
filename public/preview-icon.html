@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Vista previa del icono</title>
+<style>
+  body{background:#333;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:sans-serif;padding:20px}
+  h2{color:#fff;margin-bottom:20px}
+  .phone{background:#000;border-radius:40px;padding:12px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+  .screen{background:url('https://raizmitierra.pages.dev') #FFF8F0;border-radius:32px;width:280px;height:500px;overflow:hidden;position:relative}
+  .screen iframe{width:100%;height:100%;border:none}
+  .mock-icon{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:30px}
+  .mock-icon img{width:80px;height:80px;border-radius:18px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+  .mock-icon span{color:#fff;font-size:.85rem}
+  .sample{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+  .icon-card{text-align:center;color:#fff}
+  .icon-card img{width:96px;height:96px;border-radius:22px;box-shadow:0 4px 16px rgba(0,0,0,.4);background:#fff}
+  .icon-card .label{margin-top:6px;font-size:.75rem;opacity:.8}
+  .desc{color:#ccc;max-width:400px;text-align:center;font-size:.85rem;line-height:1.5;margin-top:16px}
+</style>
+</head>
+<body>
+  <h2>🇲🇽 Propuesta de icono mexicano</h2>
+  <div class="sample">
+    <div class="icon-card">
+      <img src="/assets/icon-mexico-512.svg" alt="Icono México">
+      <div class="label">🟠 Mapa de México</div>
+    </div>
+  </div>
+  <div class="desc">
+    Fondo terracota con un mapa de México en blanco,<br>
+    degradado suave de la bandera 🇮🇱<br>
+    Punto rojo marcando el centro del país 📍
+  </div>
+  <div class="mock-icon" style="margin-top:30px">
+    <img src="/assets/icon-mexico-512.svg" alt="Icono">
+    <span>🌎 RaízMiTierra</span>
+    <div style="color:#999;font-size:.7rem;max-width:300px;text-align:center;margin-top:10px">
+      ⚡ Sin registro · Sin datos · Solo consulta<br>
+      📍 Tu ubicación nunca sale de tu celular
+    </div>
+  </div>
+</body>
+</html>

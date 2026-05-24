@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fondo terracota con textura suave mexicana -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F4A261"/>
+      <stop offset="70%" stop-color="#E86A33"/>
+      <stop offset="100%" stop-color="#C7501E"/>
+    </radialGradient>
+    <linearGradient id="mexico" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#006847"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#CE1126"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Base redondeada -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  
+  <!-- Sutil bandera mexicana como arco -->
+  <path d="M0 256 Q128 80 256 64 Q384 80 512 256 L512 512 L0 512 Z" fill="url(#mexico)" opacity="0.12"/>
+  
+  <!-- Mapa de México simplificado en blanco -->
+  <path d="M160 180 
+    Q140 175 130 185 Q120 195 125 210
+    Q115 215 105 225 Q95 235 100 250
+    Q90 255 80 265 Q70 275 75 290
+    Q65 295 60 310 Q55 325 65 335
+    Q60 345 70 355 Q80 365 90 360
+    Q95 370 110 365 Q120 370 130 360
+    Q140 365 150 355 Q160 360 170 350
+    Q175 355 185 345 Q190 350 200 340
+    Q210 345 220 335 Q230 340 240 330
+    Q250 335 260 325 Q270 320 280 310
+    Q290 315 300 305 Q310 310 320 300
+    Q330 305 340 290 Q345 295 355 280
+    Q360 285 370 270 Q375 275 385 260
+    Q390 250 380 240 Q375 230 365 235
+    Q355 225 345 230 Q335 220 325 225
+    Q315 215 305 220 Q295 210 285 215
+    Q275 205 265 210 Q255 200 245 205
+    Q235 195 225 200 Q215 190 205 195
+    Q195 185 185 190 Q175 180 160 180 Z
+    " fill="white" opacity="0.95"/>
+  
+  <!-- Pequeño punto indicando CDMX/centro -->
+  <circle cx="210" cy="270" r="6" fill="#E86A33"/>
+  
+  <!-- Cintillo inferior -->
+  <rect x="0" y="390" width="512" height="8" fill="#CE1126" opacity="0.3"/>
+</svg>

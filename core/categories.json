@@ -1,112 +1,21 @@
 {
   "categories": [
-    {
-      "id": "plaza-campo",
-      "label": "Trueque y Plaza de Campo",
-      "emoji": "🐴",
-      "description": "Intercambio tradicional, trueque prehispánico, venta de animales de corral y ganado. El corazón vivo de la economía rural.",
-      "color": "#8B4513",
-      "bg": "#FEF3C7",
-      "keywords": ["trueque", "ganado", "animales", "intercambio", "plaza", "corral"]
-    },
-    {
-      "id": "garnachas-sabor",
-      "label": "Garnachas y Sabor",
-      "emoji": "🌮",
-      "description": "Barbacoa de hoyo, tacos de obispo, pancita, mariscos frescos, gorditas de cacahuazintle, pulque. La cocina de la calle.",
-      "color": "#D97706",
-      "bg": "#FFEDD5",
-      "keywords": ["barbacoa", "tacos", "mariscos", "antojitos", "comida", "pulque", "gorditas"]
-    },
-    {
-      "id": "canasta-basica",
-      "label": "Canasta Básica",
-      "emoji": "🥬",
-      "description": "Verduras, frutas, carnes, semillas, huevo de rancho. El mandado de la semana a precio justo.",
-      "color": "#059669",
-      "bg": "#D1FAE5",
-      "keywords": ["verduras", "frutas", "carnes", "semillas", "huevo", "mandado"]
-    },
-    {
-      "id": "la-paca",
-      "label": "La Paca",
-      "emoji": "👕",
-      "description": "Ropa americana, saldos de segunda mano, moda reciclada. Economía circular popular.",
-      "color": "#7C3AED",
-      "bg": "#EDE9FE",
-      "keywords": ["ropa", "paca", "segunda mano", "americana", "saldos", "moda"]
-    },
-    {
-      "id": "chacharas-antiguedades",
-      "label": "Chácharas y Antigüedades",
-      "emoji": "🔧",
-      "description": "Herramientas usadas, fierro viejo, objetos retro, discos, juguetes antiguos. Tesoros escondidos.",
-      "color": "#DC2626",
-      "bg": "#FEE2E2",
-      "keywords": ["herramientas", "chácharas", "antigüedades", "fierro", "retro", "colección"]
-    },
-    {
-      "id": "identidad-oficios",
-      "label": "Artesanías y Oficios",
-      "emoji": "🏺",
-      "description": "Barro de Metepec, árboles de la vida, textiles, rebozos, calzado artesanal, talabartería. Saberes que no se pierden.",
-      "color": "#B45309",
-      "bg": "#FEF3C7",
-      "keywords": ["artesanías", "barro", "textiles", "rebozos", "artesanos", "oficios"]
-    },
-    {
-      "id": "muebles-artesanales",
-      "label": "Muebles Artesanales",
-      "emoji": "🪑",
-      "description": "Muebles de tule, equipal, otate, madera tallada, muebles rústicos. El trabajo de la carpintería tradicional.",
-      "color": "#92400E",
-      "bg": "#FFFBEB",
-      "keywords": ["muebles", "carpintería", "tule", "equipal", "rústico", "madera"]
-    },
-    {
-      "id": "animales-corral",
-      "label": "Animales de Corral",
-      "emoji": "🐑",
-      "description": "Borregos, gallinas, caballos, cerdos, conejos. La plaza de ganado viva.",
-      "color": "#78716C",
-      "bg": "#F5F5F4",
-      "keywords": ["ganado", "borregos", "gallinas", "caballos", "animales", "corral"]
-    },
-    {
-      "id": "cultura-tradicion",
-      "label": "Cultura y Tradición",
-      "emoji": "🎭",
-      "description": "Fiestas patronales, danzas, Día de Muertos, Semana Santa, ferias, música tradicional. El calendario de nuestras raíces.",
-      "color": "#BE123C",
-      "bg": "#FFE4E6",
-      "keywords": ["fiesta", "danza", "tradición", "feria", "música", "patronal"]
-    },
-    {
-      "id": "pueblo-magico",
-      "label": "Pueblo Mágico",
-      "emoji": "🏆",
-      "description": "Pueblos Mágicos del Edomex con tianguis, balnearios, cascadas, zonas arqueológicas y tradiciones vivas.",
-      "color": "#CA8A04",
-      "bg": "#FEF9C3",
-      "keywords": ["pueblo mágico", "turismo", "balneario", "cascada", "arqueología"]
-    },
-    {
-      "id": "hierbas-medicina",
-      "label": "Hierbas y Medicina Tradicional",
-      "emoji": "🌿",
-      "description": "Hierbas medicinales, remedios tradicionales, temazcal, plantas curativas. La farmacia de la abuela.",
-      "color": "#15803D",
-      "bg": "#DCFCE7",
-      "keywords": ["hierbas", "medicina", "remedios", "temazcal", "plantas", "curativas"]
-    },
-    {
-      "id": "flores-plantas",
-      "label": "Flores y Plantas",
-      "emoji": "🌸",
-      "description": "Viveros, plantas de ornato, macetas, árboles frutales, cactáceas. La naturaleza en tu casa.",
-      "color": "#DB2777",
-      "bg": "#FCE7F3",
-      "keywords": ["flores", "plantas", "vivero", "macetas", "jardinería", "ornato"]
-    }
+    {"id": "plaza-campo","label": "Trueque y Plaza de Campo","emoji": "🐴","description": "Intercambio tradicional, trueque prehispánico, venta de animales de corral y ganado. El corazón vivo de la economía rural.","color": "#8B4513","bg": "#FEF3C7","keywords": ["trueque","ganado","animales","intercambio","plaza","corral"]},
+    {"id": "garnachas-sabor","label": "Garnachas y Sabor","emoji": "🌮","description": "Barbacoa de hoyo, tacos de obispo, pancita, mariscos frescos, gorditas de cacahuazintle, pulque. La cocina de la calle.","color": "#D97706","bg": "#FFEDD5","keywords": ["barbacoa","tacos","mariscos","antojitos","comida","pulque","gorditas"]},
+    {"id": "canasta-basica","label": "Canasta Básica","emoji": "🥬","description": "Verduras, frutas, carnes, semillas, huevo de rancho. El mandado de la semana a precio justo.","color": "#059669","bg": "#D1FAE5","keywords": ["verduras","frutas","carnes","semillas","huevo","mandado"]},
+    {"id": "la-paca","label": "La Paca","emoji": "👕","description": "Ropa americana, saldos de segunda mano, moda reciclada. Economía circular popular.","color": "#7C3AED","bg": "#EDE9FE","keywords": ["ropa","paca","segunda mano","americana","saldos","moda"]},
+    {"id": "chacharas-antiguedades","label": "Chácharas y Antigüedades","emoji": "🔧","description": "Herramientas usadas, fierro viejo, objetos retro, discos, juguetes antiguos. Tesoros escondidos.","color": "#DC2626","bg": "#FEE2E2","keywords": ["herramientas","chácharas","antigüedades","fierro","retro","colección"]},
+    {"id": "identidad-oficios","label": "Artesanías y Oficios","emoji": "🏺","description": "Barro de Metepec, árboles de la vida, textiles, rebozos, calzado artesanal, talabartería. Saberes que no se pierden.","color": "#B45309","bg": "#FEF3C7","keywords": ["artesanías","barro","textiles","rebozos","artesanos","oficios"]},
+    {"id": "muebles-artesanales","label": "Muebles Artesanales","emoji": "🪑","description": "Muebles de tule, equipal, otate, madera tallada, muebles rústicos. El trabajo de la carpintería tradicional.","color": "#92400E","bg": "#FFFBEB","keywords": ["muebles","carpintería","tule","equipal","rústico","madera"]},
+    {"id": "animales-corral","label": "Animales de Corral","emoji": "🐑","description": "Borregos, gallinas, caballos, cerdos, conejos. La plaza de ganado viva.","color": "#78716C","bg": "#F5F5F4","keywords": ["ganado","borregos","gallinas","caballos","animales","corral"]},
+    {"id": "cultura-tradicion","label": "Cultura y Tradición","emoji": "🎭","description": "Fiestas patronales, danzas, Día de Muertos, Semana Santa, ferias, música tradicional. El calendario de nuestras raíces.","color": "#BE123C","bg": "#FFE4E6","keywords": ["fiesta","danza","tradición","feria","música","patronal"]},
+    {"id": "pueblo-magico","label": "Pueblo Mágico","emoji": "🏆","description": "Pueblos Mágicos con tianguis, balnearios, cascadas, zonas arqueológicas y tradiciones vivas.","color": "#CA8A04","bg": "#FEF9C3","keywords": ["pueblo mágico","turismo","balneario","cascada","arqueología"]},
+    {"id": "hierbas-medicina","label": "Hierbas y Medicina Tradicional","emoji": "🌿","description": "Hierbas medicinales, remedios tradicionales, temazcal, plantas curativas. La farmacia de la abuela.","color": "#15803D","bg": "#DCFCE7","keywords": ["hierbas","medicina","remedios","temazcal","plantas","curativas"]},
+    {"id": "flores-plantas","label": "Flores y Plantas","emoji": "🌸","description": "Viveros, plantas de ornato, macetas, árboles frutales, cactáceas. La naturaleza en tu casa.","color": "#DB2777","bg": "#FCE7F3","keywords": ["flores","plantas","vivero","macetas","jardinería","ornato"]},
+    {"id": "zona-arqueologica","label": "Zonas Arqueológicas","emoji": "🏛️","description": "Pirámides, zonas arqueológicas, petroglifos y centros ceremoniales prehispánicos. Nuestra historia viva.","color": "#B45309","bg": "#FEF3C7","keywords": ["pirámides","arqueología","prehispánico","zona arqueológica","ruinas","templos"]},
+    {"id": "pueblo-tradicional","label": "Pueblos Tradicionales","emoji": "🏘️","description": "Pueblitos con encanto, calles empedradas, tradiciones vivas y gente de a pie. El México profundo.","color": "#0D9488","bg": "#CCFBF1","keywords": ["pueblo","tradicional","pueblito","calles","empedrado","encanto"]},
+    {"id": "centro-otomi","label": "Centro Otomí","emoji": "🏮","description": "Centros ceremoniales, comunidades y zonas de la cultura otomí. Tradición milenaria viva.","color": "#7C3AED","bg": "#EDE9FE","keywords": ["otomí","centro ceremonial","comunidad indígena","ñähñu","mazahua"]},
+    {"id": "balneario-cascada","label": "Balnearios y Cascadas","emoji": "🏊","description": "Aguas termales, balnearios naturales, grutas, cascadas y toboganes. El paraíso del agua.","color": "#0284C7","bg": "#E0F2FE","keywords": ["balneario","cascada","aguas termales","gruta","agua","nadar"]},
+    {"id": "mirador-naturaleza","label": "Miradores y Naturaleza","emoji": "⛰️","description": "Miradores, cerros, presas, bosques y paisajes. Donde el ojo descansa y el alma respira.","color": "#15803D","bg": "#DCFCE7","keywords": ["mirador","cerro","presa","bosque","paisaje","vista"]}
   ]
 }

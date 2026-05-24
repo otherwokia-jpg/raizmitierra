@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F4A261"/>
+      <stop offset="70%" stop-color="#E86A33"/>
+      <stop offset="100%" stop-color="#C7501E"/>
+    </radialGradient>
+    <linearGradient id="mexico" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#006847"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#CE1126"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="36" fill="url(#bg)"/>
+  <path d="M0 96 Q48 30 96 24 Q144 30 192 96 L192 192 L0 192 Z" fill="url(#mexico)" opacity="0.12"/>
+  <path d="M60 67 Q52 65 48 69 Q45 73 47 78 Q43 80 39 84 Q36 88 38 93 Q34 95 30 99 Q26 103 28 109 Q24 111 22 116 Q21 122 24 125 Q22 129 26 133 Q30 137 34 135 Q36 138 41 136 Q45 138 49 135 Q53 137 57 133 Q60 135 64 131 Q67 133 72 129 Q76 131 80 127 Q84 129 88 125 Q92 127 96 123 Q100 125 105 121 Q109 123 114 118 Q117 120 122 115 Q125 117 130 110 Q132 112 137 106 Q140 108 144 101 Q146 98 142 93 Q140 88 136 89 Q132 85 128 87 Q124 83 120 85 Q116 81 112 83 Q108 79 104 81 Q100 77 96 79 Q92 75 88 77 Q84 73 80 75 Q76 71 72 73 Q68 69 64 71 Q60 67 60 67 Z" fill="white" opacity="0.95"/>
+  <circle cx="79" cy="101" r="2.5" fill="#E86A33"/>
+</svg>
