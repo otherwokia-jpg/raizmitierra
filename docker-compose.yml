@@ -1,0 +1,31 @@
+# ── RaízMiTierra CMS — docker-compose.yml ──
+services:
+  raizmitierra:
+    build: .
+    container_name: raizmitierra
+    ports:
+      - "9500:9500"
+    env_file:
+      - .env
+    volumes:
+      # SSO secret + Landing users (never baked into image)
+      - ${SSO_SECRET_FILE}:${SSO_SECRET_FILE}:ro
+      - ${USERS_FILE}:${USERS_FILE}:ro
+      # Reviews data persistence
+      - reviews_data:/app/database/reviews
+      # Uploaded photos
+      - uploads:/app/public/assets/img/lugares
+      # Static build output
+      - ./dist:/app/dist:ro
+      - ./public:/app/public:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9500/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  reviews_data:
+  uploads:

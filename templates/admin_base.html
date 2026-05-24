@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaízMiTierra — Admin</title>
+    <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--terracota:#E86A33;--naranja:#F4A261;--dorado:#E9C46A;--teal:#2A9D8F;--verde:#58B368;--crema:#FFF8F0;--blanco:#FFFFFF;--texto:#2D3436;--texto2:#636E72;--borde:#E0D5C0;--rojo:#E74C3C}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F5F0E8;color:var(--texto)}
+    .admin-header{background:linear-gradient(135deg,var(--terracota),var(--naranja));padding:14px 24px;display:flex;justify-content:space-between;align-items:center;color:#fff;box-shadow:0 2px 12px rgba(232,106,51,0.3)}
+    .admin-header h1{font-size:1.1rem;font-weight:700}
+    .admin-header .user-info{font-size:.8rem;opacity:.9}
+    .admin-header a{color:#fff;text-decoration:none;opacity:.8}
+    .admin-header a:hover{opacity:1}
+    .admin-layout{display:flex;min-height:calc(100vh - 52px)}
+    .admin-sidebar{width:220px;background:var(--blanco);border-right:1px solid var(--borde);padding:16px 0;flex-shrink:0}
+    .admin-sidebar a{display:flex;align-items:center;gap:10px;padding:10px 20px;color:var(--texto);text-decoration:none;font-size:.85rem;transition:all .15s;border-left:3px solid transparent}
+    .admin-sidebar a:hover{background:var(--crema);color:var(--terracota)}
+    .admin-sidebar a.active{background:var(--crema);color:var(--terracota);border-left-color:var(--terracota);font-weight:600}
+    .admin-content{flex:1;padding:24px;overflow-y:auto}
+    .admin-content h2{font-size:1.2rem;margin-bottom:16px;color:var(--terracota)}
+    .flash{background:#D1FAE5;border:1px solid #A7F3D0;color:#065F46;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:.85rem}
+    .flash.error{background:#FEE2E2;border-color:#FECACA;color:#991B1B}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+    .stat-card{background:var(--blanco);border-radius:12px;padding:20px;border:1px solid var(--borde)}
+    .stat-card .num{font-size:2rem;font-weight:700;color:var(--terracota)}
+    .stat-card .label{font-size:.8rem;color:var(--texto2);margin-top:4px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:none;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s}
+    .btn-primary{background:var(--terracota);color:#fff}
+    .btn-primary:hover{background:#d45a28}
+    .btn-success{background:var(--verde);color:#fff}
+    .btn-success:hover{background:#4a9a58}
+    .btn-danger{background:var(--rojo);color:#fff}
+    .btn-danger:hover{background:#c0392b}
+    .btn-outline{background:transparent;border:1.5px solid var(--borde);color:var(--texto)}
+    .btn-outline:hover{border-color:var(--terracota);color:var(--terracota)}
+    .btn-sm{padding:5px 10px;font-size:.75rem}
+    table{width:100%;border-collapse:collapse;background:var(--blanco);border-radius:12px;overflow:hidden;border:1px solid var(--borde)}
+    th,td{padding:10px 14px;text-align:left;font-size:.82rem;border-bottom:1px solid var(--borde)}
+    th{background:var(--crema);font-weight:600;color:var(--texto2);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px}
+    tr:hover{background:#FAF5EF}
+    .badge{display:inline-flex;padding:3px 8px;border-radius:20px;font-size:.65rem;font-weight:600}
+    .badge-info{background:#DBEAFE;color:#1E40AF}
+    .badge-success{background:#D1FAE5;color:#065F46}
+    .badge-warning{background:#FEF3C7;color:#92400E}
+    .badge-danger{background:#FEE2E2;color:#991B1B}
+    .form-group{margin-bottom:14px}
+    .form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--texto2);margin-bottom:4px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:9px 12px;border:1.5px solid var(--borde);border-radius:8px;font-size:.85rem;background:var(--blanco);outline:none;transition:border .15s;font-family:inherit}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--terracota)}
+    .form-group textarea{min-height:80px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .empty-state{text-align:center;padding:40px;color:var(--texto2)}
+    .empty-state .icon{font-size:3rem;margin-bottom:12px}
+    .empty-state p{font-size:.9rem}
+    .actions{display:flex;gap:6px;flex-wrap:wrap}
+    .card-list{display:grid;gap:8px}
+    .card-item{background:var(--blanco);border:1px solid var(--borde);border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+    .card-item .name{font-weight:600;font-size:.85rem}
+    .card-item .meta{font-size:.75rem;color:var(--texto2);margin-top:2px}
+    .preview-box{border:1px solid var(--borde);border-radius:8px;padding:10px;background:#FFF;margin-bottom:10px;font-size:.82rem}
+    .preview-box .rev-meta{display:flex;gap:8px;margin-bottom:4px;font-size:.75rem;color:var(--texto2)}
+    .review-text{font-style:italic;color:var(--texto)}
+    .coords-input{display:flex;gap:8px}
+    .coords-input input{flex:1}
+    .checkbox-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+    .checkbox-group label{display:flex;align-items:center;gap:4px;font-size:.8rem;cursor:pointer;padding:4px 8px;border:1px solid var(--borde);border-radius:6px;transition:all .1s}
+    .checkbox-group label:hover{border-color:var(--terracota)}
+    .checkbox-group input:checked + span{color:var(--terracota);font-weight:600}
+    code{background:#F5F0E8;padding:2px 6px;border-radius:4px;font-size:.8rem}
+    pre{background:#1E1E2E;color:#CDD6F4;padding:16px;border-radius:8px;overflow-x:auto;font-size:.78rem;max-height:400px}
+    .return-link{display:flex;align-items:center;gap:6px;margin-bottom:16px;font-size:.85rem}
+    .return-link a{color:var(--teal);text-decoration:none}
+    .return-link a:hover{text-decoration:underline}
+    @media(max-width:768px){
+        .admin-sidebar{width:60px;overflow:hidden}
+        .admin-sidebar a span{display:none}
+        .admin-layout{flex-direction:column}
+        .admin-sidebar{width:100%;display:flex;padding:8px;border-right:none;border-bottom:1px solid var(--borde);overflow-x:auto}
+        .admin-sidebar a{flex-shrink:0;padding:8px 12px;border-left:none;border-bottom:2px solid transparent;font-size:.75rem}
+        .admin-sidebar a.active{border-bottom-color:var(--terracota);border-left:none}
+        .form-row,.form-row-3{grid-template-columns:1fr}
+    }
+    </style>
+</head>
+<body>
+<div class="admin-header">
+    <h1>🌿 RaízMiTierra — CMS</h1>
+    <div class="user-info">
+        👤 {{ user }} · <a href="http://192.168.0.111:8888/">Landing</a>
+        · <a href="http://192.168.0.111:9500/">🌐 Sitio</a>
+    </div>
+</div>
+<div class="admin-layout">
+    <nav class="admin-sidebar">
+        <a href="/admin/" class="{% if request.path == '/admin/' %}active{% endif %}">
+            📊 <span>Dashboard</span>
+        </a>
+        <a href="/admin/lugares" class="{% if '/lugares' in request.path and '/nuevo' not in request.path %}active{% endif %}">
+            📍 <span>Lugares</span>
+        </a>
+        <a href="/admin/lugares/nuevo" class="{% if '/nuevo' in request.path %}active{% endif %}">
+            ➕ <span>Nuevo Lugar</span>
+        </a>
+        <a href="/admin/categorias" class="{% if '/categorias' in request.path %}active{% endif %}">
+            🏷️ <span>Categorías</span>
+        </a>
+        <a href="/admin/regiones" class="{% if '/regiones' in request.path %}active{% endif %}">
+            🗺️ <span>Regiones</span>
+        </a>
+        <a href="/admin/resenas" class="{% if '/resenas' in request.path %}active{% endif %}">
+            💬 <span>Reseñas</span>
+        </a>
+        <a href="/admin/build" class="{% if '/build' in request.path %}active{% endif %}">
+            🔨 <span>Recompilar</span>
+        </a>
+    </nav>
+    <div class="admin-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash {% if category == 'error' %}error{% endif %}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

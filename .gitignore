@@ -1,0 +1,24 @@
+# ── RaízMiTierra — .gitignore ──
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Generated data (not committed)
+database/reviews/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build_and_deploy.log

@@ -1,0 +1,115 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<h2>🗺️ Regiones</h2>
+<div style="margin-bottom:12px">
+    <button class="btn btn-primary" onclick="document.getElementById('newRegionForm').style.display='block'">➕ Nuevo Estado</button>
+</div>
+
+<div id="newRegionForm" style="display:none;background:var(--blanco);border:1px solid var(--borde);border-radius:10px;padding:16px;margin-bottom:16px">
+    <form method="POST">
+        <input type="hidden" name="action" value="nueva_region">
+        <div class="form-row">
+            <div class="form-group">
+                <label>ID del estado (único, minúsculas)</label>
+                <input type="text" name="state_id" placeholder="ej. hidalgo" required>
+            </div>
+            <div class="form-group">
+                <label>Nombre del estado</label>
+                <input type="text" name="state_name" placeholder="ej. Hidalgo" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Emoji</label>
+            <input type="text" name="state_emoji" value="📍" placeholder="📍">
+        </div>
+        <button type="submit" class="btn btn-success">💾 Crear Estado</button>
+    </form>
+</div>
+
+{% if regions %}
+{% for state_id, state_obj in regions.items() %}
+<div style="background:var(--blanco);border:1px solid var(--borde);border-radius:10px;padding:16px;margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+            <h3 style="font-size:.9rem">{{ state_obj.emoji }} {{ state_obj.name }}</h3>
+            <code style="font-size:.75rem">{{ state_id }}</code>
+            <span style="font-size:.75rem;color:var(--texto2)"> · {{ state_obj.subregions|length }} subregiones</span>
+        </div>
+        <div class="actions">
+            <button class="btn btn-outline btn-sm" onclick="editRegion('{{ state_id }}','{{ state_obj.name }}','{{ state_obj.emoji|e }}')">✏️</button>
+            <form method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar {{ state_obj.name }} y todas sus subregiones?')">
+                <input type="hidden" name="action" value="borrar_region">
+                <input type="hidden" name="state_id" value="{{ state_id }}">
+                <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+            </form>
+        </div>
+    </div>
+
+    {% if state_obj.subregions %}
+    <div style="margin-top:10px;margin-left:16px">
+        <div style="font-size:.78rem;font-weight:600;color:var(--texto2);margin-bottom:6px">Subregiones:</div>
+        <div class="card-list">
+            {% for sub_id, sub_name in state_obj.subregions.items() %}
+            <div class="card-item" style="padding:8px 12px">
+                <div>
+                    <span style="font-size:.82rem">{{ sub_name }}</span>
+                    <code style="font-size:.7rem;margin-left:6px">{{ sub_id }}</code>
+                </div>
+                <form method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar subregión {{ sub_name }}?')">
+                    <input type="hidden" name="action" value="borrar_subregion">
+                    <input type="hidden" name="state_id" value="{{ state_id }}">
+                    <input type="hidden" name="sub_id" value="{{ sub_id }}">
+                    <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <form method="POST" style="margin-top:10px;margin-left:16px;display:flex;gap:8px">
+        <input type="hidden" name="action" value="nueva_subregion">
+        <input type="hidden" name="state_id" value="{{ state_id }}">
+        <input type="text" name="sub_id" placeholder="ID subregión (ej. sierra)" required style="flex:1;padding:6px 10px;border:1.5px solid var(--borde);border-radius:6px;font-size:.8rem">
+        <input type="text" name="sub_name" placeholder="Nombre (ej. Sierra)" required style="flex:1;padding:6px 10px;border:1.5px solid var(--borde);border-radius:6px;font-size:.8rem">
+        <button type="submit" class="btn btn-success btn-sm">➕</button>
+    </form>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-state"><div class="icon">🗺️</div><p>No hay regiones definidas.</p></div>
+{% endif %}
+
+<!-- Edit Region Modal -->
+<div id="editRegionModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:999;align-items:center;justify-content:center" onclick="if(event.target===this)this.style.display='none'">
+    <div style="background:#fff;border-radius:12px;padding:24px;max-width:400px;width:90%">
+        <h3 style="font-size:.95rem;margin-bottom:12px">✏️ Editar Estado</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="editar_region">
+            <input type="hidden" name="state_id" id="editRegId">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="state_name" id="editRegName" required>
+            </div>
+            <div class="form-group">
+                <label>Emoji</label>
+                <input type="text" name="state_emoji" id="editRegEmoji">
+            </div>
+            <div style="display:flex;gap:8px">
+                <button type="submit" class="btn btn-success">💾 Guardar</button>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('editRegionModal').style.display='none'">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function editRegion(id, name, emoji){
+    document.getElementById('editRegId').value = id;
+    document.getElementById('editRegName').value = name;
+    document.getElementById('editRegEmoji').value = emoji;
+    document.getElementById('editRegionModal').style.display = 'flex';
+}
+</script>
+{% endblock %}

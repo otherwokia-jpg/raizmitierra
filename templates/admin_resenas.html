@@ -1,0 +1,74 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<h2>💬 Reseñas <span style="font-size:.8rem;font-weight:400;color:var(--texto2)">— Moderación</span></h2>
+
+{% if pending %}
+<h3 style="font-size:.85rem;margin-bottom:8px;color:var(--rojo)">⏳ Pendientes ({{ pending|length }})</h3>
+{% for rev in pending %}
+<div class="preview-box" style="border-left:3px solid var(--rojo)">
+    <div class="rev-meta">
+        <span class="badge badge-warning">Pendiente</span>
+        <span>{{ rev.author }}</span>
+        <span>★{{ rev.rating }}</span>
+        <span>{{ rev.tipo }}</span>
+        <span>{{ rev.created_at[:16] }}</span>
+    </div>
+    <div class="review-text">"{{ rev.texto }}"</div>
+    <div style="font-size:.75rem;color:var(--texto2);margin-top:4px">
+        Sobre: <strong>{{ rev.place_name }}</strong>
+        {% if rev.place_id %} · <code>{{ rev.place_id }}</code>{% endif %}
+    </div>
+    <div style="margin-top:8px;display:flex;gap:6px">
+        <form method="POST" action="/admin/resenas/{{ rev.id }}/aprobar" style="display:inline">
+            <button type="submit" class="btn btn-success btn-sm">✅ Aprobar</button>
+        </form>
+        <form method="POST" action="/admin/resenas/{{ rev.id }}/rechazar" style="display:inline">
+            <button type="submit" class="btn btn-danger btn-sm">❌ Rechazar</button>
+        </form>
+        <form method="POST" action="/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar esta reseña definitivamente?')">
+            <button type="submit" class="btn btn-outline btn-sm">🗑️ Eliminar</button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<p style="color:var(--verde);font-size:.85rem;margin-bottom:16px">✅ No hay reseñas pendientes de moderación.</p>
+{% endif %}
+
+{% if approved %}
+<h3 style="font-size:.85rem;margin:16px 0 8px;color:var(--verde)">✅ Aprobadas ({{ approved|length }})</h3>
+{% for rev in approved %}
+<div class="preview-box" style="border-left:3px solid var(--verde);opacity:.8">
+    <div class="rev-meta">
+        <span class="badge badge-success">Aprobada</span>
+        <span>{{ rev.author }}</span>
+        <span>{{ rev.tipo }}</span>
+    </div>
+    <div class="review-text">"{{ rev.texto[:100] }}{% if rev.texto|length > 100 %}...{% endif %}"</div>
+    <div style="margin-top:4px">
+        <form method="POST" action="/admin/resenas/{{ rev.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar?')">
+            <button type="submit" class="btn btn-outline btn-sm">🗑️</button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if rejected %}
+<h3 style="font-size:.85rem;margin:16px 0 8px;color:var(--texto2)">❌ Rechazadas ({{ rejected|length }})</h3>
+{% for rev in rejected %}
+<div class="preview-box" style="border-left:3px solid var(--texto2);opacity:.6">
+    <div class="rev-meta">
+        <span class="badge badge-danger">Rechazada</span>
+        <span>{{ rev.author }}</span>
+    </div>
+    <div class="review-text">"{{ rev.texto[:60] }}{% if rev.texto|length > 60 %}...{% endif %}"</div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% if not pending and not approved and not rejected %}
+<div class="empty-state"><div class="icon">💬</div><p>Aún no hay reseñas de visitantes.</p></div>
+{% endif %}
+{% endblock %}

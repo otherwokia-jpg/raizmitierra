@@ -1,0 +1,129 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<h2>🏷️ Categorías</h2>
+<div style="margin-bottom:12px">
+    <button class="btn btn-primary" onclick="document.getElementById('newCatForm').style.display='block'">➕ Nueva Categoría</button>
+</div>
+
+<div id="newCatForm" style="display:none;background:var(--blanco);border:1px solid var(--borde);border-radius:10px;padding:16px;margin-bottom:16px">
+    <h3 style="font-size:.9rem;margin-bottom:10px">Nueva Categoría</h3>
+    <form method="POST">
+        <input type="hidden" name="action" value="nueva">
+        <div class="form-row">
+            <div class="form-group">
+                <label>ID (único, sin espacios)</label>
+                <input type="text" name="id" placeholder="ej. comida-callejera" required>
+            </div>
+            <div class="form-group">
+                <label>Nombre visible</label>
+                <input type="text" name="label" placeholder="ej. Comida Callejera" required>
+            </div>
+        </div>
+        <div class="form-row-3">
+            <div class="form-group">
+                <label>Emoji</label>
+                <input type="text" name="emoji" value="🌮" placeholder="🌮">
+            </div>
+            <div class="form-group">
+                <label>Color (hex)</label>
+                <input type="text" name="color" value="#E86A33" placeholder="#E86A33">
+            </div>
+            <div class="form-group">
+                <label>Bg (hex)</label>
+                <input type="text" name="bg" value="#FEF3C7" placeholder="#FEF3C7">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea name="description" placeholder="Descripción de la categoría"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Keywords (separadas por coma)</label>
+            <input type="text" name="keywords" placeholder="comida, callejera, antojitos, garnachas">
+        </div>
+        <button type="submit" class="btn btn-success">💾 Crear Categoría</button>
+    </form>
+</div>
+
+{% if categories %}
+<div class="card-list">
+    {% for c in categories %}
+    <div class="card-item">
+        <div>
+            <div class="name">{{ c.emoji }} {{ c.label }}</div>
+            <div class="meta">
+                ID: <code>{{ c.id }}</code>
+                {% if c.keywords %} · Keywords: {{ c.keywords|join(', ') }}{% endif %}
+            </div>
+            <div style="font-size:.75rem;color:var(--texto2);margin-top:2px">{{ c.description[:80] }}{% if c.description|length > 80 %}...{% endif %}</div>
+        </div>
+        <div class="actions">
+            <button class="btn btn-outline btn-sm" onclick="editCat('{{ c.id }}','{{ c.label|e }}','{{ c.emoji|e }}','{{ c.description|e }}','{{ c.color }}','{{ c.bg }}','{{ c.keywords|join(',') }}')">✏️</button>
+            <form method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar categoría {{ c.label }}?')">
+                <input type="hidden" name="action" value="borrar">
+                <input type="hidden" name="id" value="{{ c.id }}">
+                <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state"><div class="icon">🏷️</div><p>No hay categorías definidas.</p></div>
+{% endif %}
+
+<!-- Edit Modal -->
+<div id="editCatModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:999;display:none;align-items:center;justify-content:center" onclick="if(event.target===this)this.style.display='none'">
+    <div style="background:#fff;border-radius:12px;padding:24px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto">
+        <h3 style="font-size:.95rem;margin-bottom:12px">✏️ Editar Categoría</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="editar">
+            <input type="hidden" name="id" id="editCatId">
+            <div class="form-group">
+                <label>Nombre visible</label>
+                <input type="text" name="label" id="editCatLabel" required>
+            </div>
+            <div class="form-row-3">
+                <div class="form-group">
+                    <label>Emoji</label>
+                    <input type="text" name="emoji" id="editCatEmoji">
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    <input type="text" name="color" id="editCatColor">
+                </div>
+                <div class="form-group">
+                    <label>Bg</label>
+                    <input type="text" name="bg" id="editCatBg">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="description" id="editCatDesc"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Keywords</label>
+                <input type="text" name="keywords" id="editCatKeywords">
+            </div>
+            <div style="display:flex;gap:8px">
+                <button type="submit" class="btn btn-success">💾 Guardar</button>
+                <button type="button" class="btn btn-outline" onclick="document.getElementById('editCatModal').style.display='none'">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function editCat(id, label, emoji, desc, color, bg, keywords){
+    document.getElementById('editCatId').value = id;
+    document.getElementById('editCatLabel').value = label;
+    document.getElementById('editCatEmoji').value = emoji;
+    document.getElementById('editCatDesc').value = desc;
+    document.getElementById('editCatColor').value = color;
+    document.getElementById('editCatBg').value = bg;
+    document.getElementById('editCatKeywords').value = keywords;
+    document.getElementById('editCatModal').style.display = 'flex';
+}
+</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<h2>📍 Lugares</h2>
+<div style="margin-bottom:12px">
+    <a href="/admin/lugares/nuevo" class="btn btn-primary">➕ Nuevo Lugar</a>
+</div>
+
+{% if lugares %}
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Región</th>
+            <th>Días</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lugar in lugares %}
+        <tr>
+            <td><strong>{{ lugar.name }}</strong><br><code style="font-size:.7rem">{{ lugar.id }}</code></td>
+            <td><span class="badge badge-info">{{ lugar.type }}</span></td>
+            <td>{{ lugar.state }}</td>
+            <td>{{ lugar.region }}</td>
+            <td style="font-size:.75rem">{% for d in lugar.days %}{{ d }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+            <td>
+                <div class="actions">
+                    <a href="/admin/lugares/{{ lugar.id }}/editar" class="btn btn-outline btn-sm">✏️</a>
+                    <form method="POST" action="/admin/lugares/{{ lugar.id }}/borrar" style="display:inline" onsubmit="return confirm('¿Eliminar {{ lugar.name }}?')">
+                        <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+    <div class="icon">📍</div>
+    <p>No hay lugares aún. ¡Crea el primero!</p>
+    <a href="/admin/lugares/nuevo" class="btn btn-primary" style="margin-top:12px">➕ Nuevo Lugar</a>
+</div>
+{% endif %}
+{% endblock %}

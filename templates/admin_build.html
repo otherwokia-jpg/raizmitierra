@@ -1,0 +1,25 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/">← Dashboard</a></div>
+<h2>🔨 Recompilar data.json</h2>
+
+<div style="background:var(--blanco);border:1px solid var(--borde);border-radius:10px;padding:16px;margin-bottom:16px">
+    <p style="font-size:.85rem;margin-bottom:8px">Lee todos los archivos <code>.md</code> de la base de datos y genera <code>data.json</code> actualizado para el mapa.</p>
+    <form method="POST">
+        <button type="submit" class="btn btn-success">🔄 Recompilar Ahora</button>
+    </form>
+</div>
+
+{% if result %}
+<div style="margin-top:12px">
+    <h3 style="font-size:.85rem;margin-bottom:6px;color:{% if success %}var(--verde){% else %}var(--rojo){% endif %}">
+        {% if success %}✅ Build exitoso{% else %}❌ Error en build{% endif %}
+    </h3>
+    <pre>{{ result }}</pre>
+</div>
+{% endif %}
+
+<div style="margin-top:12px">
+    <a href="http://192.168.0.111:9500/" class="btn btn-outline" target="_blank">🌐 Ver sitio actualizado</a>
+</div>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="return-link"><a href="/admin/lugares">← Lugares</a></div>
+<h2>{% if lugar %}✏️ Editar Lugar{% else %}➕ Nuevo Lugar{% endif %}</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <!-- ID (only for new) -->
+    <div class="form-group">
+        <label>ID (opcional — auto-generado si se deja vacío)</label>
+        <input type="text" name="id" value="{{ lugar.id if lugar else '' }}" placeholder="MX-EDOMEX-XXXX">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="name" value="{{ lugar.name if lugar else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label>Tipo *</label>
+            <select name="type" required>
+                {% for t in types %}
+                <option value="{{ t }}" {% if lugar and lugar.type == t %}selected{% endif %}>
+                    {{ t|replace('_', ' ')|title }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Subtipo</label>
+            <input type="text" name="subtype" value="{{ lugar.subtype if lugar and lugar.subtype else '' }}" placeholder="ej. artesanal, municipal, orgánico">
+        </div>
+        <div class="form-group">
+            <label>Pueblo Mágico</label>
+            <input type="text" name="pueblo_magico" value="{{ lugar.pueblo_magico if lugar and lugar.pueblo_magico else '' }}" placeholder="Nombre del pueblo mágico">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Estado *</label>
+            <select name="state">
+                {% for state_id, state_obj in regions.items() %}
+                <option value="{{ state_id }}" {% if lugar and lugar.state == state_id %}selected{% endif %}>
+                    {{ state_obj.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Región *</label>
+            <input type="text" name="region" value="{{ lugar.region if lugar else '' }}" placeholder="ej. valle_toluca, centro, sur">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Latitud *</label>
+            <input type="number" step="any" name="lat" value="{{ lugar.coords[0] if lugar and lugar.coords|length > 0 else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label>Longitud *</label>
+            <input type="number" step="any" name="lng" value="{{ lugar.coords[1] if lugar and lugar.coords|length > 1 else '' }}" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Días (separados por coma)</label>
+        <input type="text" name="days" value="{{ lugar.days|join(', ') if lugar and lugar.days else '' }}" placeholder="Lunes, Miércoles, Sábado">
+        <div class="checkbox-group">
+            {% for d in valid_days %}
+            <label><input type="checkbox" value="{{ d }}" onchange="updateDays(this)" {% if lugar and d in lugar.days %}checked{% endif %}> <span>{{ d }}</span></label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Categorías (IDs separados por coma)</label>
+        <input type="text" name="categories" value="{{ lugar.categories|join(', ') if lugar and lugar.categories else '' }}" placeholder="canasta-basica, garnachas-sabor">
+        <div class="checkbox-group">
+            {% for c in categories %}
+            <label><input type="checkbox" value="{{ c.id }}" onchange="updateCats(this)" {% if lugar and c.id in lugar.categories %}checked{% endif %}> <span>{{ c.emoji }} {{ c.label }}</span></label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Horario</label>
+            <input type="text" name="horario" value="{{ lugar.horario if lugar else '' }}" placeholder="8:00 AM — 3:00 PM">
+        </div>
+        <div class="form-group">
+            <label>Horario extendido</label>
+            <input type="text" name="hours" value="{{ lugar.hours if lugar else '' }}" placeholder="Lun-Vie 9AM-6PM">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="phone" value="{{ lugar.phone if lugar else '' }}" placeholder="55 1234 5678">
+        </div>
+        <div class="form-group">
+            <label>Sitio Web</label>
+            <input type="text" name="website" value="{{ lugar.website if lugar else '' }}" placeholder="https://...">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" name="address" value="{{ lugar.address if lugar else '' }}" placeholder="Calle, colonia, municipio">
+        </div>
+        <div class="form-group">
+            <label>Costo de entrada</label>
+            <input type="text" name="entrance_fee" value="{{ lugar.entrance_fee if lugar else '' }}" placeholder="$20 entrada general">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Actividades</label>
+        <input type="text" name="activities" value="{{ lugar.activities if lugar else '' }}" placeholder="Natación, senderismo, campismo">
+    </div>
+
+    <div class="form-group">
+        <label>Seguridad</label>
+        <input type="text" name="safety" value="{{ lugar.safety if lugar else '' }}" placeholder="Zona tranquila, precaución estándar">
+    </div>
+
+    <div class="form-group">
+        <label>Resumen (se muestra en tarjetas)</label>
+        <textarea name="summary" maxlength="200" placeholder="Breve descripción para la tarjeta del lugar">{{ lugar.summary if lugar else '' }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Descripción completa</label>
+        <textarea name="description" style="min-height:120px" placeholder="Descripción detallada del lugar, zonas, lo que encontrarás...">{{ lugar.description if lugar else '' }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Foto</label>
+        {% if lugar and lugar.img %}
+        <div style="margin-bottom:6px">
+            <img src="{{ lugar.img }}" alt="Foto actual" style="max-width:200px;border-radius:8px;border:1px solid var(--borde)">
+            <div style="font-size:.75rem;color:var(--texto2)">Foto actual: <code>{{ lugar.img }}</code></div>
+        </div>
+        {% endif %}
+        <input type="file" name="photo" accept="image/png,image/jpeg,image/webp">
+        <div style="font-size:.7rem;color:var(--texto2);margin-top:4px">Máx 5MB. Se redimensiona a 800px y convierte a WebP automáticamente.</div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:8px">
+        <button type="submit" class="btn btn-success">💾 Guardar</button>
+        <a href="/admin/lugares" class="btn btn-outline">Cancelar</a>
+    </div>
+</form>
+
+<script>
+function updateDays(cb){
+    var input = document.querySelector('[name="days"]');
+    var checked = document.querySelectorAll('[value="'+cb.value+'"]');
+    var vals = [];
+    document.querySelectorAll('[value="Lunes"],[value="Martes"],[value="Miercoles"],[value="Jueves"],[value="Viernes"],[value="Sabado"],[value="Domingo"]').forEach(function(c){
+        if(c.checked) vals.push(c.value);
+    });
+    input.value = vals.join(', ');
+}
+function updateCats(cb){
+    var input = document.querySelector('[name="categories"]');
+    var vals = [];
+    document.querySelectorAll('[onchange="updateCats(this)"]').forEach(function(c){
+        if(c.checked) vals.push(c.value);
+    });
+    input.value = vals.join(', ');
+}
+// Init
+document.addEventListener('DOMContentLoaded', function(){
+    var daysInp = document.querySelector('[name="days"]');
+    if(daysInp && !daysInp.value) updateDays();
+    var catsInp = document.querySelector('[name="categories"]');
+    if(catsInp && !catsInp.value) updateCats();
+});
+</script>
+{% endblock %}

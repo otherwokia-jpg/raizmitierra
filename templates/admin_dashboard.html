@@ -1,0 +1,46 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h2>📊 Dashboard</h2>
+
+<div class="card-grid">
+    <div class="stat-card">
+        <div class="num">{{ count }}</div>
+        <div class="label">📍 Lugares registrados</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ categories }}</div>
+        <div class="label">🏷️ Categorías</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ regions }}</div>
+        <div class="label">🗺️ Estados/Regiones</div>
+    </div>
+    <div class="stat-card">
+        <div class="num">{{ total_reviews }}</div>
+        <div class="label">💬 Reseñas totales</div>
+    </div>
+    <div class="stat-card">
+        <div class="num" style="color:{% if pending_reviews > 0 %}#E74C3C{% else %}#2A9D8F{% endif %}">
+            {{ pending_reviews }}
+        </div>
+        <div class="label">⏳ Reseñas pendientes</div>
+    </div>
+</div>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+    <a href="/admin/lugares/nuevo" class="btn btn-primary">➕ Nuevo Lugar</a>
+    <a href="/admin/build" class="btn btn-success">🔨 Recompilar data.json</a>
+    <a href="/admin/resenas" class="btn btn-outline">
+        💬 Moderar Reseñas {% if pending_reviews > 0 %}<span class="badge badge-danger">{{ pending_reviews }}</span>{% endif %}
+    </a>
+</div>
+
+<div style="margin-top:24px;padding:16px;background:var(--blanco);border-radius:12px;border:1px solid var(--borde)">
+    <h3 style="font-size:.95rem;margin-bottom:8px">🔗 Acceso Rápido</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:.82rem">
+        <a href="http://192.168.0.111:9500/" style="color:var(--terracota)" target="_blank">🌐 Sitio público :9500</a>
+        <a href="http://192.168.0.111:8888/" style="color:var(--teal)" target="_blank">🏠 Landing SSO</a>
+        <a href="http://192.168.0.111:7700/" style="color:var(--verde)" target="_blank">📊 Inventario 7700</a>
+    </div>
+</div>
+{% endblock %}
