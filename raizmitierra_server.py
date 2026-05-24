@@ -62,11 +62,13 @@ VALID_DAYS = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"
 
 # ── Helpers ──
 def get_sso_secret():
+    sso_file = os.environ.get('SSO_SECRET_FILE', str(Path.home() / '.sso_secret.key'))
     try:
-        with open(SSO_SECRET_FILE) as f:
+        with open(sso_file) as f:
             return f.read().strip()
     except FileNotFoundError:
-        return "dev-secret-change-me"
+        print(f"⚠️ SSO_SECRET_FILE not found: {sso_file}")
+        return None
 
 def load_data():
     """Load compiled data.json from public/"""

@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy app code
 COPY . .
 
+# Run as non-root user for security
+USER nobody
+
 # Expose portal port
 EXPOSE 9500
 
