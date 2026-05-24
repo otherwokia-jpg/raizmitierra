@@ -672,11 +672,15 @@ def api_submit_review():
     if not place_id:
         return jsonify({"error": "place_id requerido"}), 400
 
+    author = data.get("author", "").strip()
+    if not author:
+        return jsonify({"error": "Nombre requerido"}), 400
+
     review = {
         "id": secrets.token_hex(8),
         "place_id": place_id,
         "place_name": data.get("place_name", "").strip(),
-        "author": data.get("author", "Anónimo").strip() or "Anónimo",
+        "author": author,
         "tipo": data.get("tipo", "#Comunitario"),
         "texto": data.get("texto", "").strip(),
         "rating": min(5, max(1, int(data.get("rating", 5)))),

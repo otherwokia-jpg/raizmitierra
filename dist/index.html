@@ -615,7 +615,7 @@ function showDetail(id) {
         <button class="route-btn" onclick="toggleReviewForm('${t.id}')">✍️ Dejar reseña</button>
         <div id="reviewForm-${t.id}" class="review-form" style="display:none;margin-top:8px">
             <div style="background:var(--papel);padding:12px;border-radius:8px;border:1px solid var(--borde)">
-                <input type="text" id="reviewAuthor-${t.id}" placeholder="Tu nombre (opcional)" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
+                <input type="text" id="reviewAuthor-${t.id}" placeholder="Tu nombre *" required style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
                 <textarea id="reviewTexto-${t.id}" placeholder="¿Qué te pareció? Cuenta tu experiencia..." rows="3" style="width:100%;padding:8px;margin-bottom:6px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto);resize:vertical"></textarea>
                 <div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">
                     <select id="reviewTipo-${t.id}" style="flex:1;padding:8px;border-radius:6px;border:1px solid var(--borde);background:var(--bg);color:var(--texto)">
@@ -752,7 +752,7 @@ function toggleReviewForm(id) {
 }
 
 function submitReview(id) {
-    const author = document.getElementById('reviewAuthor-' + id).value || 'Anónimo';
+    const author = document.getElementById('reviewAuthor-' + id).value.trim();
     const texto = document.getElementById('reviewTexto-' + id).value.trim();
     const tipo = document.getElementById('reviewTipo-' + id).value;
     const rating = document.getElementById('reviewRating-' + id).value;
@@ -760,6 +760,7 @@ function submitReview(id) {
     const statusDiv = document.getElementById('reviewStatus-' + id);
     const t = tianguis.find(x => x.id === id);
 
+    if (!author) { statusDiv.innerHTML = '<span style="color:var(--rojo)">❌ Escribe tu nombre</span>'; return; }
     if (!texto) { statusDiv.innerHTML = '<span style="color:var(--rojo)">❌ Escribe tu experiencia</span>'; return; }
 
     statusDiv.innerHTML = '<span style="color:var(--texto2)">⏳ Enviando...</span>';
