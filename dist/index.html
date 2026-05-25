@@ -138,8 +138,33 @@
     .cat-filter.active[data-cat="pueblos"]{background:#F59E0B}
     .cat-filter.active[data-cat="miradores"]{background:#10B981}
     .cat-filter.active[data-cat="otomi"]{background:#EC4899}
-
-    /* Comment resumen */
+    /* Festival sub-filters */
+    .fest-filter-row{display:flex;gap:5px;margin:0 0 8px;overflow-x:auto;white-space:nowrap;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .fest-filter-row::-webkit-scrollbar{display:none}
+    .fest-filter{display:inline-flex;align-items:center;gap:3px;padding:5px 10px;border-radius:20px;font-size:.66rem;font-weight:600;background:var(--papel);color:var(--texto2);border:1.5px solid var(--borde);cursor:pointer;transition:all .2s;flex-shrink:0}
+    .fest-filter.active{background:#7C3AED;color:#fff;border-color:#7C3AED;box-shadow:0 1px 4px rgba(124,58,237,.25)}
+    
+    /* Festival section in modal */
+    .fest-list{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+    .fest-item{background:var(--papel);border:1px solid var(--borde);border-radius:var(--radius2);padding:10px 12px}
+    .fest-item .fest-nombre{font-size:.82rem;font-weight:700;color:#7C3AED}
+    .fest-item .fest-fecha{font-size:.7rem;color:var(--texto2);margin:2px 0 4px}
+    .fest-item .fest-desc{font-size:.72rem;color:var(--texto);line-height:1.35}
+    .fest-item .fest-link{font-size:.65rem;color:var(--accent);text-decoration:none}
+    .fest-badge{display:inline-block;font-size:.55rem;padding:2px 6px;border-radius:10px;font-weight:600;margin-right:4px}
+    .fest-badge.fiesta-patronal{background:#FEE2E2;color:#DC2626}
+    .fest-badge.feria-pueblo{background:#FEF3C7;color:#D97706}
+    .fest-badge.feria-gastronomica{background:#D1FAE5;color:#059669}
+    .fest-badge.festival-cultural{background:#EDE9FE;color:#7C3AED}
+    .fest-badge.tradicion-estacional{background:#CCFBF1;color:#0D9488}
+    /* Festival date picker */
+    .fest-date-row{display:flex;flex-direction:column;gap:4px;margin:0 0 6px}
+    .fest-date-input-wrap{display:flex;align-items:center;gap:6px}
+    .fest-date-label{font-size:.7rem;font-weight:600;color:var(--texto2);white-space:nowrap}
+    .fest-date-input{flex:1;padding:6px 8px;border-radius:8px;border:1.5px solid var(--borde);font-size:.8rem;background:var(--blanco);color:var(--texto);font-family:inherit}
+    .fest-quick-chips{display:flex;gap:4px;flex-wrap:wrap}
+    .fest-chip{font-size:.6rem;padding:4px 10px;border-radius:14px;border:1px solid var(--borde);background:var(--blanco);color:var(--texto2);cursor:pointer;transition:all .15s}
+    .fest-chip.active{background:#7C3AED;color:#fff;border-color:#7C3AED}
     .comment .resumen{font-size:.72rem;color:var(--texto);line-height:1.35;margin:4px 0 3px;font-weight:500}
 
     /* Share buttons row */
@@ -190,13 +215,14 @@
             <span class="type-chip active" data-type="todos" onclick="setType('todos')">🌎 Todos</span>
             <span class="type-chip" data-type="tianguis" onclick="setType('tianguis')">🌮 Tianguis</span>
             <span class="type-chip" data-type="lugar" onclick="setType('lugar')">📍 Lugares</span>
+            <span class="type-chip" data-type="eventos" onclick="setType('eventos')">🎉 Eventos</span>
         </div>
         <!-- Toggles: Hoy + Cerca (combinables) -->
         <div class="toggle-row">
             <span class="toggle-filter" data-mode="hoy" onclick="toggleMode('hoy')">📅 Hoy</span>
             <span class="toggle-filter" data-mode="cerca" onclick="toggleMode('cerca')">📍 Cerca</span>
         </div>
-        <!-- Sub-filtros de categoría -->
+        <!-- Sub-filtros de categoría (tianguis/lugares) -->
         <div class="cat-filter-row" id="catFilterRow">
             <span class="cat-filter" data-cat="comida" onclick="toggleCat('comida')">🌮 Comida</span>
             <span class="cat-filter" data-cat="pueblo-magico" onclick="toggleCat('pueblo-magico')">🏆 P. Mágico</span>
@@ -207,6 +233,28 @@
             <span class="cat-filter" data-cat="pueblos" onclick="toggleCat('pueblos')">🏘️ Pueblos</span>
             <span class="cat-filter" data-cat="miradores" onclick="toggleCat('miradores')">⛰️ Miradores</span>
             <span class="cat-filter" data-cat="otomi" onclick="toggleCat('otomi')">🏮 Otomí</span>
+        </div>
+        <!-- Sub-filtros de festivales (solo visible con "🎉 Eventos") -->
+        <div class="fest-filter-row" id="festFilterRow" style="display:none">
+            <span class="fest-filter active" data-fest="todos" onclick="setFestType('todos')">🎉 Todos</span>
+            <span class="fest-filter" data-fest="fiesta-patronal" onclick="setFestType('fiesta-patronal')">🎭 Patronal</span>
+            <span class="fest-filter" data-fest="feria-pueblo" onclick="setFestType('feria-pueblo')">🏆 Feria Pueblo</span>
+            <span class="fest-filter" data-fest="feria-gastronomica" onclick="setFestType('feria-gastronomica')">🌮 Gastronómica</span>
+            <span class="fest-filter" data-fest="festival-cultural" onclick="setFestType('festival-cultural')">🎶 Cultural</span>
+            <span class="fest-filter" data-fest="tradicion-estacional" onclick="setFestType('tradicion-estacional')">🎄 Tradición</span>
+        </div>
+        <!-- Selector de fecha para eventos -->
+        <div class="fest-date-row" id="festDateRow" style="display:none">
+            <div class="fest-date-input-wrap">
+                <label class="fest-date-label">📅 Fecha</label>
+                <input type="date" id="festDateInput" class="fest-date-input" onchange="onFestDateChange()">
+            </div>
+            <div class="fest-quick-chips">
+                <span class="fest-chip active" data-range="hoy" onclick="setFestRange('hoy')">Hoy</span>
+                <span class="fest-chip" data-range="finde" onclick="setFestRange('finde')">Este finde</span>
+                <span class="fest-chip" data-range="semana" onclick="setFestRange('semana')">Próx. 7d</span>
+                <span class="fest-chip" data-range="mes" onclick="setFestRange('mes')">Próx. 30d</span>
+            </div>
         </div>
         <button class="btn-gps" id="gpsBtn" onclick="toggleGPS()">📍 Mostrar mi ubicación</button>
         <div class="tianguis-list" id="tianguisList"><div class="empty-state"><div class="icon">🔄</div><p>Cargando lugares...</p></div></div>
@@ -227,7 +275,7 @@
 // NO service worker — siempre datos frescos
 const VERSION = 'v2.1.0-20260523';
 const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-let tianguis = [], hoyActive = false, cercaActive = false, currentType = 'todos', currentCategory = null, gpsActive = false, userPos = null, userMarker = null, watchId = null;
+let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', gpsActive = false, userPos = null, userMarker = null, watchId = null;
 let map, routingControl = null;
 
 function initMap() {
@@ -253,10 +301,13 @@ function toggleMode(m) {
     } else if(m === 'cerca') {
         cercaActive = !cercaActive;
         if(cercaActive && !gpsActive) toggleGPS();
+    } else if(m === 'proximo') {
+        proximoActive = !proximoActive;
+        if(proximoActive) hoyActive = false;
     }
     document.querySelectorAll('.toggle-filter').forEach(el => {
         const mode = el.dataset.mode;
-        el.classList.toggle('active', mode==='hoy'?hoyActive:mode==='cerca'?cercaActive:false);
+        el.classList.toggle('active', mode==='hoy'?hoyActive:mode==='cerca'?cercaActive:mode==='proximo'?proximoActive:false);
     });
     applyFilter();
     addMarkers();
@@ -274,8 +325,60 @@ function toggleCat(c) {
 function setType(t) {
     currentType = t;
     document.querySelectorAll('.type-chip').forEach(el => el.classList.toggle('active',el.dataset.type===t));
+    // Mostrar/ocultar filtros de festivales
+    const festMode = t === 'eventos';
+    document.getElementById('festFilterRow').style.display = festMode ? 'flex' : 'none';
+    document.getElementById('catFilterRow').style.display = festMode ? 'none' : 'flex';
+    document.getElementById('festDateRow').style.display = festMode ? 'flex' : 'none';
+    if(!festMode) {
+        currentFestType = 'todos';
+        festRange = 'hoy';
+    } else {
+        // Inicializar date input con hoy
+        const today = new Date();
+        document.getElementById('festDateInput').value = formatDateISO(today);
+        setFestRange('hoy');
+    }
     applyFilter();
     addMarkers();
+}
+function setFestType(f) {
+    currentFestType = f;
+    document.querySelectorAll('.fest-filter').forEach(el => el.classList.toggle('active',el.dataset.fest===f));
+    applyFilter();
+}
+let festRange = 'hoy';
+function formatDateISO(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return `${y}-${m}-${day}`;
+}
+function parseDate(s) {
+    if(!s) return null;
+    const [y,m,d] = s.split('-').map(Number);
+    return new Date(y,m-1,d);
+}
+function setFestRange(r) {
+    festRange = r;
+    document.querySelectorAll('.fest-chip').forEach(el => el.classList.toggle('active',el.dataset.range===r));
+    const today = new Date();
+    let dateVal = formatDateISO(today);
+    if(r === 'finde') {
+        // Próximo sábado
+        const sat = new Date(today);
+        sat.setDate(sat.getDate() + (6 - sat.getDay() + 7) % 7 || 7);
+        dateVal = formatDateISO(sat);
+    } else if(r === 'semana' || r === 'mes') {
+        dateVal = formatDateISO(today);
+    }
+    document.getElementById('festDateInput').value = dateVal;
+    applyFilter();
+}
+function onFestDateChange() {
+    festRange = 'custom';
+    document.querySelectorAll('.fest-chip').forEach(el => el.classList.toggle('active',false));
+    applyFilter();
 }
 function filterTianguis() { applyFilter(); }
 
@@ -289,9 +392,43 @@ function applyFilter() {
             if(!t.days || !t.days.includes(hoy)) return false;
         }
 
-        // 2) Filtro por tipo (🌎 Todos / 🌮 Tianguis / 📍 Lugares)
+        // 2) Filtro por tipo (🌎 Todos / 🌮 Tianguis / 📍 Lugares / 🎉 Eventos)
         if(currentType === 'tianguis' && t.type !== 'tianguis') return false;
         if(currentType === 'lugar' && t.type !== 'lugar') return false;
+        if(currentType === 'eventos') {
+            if(!t.festividades || t.festividades.length === 0) return false;
+            // Filtro por tipo de festival
+            if(currentFestType !== 'todos') {
+                if(!t.festividades.some(f => f.tipo === currentFestType)) return false;
+            }
+            // Filtro por fecha
+            const dateStr = document.getElementById('festDateInput').value;
+            const baseDate = parseDate(dateStr);
+            if(!baseDate) return false;
+            // Calcular rango de fechas
+            let startRange = baseDate, endRange = baseDate;
+            if(festRange === 'finde') {
+                // finde = sábado + domingo
+                endRange = new Date(baseDate);
+                endRange.setDate(endRange.getDate() + 1);
+            } else if(festRange === 'semana') {
+                endRange = new Date(baseDate);
+                endRange.setDate(endRange.getDate() + 7);
+            } else if(festRange === 'mes') {
+                endRange = new Date(baseDate);
+                endRange.setDate(endRange.getDate() + 30);
+            }
+            // Normalizar a inicio/fin del día
+            startRange.setHours(0,0,0,0);
+            endRange.setHours(23,59,59,0);
+            // Verificar si alguna festividad cae en el rango
+            if(!t.festividades.some(f => {
+                const fIni = parseDate(f.fecha_inicio);
+                const fFin = parseDate(f.fecha_fin) || fIni;
+                if(!fIni) return false;
+                return fFin >= startRange && fIni <= endRange;
+            })) return false;
+        }
 
         // 3) Sub-filtro de categoría (toggle: Comida, Ruinas, Agua, etc.)
         if(currentCategory) {
@@ -365,6 +502,7 @@ function updateDynamicCats(results) {
 
 const TAG_EMOJI={'plaza-campo':'🐴','garnachas-sabor':'🌮','canasta-basica':'🥬','la-paca':'👕','chacharas-antiguedades':'🔧','identidad-oficios':'🏺','muebles-artesanales':'🪑','animales-corral':'🐑','cultura-tradicion':'🎭','pueblo-magico':'🏆','hierbas-medicina':'🌿','flores-plantas':'🌸',
     'zona-arqueologica':'🏛️','pueblo-tradicional':'🏘️','centro-otomi':'🏮','balneario-cascada':'🏊','mirador-naturaleza':'⛰️'};
+const FEST_EMOJI={'fiesta-patronal':'🎭','feria-pueblo':'🏆','feria-gastronomica':'🌮','festival-cultural':'🎶','tradicion-estacional':'🎄'};
 
 // Fotos 100% locales para carga rápida
 const PHOTO_POOL = {
@@ -600,6 +738,19 @@ function showDetail(id) {
         <button class="route-btn" onclick="getRoute('${t.id}')">🗺️ Ver ruta desde mi ubicación</button>
 
         ${shareHtml}
+
+        ${t.festividades && t.festividades.length ? `
+        <div class="section-title">🎉 Festividades y Eventos</div>
+        <div class="fest-list">
+            ${t.festividades.map(f => `
+            <div class="fest-item">
+                <div class="fest-nombre">${f.nombre}</div>
+                <div class="fest-fecha">📅 ${f.fecha_inicio || ''}${f.fecha_fin && f.fecha_fin !== f.fecha_inicio ? ' — '+f.fecha_fin : ''}</div>
+                ${f.tipo ? `<span class="fest-badge ${f.tipo}">${FEST_EMOJI[f.tipo]||'🎉'} ${f.tipo.replace(/-/g,' ')}</span>` : ''}
+                ${f.descripcion ? `<div class="fest-desc">${f.descripcion}</div>` : ''}
+                ${f.link ? `<a class="fest-link" href="${f.link}" target="_blank" rel="noopener">🔗 Más información</a>` : ''}
+            </div>`).join('')}
+        </div>` : ''}
 
         <div class="section-title">💬 Bitácora Comunitaria</div>
         ${commentsHtml}
