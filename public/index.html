@@ -275,7 +275,7 @@
 // NO service worker — siempre datos frescos
 const VERSION = 'v2.1.0-20260523';
 const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', festDateActive = false, gpsActive = false, userPos = null, userMarker = null, watchId = null;
+let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', festDateActive = false, festCountAll = 0, gpsActive = false, userPos = null, userMarker = null, watchId = null;
 let map, routingControl = null;
 
 function initMap() {
@@ -288,6 +288,7 @@ function initMap() {
 function loadData() {
     tianguis = window.RAIZ_DATA.lugares;
     document.getElementById('resultCount').textContent = tianguis.length + ' lugares';
+    festCountAll = tianguis.filter(t => t.festividades && t.festividades.length > 0).length;
     updateDay(); applyFilter(); addMarkers();
 }
 function getFestCount() {
@@ -472,6 +473,13 @@ function applyFilter() {
     });
     updateDynamicCats(r);
     renderList(r);
+    // Actualizar contador de resultados
+    const totalLugares = tianguis.length;
+    let countText = r.length + ' de ' + totalLugares + ' lugares';
+    if(currentType === 'eventos') {
+        countText += ' · ' + festCountAll + ' con eventos';
+    }
+    document.getElementById('resultCount').textContent = countText;
 }
 
 function dist(f,t){if(!f||!t)return 999999;const R=6371000;const dL=(t[0]-f.lat||0)*Math.PI/180,dL2=(t[1]-f.lng||0)*Math.PI/180;const a=Math.sin(dL/2)**2+Math.cos(f.lat*Math.PI/180)*Math.cos(t[0]*Math.PI/180)*Math.sin(dL2/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
