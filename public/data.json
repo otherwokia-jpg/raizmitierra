@@ -124,6 +124,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de Antigüedades de La Lagunilla — Edición Primavera",
+          "fecha_inicio": "2026-05-17",
+          "fecha_fin": "2026-05-31",
+          "tipo": "feria-pueblo",
+          "descripcion": "La Lagunilla se viste de gala con su edición de primavera. Más de 500 anticuarios y coleccionistas llegan desde temprano. Los domingos la calle de República de Ecuador se llena de muebles virreinales, vajillas de porcelana, joyería vintage, cámaras clásicas y discos de vinil. Llega antes de las 9 AM para encontrar las mejores piezas. El ambiente es único: música de bolero en vivo, puestos de garnachas y el olor a café de olla recorriendo los pasillos. Los marchantes veteranos recomiendan llevar efectivo y no tener miedo de regatear — aquí el buen precio se negocia con respeto y carisma.",
+          "link": "https://www.mexicodesconocido.com.mx/tianguis-lagunilla.html"
         }
       ]
     },
@@ -3361,6 +3369,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Milpa y el Nepal",
+          "fecha_inicio": "2026-05-20",
+          "fecha_fin": "2026-06-05",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Productores de la zona rural de Iztapalapa traen lo mejor de sus cosechas: nopal verdura, tunas, xoconostle, quelites, verdolagas, hierbas de olor. Hay demostraciones de cocina tradicional — nopal asado con queso, tlacoyos de haba, sopa de quelites, mixiotes de nopal con pollo. Talleres de cultivo en azotea. Los abuelos comparten recetas que han pasado por generaciones; la salsa de xoconostle con chile guajillo es la favorita de los que saben.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
         }
       ]
     },
@@ -4910,6 +4926,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de las Flores de San Ángel — Edición 169",
+          "fecha_inicio": "2026-05-11",
+          "fecha_fin": "2026-06-19",
+          "tipo": "feria-pueblo",
+          "descripcion": "El barrio de San Ángel celebra 169 años de su tradicional Feria de las Flores. La Plaza de San Jacinto se llena de jardineras, macetas, orquídeas, dalias de todos los tonos y cactus de colección. Los fines de semana hay callejoneadas con estudiantinas que recorren las calles empedradas, danza folclórica y talleres de jardinería para niños. El Bazar del Sábado corre paralelo con artesanías, ropa vintage y antigüedades. No te vayas sin probar un esquite en la esquina de Madero — doña Lupita lo prepara desde hace 40 años con elote tierno, crema, queso, chile y un toque de epazote.",
+          "link": "https://www.mexicodesconocido.com.mx/"
         }
       ]
     },
@@ -5348,6 +5372,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Barbacoa de Xochimilco",
+          "fecha_inicio": "2026-05-01",
+          "fecha_fin": "2026-05-10",
+          "tipo": "feria-gastronomica",
+          "descripcion": "La XXVI edición de la Feria de la Barbacoa en Santa María Tepepan, Xochimilco. Ven a probar más de 30 estilos de barbacoa: de hoyo, de borrego, mixiote, consomé, acompañada de tortillas hechas a mano, salsa verde y cebollitas cambray. Además hay teatro del pueblo con artistas nacionales, jaripeo infantil, juegos mecánicos y granja didáctica para los niños. Los abuelos de Tepepan dicen que el secreto está en las hojas de aguacate y el maguey que usan para envolver la barbacoa — ese sabor ahumado no se encuentra en ningún restaurante. Entrada libre, pero el estacionamiento se llena antes del medio día.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
         }
       ]
     },
@@ -5613,6 +5645,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria del Libro de Coyoacán — Edición 2026",
+          "fecha_inicio": "2026-05-15",
+          "fecha_fin": "2026-05-31",
+          "tipo": "festival-cultural",
+          "descripcion": "El jardín Hidalgo y la plaza de Coyoacán se llenan de letras. Más de 100 editoriales, presentaciones de libros, cuentacuentos para niños y firmas de autores. Los fines de semana hay música en vivo en el kiosko: trova, jazz y música tradicional. Afuera del jardín, los puestos de comida ofrecen lo mejor de Coyoacán: tostadas de pata, sopes de tinga, esquites con chile y limón, y los famosos churros rellenos de cajeta. La recomendación de los locales: llegar antes de las 11 AM, cuando todavía hay sombra en los árboles y se puede caminar tranquilo entre los stands.",
+          "link": "https://www.timeoutmexico.mx/ciudad-de-mexico/que-hacer/eventos-en-mayo-en-la-ciudad-de-mexico"
         }
       ]
     },
@@ -10936,6 +10976,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria Patronal San Juan Bautista — Huasca de Ocampo",
+          "fecha_inicio": "2026-06-21",
+          "fecha_fin": "2026-06-24",
+          "tipo": "fiesta-patronal",
+          "descripcion": "El Primer Pueblo Mágico de México celebra a su santo patrono. Tres días de fiesta en la plaza principal con danzas tradicionales, música de banda, kermés con antojitos hidalguenses: zacahuil, paste, barbacoa, pulque curado de sabores. Procesión solemne el 24 de junio con la imagen de San Juan Bautista recorriendo las calles empedradas, alfombradas de aserrín de colores. Al anochecer, juegos pirotécnicos iluminan el cielo de la sierra. Los abuelos de Huasca dicen que quien prueba el zacahuil hecho en horno de leña de los hornos tradicionales del pueblo, nunca lo olvida.",
+          "link": "https://hidalgo.travel"
         }
       ]
     },
@@ -11194,6 +11242,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Expo Feria Tulancingo 2026",
+          "fecha_inicio": "2026-06-15",
+          "fecha_fin": "2026-06-30",
+          "tipo": "feria-pueblo",
+          "descripcion": "Tulancingo, la tierra del beisbol y los truenos, celebra su feria anual con artistas nacionales, teatro del pueblo, palenque, expo ganadera y artesanal. Los puestos de comida ofrecen lo mejor de la región: barbacoa de borrego, mixiotes, escamoles, gusanos de maguey, pulque curado de sabores (apio, tuna, avena). El ambiente es familiar, con juegos mecánicos, torneos deportivos y la tradicional cabalgata. Los tulan cingenses recomiendan el paste de la sierra — relleno de papa con carne, horneado en horno de leña.",
+          "link": "https://www.feriasenmexico.com.mx/"
         }
       ]
     },
@@ -11372,6 +11428,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Gran Feria del Taco Hidalgo 2026",
+          "fecha_inicio": "2026-05-15",
+          "fecha_fin": "2026-05-17",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Más de 40 taquerías se reúnen en el Recinto Ferial de Pachuca para crear la estructura de tacos más grande del mundo, con la forma del Reloj Monumental de Pachuca. Tacos de pastor, suadero, canasta, barbacoa, carnitas — todos los estilos. También hay música en vivo, zona de cerveza artesanal y puestos de postres típicos hidalguenses. La entrada es gratuita. Los locales recomiendan probar el taco de mixiote de borrego — es el favorito de la región. El sábado a medio día es el mejor momento, cuando los taqueros compiten por el mejor sazón.",
+          "link": "https://www.feriasenmexico.com.mx"
         }
       ]
     },
@@ -13561,6 +13625,14 @@
           "tipo": "feria-gastronomica",
           "descripcion": "La Feria de la Manzana más importante de México. Sidra artesanal, manzanas de todas las variedades, dulces típicos, conservas y pay de manzana. Corrido musical, elección de la Reina, juegos mecánicos y concientes. Pueblo Mágico de Zacatlán se llena de visitantes.",
           "link": "https://www.zonaturistica.com/eventos/"
+        },
+        {
+          "nombre": "Feria de la Manzana 2026 — Zacatlán",
+          "fecha_inicio": "2026-06-01",
+          "fecha_fin": "2026-06-15",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Zacatlán de las Manzanas, Pueblo Mágico, celebra su producto estrella. Sidra artesanal, quesos de la sierra, pan de queso, conservas de manzana, pay de manzana recién horneado. Hay conciertos en el kiosko, danzas de los Quetzales con sus impresionantes penachos circulares, carrera de caballos, exposición artesanal. Los productores ofrecen degustaciones de sidra — la natural, la de durazno y la de membrillo son imperdibles. El clima fresco de la sierra (15°C) hace que el ambiente sea perfecto para caminar el pueblo todo el día.",
+          "link": "https://www.zonaturistica.com/eventos-en/puebla"
         }
       ]
     },
@@ -15000,6 +15072,14 @@
           "tipo": "feria-gastronomica",
           "descripcion": "Tepoztlán celebra la cosecha del elote y la cebolla. Esquites, tlacoyos, tamales de elote, cebollas rellenas, dulces típicos. Durante quince días el pueblo se engalana con arcos de flores, danzas de chinelos y música de banda.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Natalicio de Quetzalcóatl — Amatlán",
+          "fecha_inicio": "2026-05-24",
+          "fecha_fin": "2026-05-24",
+          "tipo": "festival-cultural",
+          "descripcion": "En Amatlán de Quetzalcóatl, a 10 minutos de Tepoztlán, se celebra el natalicio de Ce Ácatl Topiltzin Quetzalcóatl, el legendario gobernante de Tula. Ceremonias prehispánicas al amanecer en la pirámide, danzas rituales con concheros, copal, caracoles y teponaxtli. Hay venta de artesanía esotérica, plantas medicinales, inciensos y piedras energéticas. Los locales ofrecen temazcal y comidas tradicionales: mole de guajolote, tlacoyos de frijol, atole de teja. La recomendación: llegar antes de las 6 AM para ver el amanecer desde el cerro — la energía es única.",
+          "link": "https://www.mexicodesconocido.com.mx/"
         }
       ]
     },
@@ -15536,6 +15616,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Tianguis Artesanal de Mayo — Vasco de Quiroga",
+          "fecha_inicio": "2026-05-15",
+          "fecha_fin": "2026-05-17",
+          "tipo": "tradicion-estacional",
+          "descripcion": "En la Plaza Vasco de Quiroga, los artesanos purépechas muestran el proceso completo de sus oficios: el amasado del barro, el tejido del ixtle, el labrado de la madera. Las mujeres purépechas ofrecen corundas con crema y salsa verde, uchepos de elote tierno, atole de zarzamora. Los artesanos cuentan las historias detrás de cada pieza — el cobre de Santa Clara, la cerámica de Capula, los rebozos de la Meseta. Los domingos el trueque tradicional sigue vivo: intercambian artesanías por frutas, verduras y semillas que traen de las comunidades de la sierra.",
+          "link": "https://www.mexicodesconocido.com.mx/"
         }
       ]
     },
@@ -15808,6 +15896,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Festival de Música de Morelia 2026",
+          "fecha_inicio": "2026-06-01",
+          "fecha_fin": "2026-06-10",
+          "tipo": "festival-cultural",
+          "descripcion": "Morelia, la ciudad de la cantera rosa, se llena de música con su festival anual. Música clásica, jazz, trova y música tradicional purépecha en los escenarios del Centro Histórico: el Conservatorio, el Teatro Ocampo, la Plaza de Armas. Hay talleres de guitarra, danza y canto para niños y adultos. Las calles del centro se llenan de puestos de comida tradicional michoacana: carnitas de cerdo, uchepos, corundas, churipo, atole de grano. La recomendación de los morelianos: sentarse en una terraza del andador turístico con un café de la región mientras el festival suena de fondo.",
+          "link": "https://www.zonaturistica.com/eventos-en/michoacan"
         }
       ]
     },
@@ -16507,6 +16603,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Fiesta de San Antón — Barrio de San Antón",
+          "fecha_inicio": "2026-06-11",
+          "fecha_fin": "2026-06-17",
+          "tipo": "fiesta-patronal",
+          "descripcion": "Una de las festividades más antiguas de Morelos, con casi 500 años de tradición. El barrio de San Antón en Cuernavaca se llena de vida con misas solemnes, juegos pirotécnicos, danzantes concheros con sus penachos de plumas y caracoles, música de banda en el kiosko de la plaza. La feria popular ofrece antojitos morelenses: cecina con crema y queso, tlacoyos de haba, quesadillas de hongos, pulque natural y curado. Los abuelos del barrio cuentan que antes la fiesta duraba nueve días completos y llegaban peregrinos desde el Estado de México caminando.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
         }
       ]
     },
@@ -19722,6 +19826,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Encuentro Artesanal Iyolo Toaltepe — Valle de Atlixco",
+          "fecha_inicio": "2026-05-08",
+          "fecha_fin": "2026-05-10",
+          "tipo": "festival-cultural",
+          "descripcion": "En el zócalo de Atlixco se reúnen artesanos del Valle para mostrar su talento. Textiles bordados a mano, alfarería de barro, cantera labrada, dulces típicos como las glorias y los jamoncillos. Hay música tradicional, danzas regionales y talleres donde puedes aprender a tejer o a hacer tu propia pieza de barro. Los artesanos platican con gusto el origen de cada pieza — el sarape de Contla, el barro de Acatlán, la talavera de Puebla. La recomendación: llegar con tiempo para escuchar las historias de cada artesano.",
+          "link": "https://www.vivoatlixco.com/eventos"
         }
       ]
     },
@@ -20372,6 +20484,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de Puebla 2026",
+          "fecha_inicio": "2026-04-23",
+          "fecha_fin": "2026-05-10",
+          "tipo": "feria-pueblo",
+          "descripcion": "La fiesta más grande de Puebla. Teatro del Pueblo con artistas como Ozuna, Cristian Castro, La Arrolladora, Banda Cuisillos — todos gratis. Palenque con Carín León y otros artistas. Zona gastronómica con los platillos típicos: mole poblano, chalupas, cemitas, tacos árabes, chiles en nogada de temporada. Juegos mecánicos, expo artesanal con productos de los 217 municipios. Los poblanos recomiendan ir entre semana para disfrutar sin multitudes y probar las cemitas de la zona de comidas — la de milanesa con chipotle es la favorita.",
+          "link": "https://feria.puebla.gob.mx"
         }
       ]
     },
@@ -21258,6 +21378,14 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Fiesta de San Antonio de Padua",
+          "fecha_inicio": "2026-06-13",
+          "fecha_fin": "2026-06-13",
+          "tipo": "fiesta-patronal",
+          "descripcion": "Chiautempan, la capital del sarape, celebra a San Antonio de Padua con una tradición muy arraigada. Misas y procesiones por las calles del centro, donde los fieles llevan flores y velas. La feria popular se instala en el zócalo con antojitos tlaxcaltecas: mole de fiesta, barbacoa de hoyo, pulque natural, tlacoyos de frijol quebrado. Los artesanos textiles aprovechan para mostrar sus sarapes de lana, gabanes y rebozos — es la mejor época para comprar directamente del tejedor. La gente de Chiautempan dice que el sarape de la feria de San Antonio trae buena suerte para todo el año.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
         }
       ]
     },
