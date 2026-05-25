@@ -7,6 +7,9 @@
     <title>RaízMiTierra — Mapa de Tianguis y Lugares de México</title>
     <meta name="description" content="Mapa comunitario de tianguis, mercados, pueblos y lugares de México. 259 lugares. Sin registro, 100% privado.">
     <meta name="theme-color" content="#E86A33">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -273,8 +276,10 @@
 
 <script>
 // NO service worker — siempre datos frescos
-const VERSION = 'v2.1.0-20260523';
+const VERSION = 'v2.2.0-20260524';
 const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+// Forzar recarga: si la versión cambió, refrescar
+(function(){try{const v=localStorage.getItem('rmt_ver');if(v&&v!==VERSION){localStorage.clear();location.reload(true)}localStorage.setItem('rmt_ver',VERSION)}catch(e){}})();
 let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', festDateActive = false, festCountAll = 0, gpsActive = false, userPos = null, userMarker = null, watchId = null;
 let map, routingControl = null;
 
