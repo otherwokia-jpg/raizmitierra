@@ -13,15 +13,38 @@
 | Componente | Estado |
 |---|---|
 | `index.html` — App PWA completa | ✅ Funcionando |
-| `cli.py` — Compilador/validador | ✅ Funcionando |
-| `categories.json` — 12 categorías oficiales | ✅ Completado |
-| `regions.json` — 5 regiones del Edomex | ✅ Completado |
-| `pueblos_magicos.json` — 12 Pueblos Mágicos | ✅ Completado |
-| 1er tianguis: Santiago Tianguistengo (.md) | ✅ Completado |
-| `data.json` — Compilado | ✅ 10.8 KB |
-| `sw.js` — Service Worker (offline) | ✅ Listo |
-| `manifest.json` — PWA instalable | ✅ Listo |
-| **Servidor local :9500** | ✅ **¡En vivo!** |
+| `raizmitierra_server.py` — Backend Flask | ✅ Funcionando |
+| `data.json` — 259 lugares (202 tianguis + 57 lugares) | ✅ 1.1 MB |
+| **🎉 Festivales y Eventos** — 212 lugares con eventos | ✅ **¡Nuevo!** |
+| **🗣️ Reseñas Comunitarias** — Sistema de reseñas + admin | ✅ **¡Nuevo!** |
+| 🔐 SSO Integrado (Landing Portal) | ✅ Funcionando |
+| 🐳 Docker + Cloudflare Tunnel | ✅ En producción |
+| ☁️ Cloudflare Pages (`raizmitierra.pages.dev`) | ✅ En producción |
+
+## 🎉 Festivales y Eventos
+
+Cada lugar puede tener festividades asociadas. Al seleccionar **🎉 Eventos**:
+
+- **Selector de fecha** 📅 — elige cualquier día para ver qué festividades hay
+- **Chips rápidos**: Hoy · Este finde · Próx. 7d · Próx. 30d
+- **Filtros por tipo**: 🎭 Patronal · 🏆 Feria Pueblo · 🌮 Gastronómica · 🎶 Cultural · 🎄 Tradición
+- **445 festividades** para **212 lugares** en CDMX, Puebla, Michoacán, Morelos, Hidalgo, Tlaxcala y Edomex
+- **Default**: Próximos 30 días (no interfiere con filtro "Hoy")
+
+## 🗣️ Reseñas Comunitarias
+
+Los usuarios pueden dejar reseñas en cada lugar:
+- Nombre del reseñista obligatorio
+- Aprobación por admin antes de publicar
+- Admin panel en `/admin/reviews`
+- Enlace directo al lugar desde cada reseña pendiente
+
+## 🔐 SSO Integrado
+
+RaízMiTierra se integra al ecosistema SSO del Landing Portal (puerto 8888):
+- Usuarios autenticados via SSO pueden acceder al admin
+- Proxy mode para debugging
+- Portal key: `raizmitierra`
 
 ---
 
@@ -135,64 +158,38 @@ python3 cli.py watch
 
 ---
 
-## ☁️ Despliegue a Cloudflare (Futuro)
+## ☁️ Despliegue
 
-### Opción A: Cloudflare Pages (Recomendada — Gratis)
+### Producción Actual (Docker + Cloudflare Tunnel)
 
 ```bash
-# 1. Conectar repo Git
+# Backend/admin en servidor propio
 cd ~/raizmitierra
-git init
-git add .
-git commit -m "🌎 RaízMiTierra: lanzamiento inicial"
-
-# 2. Subir a GitHub/GitLab
-gh repo create raizmitierra --public --push
-
-# 3. En Cloudflare Dashboard:
-#    → Pages → Crear proyecto
-#    → Conectar repositorio
-#    → Build: (ninguno — es estático)
-#    → Output: /public
-#    → Dominio: raizmitierra.mx
-
-# 4. ¡Listo!
-#    https://raizmitierra.pages.dev  (subdominio temporal)
-#    https://raizmitierra.mx         (dominio personalizado)
+docker-compose up -d --build
+# Sirve en http://localhost:9500
+# Cloudflare Tunnel → https://datacenter.hubmultiteck.io/raiz/
 ```
 
-### Opción B: Cloudflare Tunnel (Si prefieres tu servidor)
+### Frontend Estático (Cloudflare Pages)
 
 ```bash
-# 1. En ~/.cloudflared/config.yml agregar:
-#    - hostname: raizmitierra.mx
-#      service: http://localhost:9500
-
-# 2. DNS: apuntar raizmitierra.mx → tunnel
-# 3. En el servidor: python3 cli.py serve 9500
-
-# 4. Cache de Cloudflare:
-#    - Regla de Page Rule: raizmitierra.mx/*
-#    - Cache Level: Standard
-#    - Edge Cache TTL: 1 día
+cd ~/raizmitierra
+npx wrangler pages deploy --project-name raizmitierra --branch main ./dist/
+# → https://raizmitierra.pages.dev
 ```
 
-### Configuración Recomendada de Cloudflare
+### Variables de Entorno (.env)
 
-| Ajuste | Valor |
+| Variable | Descripción |
 |---|---|
-| SSL/TLS | Full (strict) |
-| Always Use HTTPS | ✅ ON |
-| Brotli Compression | ✅ ON |
-| Auto Minify | HTML, JS, CSS |
-| Cache Level | Standard |
-| Edge Cache TTL | 1 día |
-| Security Level | Medium |
-| Bot Fight Mode | ✅ ON |
+| `RAIZ_SECRET` | Clave secreta para sesiones Flask |
+| `SSO_SECRET_FILE` | Ruta al archivo de clave SSO |
+| `USERS_FILE` | Ruta al archivo users.json del Landing |
+| `PORT` | Puerto (9500) |
 
 ---
 
-## 🏷️ Las 12 Categorías Oficiales
+## 🏷️ Las 17 Categorías Oficiales
 
 | Tag | Emoji | Concepto |
 |---|---|---|
@@ -208,6 +205,11 @@ gh repo create raizmitierra --public --push
 | `pueblo-magico` | 🏆 | Pueblos Mágicos del Edomex |
 | `hierbas-medicina` | 🌿 | Medicina tradicional, temazcal |
 | `flores-plantas` | 🌸 | Viveros, plantas, jardinería |
+| `zona-arqueologica` | 🏛️ | Pirámides, zonas arqueológicas |
+| `pueblo-tradicional` | 🏘️ | Pueblos con encanto |
+| `centro-otomi` | 🏮 | Centros ceremoniales otomíes |
+| `balneario-cascada` | 🏊 | Balnearios, aguas termales, cascadas |
+| `mirador-naturaleza` | ⛰️ | Miradores, cerros, bosques |
 
 ---
 
@@ -233,12 +235,11 @@ Aculco · El Oro · Ixtapan de la Sal · Jilotepec · Malinalco · Metepec · Ot
 
 | Recurso | Tamaño |
 |---|---|
-| `index.html` | ~33 KB |
-| `data.json` (100 tianguis estimado) | ~500 KB |
+| `index.html` (con datos inline) | ~930 KB |
+| `data.json` (259 lugares, 445 festivales) | ~1.1 MB |
 | Leaflet CSS+JS | ~150 KB (cacheable) |
-| **Primera carga** | ~700 KB |
-| **Cargas siguientes** | **0 KB** (Service Worker cachea todo) |
-| **Tiempo de carga 3G** | < 2 segundos |
+| **Primera carga** | ~1 MB |
+| **Cargas siguientes** | 0 KB (Service Worker cachea)
 
 ---
 
