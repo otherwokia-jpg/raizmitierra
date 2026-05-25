@@ -334,10 +334,17 @@ function setType(t) {
         currentFestType = 'todos';
         festRange = 'hoy';
     } else {
-        // Inicializar date input con hoy
+        // Desactivar filtro "Hoy" si está activo (entra en conflicto con eventos)
+        if(hoyActive) {
+            hoyActive = false;
+            document.querySelectorAll('.toggle-filter').forEach(function(el) {
+                el.classList.toggle('active', el.dataset.mode==='hoy');
+            });
+        }
+        // Inicializar con próximos 30 días (más útil que hoy)
         const today = new Date();
         document.getElementById('festDateInput').value = formatDateISO(today);
-        setFestRange('hoy');
+        setFestRange('mes');
     }
     applyFilter();
     addMarkers();
@@ -386,13 +393,13 @@ function applyFilter() {
     const texto = document.getElementById('searchInput').value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
     const hoy = DIAS[new Date().getDay()];
     let r = tianguis.filter(t => {
-        // 1) Modo "Hoy": solo tianguis que abren este día
-        if(hoyActive) {
+        // 1) Modo "Hoy": solo tianguis que abren este d├¡a (NO afecta a Eventos)
+        if(hoyActive && currentType !== 'eventos') {
             if(t.type !== 'tianguis') return false;
             if(!t.days || !t.days.includes(hoy)) return false;
         }
 
-        // 2) Filtro por tipo (🌎 Todos / 🌮 Tianguis / 📍 Lugares / 🎉 Eventos)
+        // 2) Filtro por tipo
         if(currentType === 'tianguis' && t.type !== 'tianguis') return false;
         if(currentType === 'lugar' && t.type !== 'lugar') return false;
         if(currentType === 'eventos') {
