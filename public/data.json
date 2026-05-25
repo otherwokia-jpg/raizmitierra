@@ -2158,6 +2158,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Santa Cruz — Barrio de la Cruz, Azcapotzalco",
+          "fecha_inicio": "2026-05-01",
+          "fecha_fin": "2026-05-10",
+          "tipo": "fiesta-patronal",
+          "descripcion": "El barrio más antiguo de Azcapotzalco celebra a la Santa Cruz con diez días de fiesta. Misas solemnes, procesiones donde los fieles cargan cruces adornadas de flores, danzas de concheros con sus penachos de plumas y caracoles. La verbena popular se instala sobre la avenida Azcapotzalco: juegos mecánicos, puestos de antojitos (sopes, huaraches, quesadillas, pambazos), música de banda y orquesta. Los abuelos del barrio cuentan que antes la cruz se subía al cerro del Tepeyac a pie, con velas encendidas toda la noche.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1587334274326-d1523113a596?w=800"
         }
       ]
     },
@@ -3377,6 +3386,15 @@
           "tipo": "feria-gastronomica",
           "descripcion": "Productores de la zona rural de Iztapalapa traen lo mejor de sus cosechas: nopal verdura, tunas, xoconostle, quelites, verdolagas, hierbas de olor. Hay demostraciones de cocina tradicional — nopal asado con queso, tlacoyos de haba, sopa de quelites, mixiotes de nopal con pollo. Talleres de cultivo en azotea. Los abuelos comparten recetas que han pasado por generaciones; la salsa de xoconostle con chile guajillo es la favorita de los que saben.",
           "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
+        },
+        {
+          "nombre": "Feria del Nopal — Monumento a la Revolución",
+          "fecha_inicio": "2026-05-29",
+          "fecha_fin": "2026-05-31",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Tres días dedicados al nopal, el oro verde de México. Más de 50 expositores de la zona rural de Iztapalapa y Milpa Alta traen nopal verdura, nopal asado, nopal en salmuera, mermeladas de tuna, tortillas de nopal, aguas frescas de xoconostle. Hay talleres de cocina tradicional: nopal relleno de queso, tacos de nopal con pastor, mixiotes de nopal con verduras. Los productores de Santa Catarina Yecahuizotl enseñan a pelar el nopal sin espinas en segundos. Llega con hambre — el nopal asado con salsa de chile de árbol y queso panela de la señora Mari es imperdible.",
+          "link": "https://www.facebook.com/FeriaDelNopalCDMX",
+          "img": "https://images.unsplash.com/photo-1592578629296-73c2efbed3e3?w=800"
         }
       ]
     },
@@ -5380,6 +5398,15 @@
           "tipo": "feria-gastronomica",
           "descripcion": "La XXVI edición de la Feria de la Barbacoa en Santa María Tepepan, Xochimilco. Ven a probar más de 30 estilos de barbacoa: de hoyo, de borrego, mixiote, consomé, acompañada de tortillas hechas a mano, salsa verde y cebollitas cambray. Además hay teatro del pueblo con artistas nacionales, jaripeo infantil, juegos mecánicos y granja didáctica para los niños. Los abuelos de Tepepan dicen que el secreto está en las hojas de aguacate y el maguey que usan para envolver la barbacoa — ese sabor ahumado no se encuentra en ningún restaurante. Entrada libre, pero el estacionamiento se llena antes del medio día.",
           "link": "https://www.facebook.com/FeriasRegionalesyPatronales"
+        },
+        {
+          "nombre": "Mercado de Trueque — Parque Ecológico Xochimilco",
+          "fecha_inicio": "2026-05-10",
+          "fecha_fin": "2026-05-10",
+          "tipo": "feria-pueblo",
+          "descripcion": "Cada segundo sábado de mes, en el Parque Ecológico de Xochimilco, el trueque ambiental. Llevas tus reciclables (PET, cartón, vidrio, latas, electrónicos) y los cambias por puntos que canjeas por fruta, hortalizas, plantas de ornato y composta. No hay dinero de por medio — trueque puro. Doña Chole, que va desde la primera edición, recomienda llegar temprano porque las plantas de la temporada se acaban antes de las 10. En el camino de regreso, los puestos de tlacoyos dehaba en la salida son el premio después de cargar tus bolsas de nopal y verdolagas.",
+          "link": "https://www.gob.mx/cdmx/articulos/trueque-ambiental",
+          "img": "https://images.unsplash.com/photo-1579756842765-fa22e048b61a?w=800"
         }
       ]
     },
@@ -9740,6 +9767,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria del Mole y la Barbacoa — Valle de Toluca",
+          "fecha_inicio": "2026-05-17",
+          "fecha_fin": "2026-05-17",
+          "tipo": "feria-gastronomica",
+          "descripcion": "En la explanada de Metepec, cocineras tradicionales compiten por el mejor mole de la región. Mole rojo, mole verde, mole de olla, pipián — recetas familiares con ingredientes del valle. El mercado de artesanías de barro verde de Metepec corre paralelo a la feria. Llega temprano para probar el mole de Doña Chabela, que lleva 25 ingredientes y se cocina en cazuela de barro durante 8 horas.",
+          "link": "https://www.facebook.com/MetepecOficial",
+          "img": "https://images.unsplash.com/photo-1584269600466-67a44a3a03fb?w=800"
         }
       ]
     },
@@ -10984,6 +11020,15 @@
           "tipo": "fiesta-patronal",
           "descripcion": "El Primer Pueblo Mágico de México celebra a su santo patrono. Tres días de fiesta en la plaza principal con danzas tradicionales, música de banda, kermés con antojitos hidalguenses: zacahuil, paste, barbacoa, pulque curado de sabores. Procesión solemne el 24 de junio con la imagen de San Juan Bautista recorriendo las calles empedradas, alfombradas de aserrín de colores. Al anochecer, juegos pirotécnicos iluminan el cielo de la sierra. Los abuelos de Huasca dicen que quien prueba el zacahuil hecho en horno de leña de los hornos tradicionales del pueblo, nunca lo olvida.",
           "link": "https://hidalgo.travel"
+        },
+        {
+          "nombre": "Festival del Pan Artesanal — Comarca Minera",
+          "fecha_inicio": "2026-05-01",
+          "fecha_fin": "2026-05-03",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Los pueblos de la Comarca Minera celebran el pan de horno. Pan de pulque, pan de queso, pan de horno de leña — todo horneado en hornos de adobe como se hacía desde la época de la minería. Los panaderos abren sus talleres para que veas el proceso: la masa fermentada con pulque natural, el amasado a mano, el horneado lento. El pan de pulque con queso de cabra de la sierra es la combinación ganadora.",
+          "link": "https://www.facebook.com/HuascaDeOcampo",
+          "img": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=800"
         }
       ]
     },
@@ -15080,6 +15125,15 @@
           "tipo": "festival-cultural",
           "descripcion": "En Amatlán de Quetzalcóatl, a 10 minutos de Tepoztlán, se celebra el natalicio de Ce Ácatl Topiltzin Quetzalcóatl, el legendario gobernante de Tula. Ceremonias prehispánicas al amanecer en la pirámide, danzas rituales con concheros, copal, caracoles y teponaxtli. Hay venta de artesanía esotérica, plantas medicinales, inciensos y piedras energéticas. Los locales ofrecen temazcal y comidas tradicionales: mole de guajolote, tlacoyos de frijol, atole de teja. La recomendación: llegar antes de las 6 AM para ver el amanecer desde el cerro — la energía es única.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Fiesta Patronal Señor de las Misericordias — San Pedro Tlatemalco",
+          "fecha_inicio": "2026-05-24",
+          "fecha_fin": "2026-06-01",
+          "tipo": "fiesta-patronal",
+          "descripcion": "En la comunidad de San Pedro Tlatemalco, a 15 minutos de Tepoztlán, se celebra la fiesta patronal más esperada del año. Procesiones con la imagen del Señor de las Misericordias recorriendo las calles del pueblo adornadas con papel picado y flores de cempasúchil. Kermés con mole de olla, tlacoyos de frijol quebrado, atole de teja, tamales de chipilín. Música de banda los tres días, juegos mecánicos para los niños y baile popular al anochecer. La gente de Tlatemalco dice que el mole que preparan las mayordomas tiene un sabor que no se encuentra en ningún otro lado — el secreto está en el chocolate de metate y los chiles de la región.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1574482620814-29b2bf06b39d?w=800"
         }
       ]
     },
@@ -15904,6 +15958,15 @@
           "tipo": "festival-cultural",
           "descripcion": "Morelia, la ciudad de la cantera rosa, se llena de música con su festival anual. Música clásica, jazz, trova y música tradicional purépecha en los escenarios del Centro Histórico: el Conservatorio, el Teatro Ocampo, la Plaza de Armas. Hay talleres de guitarra, danza y canto para niños y adultos. Las calles del centro se llenan de puestos de comida tradicional michoacana: carnitas de cerdo, uchepos, corundas, churipo, atole de grano. La recomendación de los morelianos: sentarse en una terraza del andador turístico con un café de la región mientras el festival suena de fondo.",
           "link": "https://www.zonaturistica.com/eventos-en/michoacan"
+        },
+        {
+          "nombre": "Festival Michoacán de Origen — Ceconexpo Morelia",
+          "fecha_inicio": "2026-06-11",
+          "fecha_fin": "2026-06-28",
+          "tipo": "festival-cultural",
+          "descripcion": "El festival más grande de Michoacán. 18 días con más de mil artistas en escena: música tradicional purépecha, danza de los viejitos, ballet folclórico, conciertos de rock, pop, jazz y música clásica. Cocineras tradicionales de las 11 regiones del estado preparan corundas, uchepos, carnitas, churipo, atole de grano, sopa tarasca. Productores artesanales ofrecen queso de Cotija, cobre martillado de Santa Clara, rebozos de la Meseta, guitarras de Paracho. La recomendación de los morelianos: ir el fin de semana cuando hay más actividades y las cocineras traen sus platillos más especiales — el mole de ollita de Nurio es imperdible.",
+          "link": "https://www.facebook.com/FestivalMichoacanDeOrigen",
+          "img": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800"
         }
       ]
     },
@@ -16158,6 +16221,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Fiesta Patronal San Pedro Apóstol — San Pedro Tacaro",
+          "fecha_inicio": "2026-06-27",
+          "fecha_fin": "2026-06-29",
+          "tipo": "fiesta-patronal",
+          "descripcion": "En la comunidad purépecha de San Pedro Tacaro, municipio de Coeneo, la fiesta en honor a San Pedro Apóstol. Danzas tradicionales purépechas: los viejitos, los moros, las pastoras — cada una con sus trajes típicos y máscaras talladas a mano. Jaripeo y torneo de cintas a caballo. La feria popular ofrece churipo (caldo de res con chile rojo y verduras), corundas con crema, uchepos, atole de zarzamora. Los abuelos purépechas de Tacaro cuentan la leyenda de San Pedro: que cuando llueve el día de su fiesta, es porque el santo está bendiciendo la milpa para que dé buena cosecha.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1574482620814-29b2bf06b39d?w=800"
         }
       ]
     },
@@ -16874,6 +16946,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Fiesta de San Juan Bautista — Tlayacapan",
+          "fecha_inicio": "2026-06-22",
+          "fecha_fin": "2026-06-24",
+          "tipo": "fiesta-patronal",
+          "descripcion": "Tlayacapan, Pueblo Mágico de Morelos, celebra a su santo patrono con una de las fiestas más tradicionales del estado. Danza de los Chinelos con sus impresionantes sombreros de pluma, máscaras de madera y trajes de terciopelo bordado. Procesiones, misas solemnes, jaripeo, bandas de música, fuegos artificiales que iluminan el exconvento del siglo XVI. La feria popular ofrece cecina con crema y queso, tlacoyos de haba, quesadillas de hongos, pulque curado, aguas frescas de jamaica y tamarindo. La gente de Tlayacapan dice que el 24 de junio, día de San Juan, el agua de los manantiales del pueblo tiene poderes curativos — por eso la tradición de bañarse en el río al amanecer.",
+          "link": "https://www.facebook.com/TlayacapanPuebloMagico",
+          "img": "https://images.unsplash.com/photo-1574482620814-29b2bf06b39d?w=800"
         }
       ]
     },
@@ -17043,6 +17124,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria del Elote — Matzaco, Izúcar de Matamoros",
+          "fecha_inicio": "2026-05-29",
+          "fecha_fin": "2026-05-31",
+          "tipo": "feria-gastronomica",
+          "descripcion": "En la junta auxiliar de Matzaco, a 20 minutos de Izúcar, la feria más elotera de Puebla. Más de 200 expositores ofrecen elote asado, elote en esquite, tlacoyos de elote, atole de elote, tamales de elote, pay de elote, nieve de elote — todo del maíz de la región. Hay torneo de pallo, jaripeo, música de banda, exposición artesanal y gastronómica. Los productores locales muestran el proceso completo: desde la milpa hasta la mesa. Doña Guille, de la familia Pérez, lleva 30 años haciendo sus tlacoyos de elote con epazote del corredor — dice que el secreto es el maíz criollo azul que todavía cultivan en las laderas del cerro.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=800"
         }
       ]
     },
@@ -17205,6 +17295,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria del Mole y Feria Señor de Coculco — Ajalpan",
+          "fecha_inicio": "2026-05-02",
+          "fecha_fin": "2026-05-12",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Ajalpan, la puerta de la Sierra Negra de Puebla, celebra su feria más importante con el Señor de Coculco. Once días de fiesta con teatro del pueblo: Banda Cuisillos, Los Cadetes de la Sierra, grupos musicales. La Feria del Mole el 10 de mayo reúne a cocineras de toda la región que preparan mole de caderas, mole poblano, mole de olla — los platillos desde $20 pesos. Hay procesiones religiosas, danzas autóctonas, exposición ganadera, artesanal y industrial. La gente de Ajalpan recomienda el mole de Doña Rosa, en la calle 5 de Mayo, que lo prepara desde hace 40 años en cazuelas de barro.",
+          "link": "https://www.facebook.com/AjalpanOficial",
+          "img": "https://images.unsplash.com/photo-1584269600466-67a44a3a03fb?w=800"
         }
       ]
     },
@@ -18019,6 +18118,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Pitaya — Región de Tepeaca",
+          "fecha_inicio": "2026-05-30",
+          "fecha_fin": "2026-05-31",
+          "tipo": "feria-gastronomica",
+          "descripcion": "Productores de la región de Tepeaca traen la fruta más colorida de la temporada. Pitaya roja, pitahaya amarilla, mermeladas, nieves artesanales y aguas frescas. Los campesinos platican cómo domesticaron la pitaya silvestre de los cerros. No te vayas sin probar la nieve de pitaya roja con chamoy — la favorita de los niños.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=800"
         }
       ]
     },
@@ -21097,6 +21205,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Santa Cruz — Centro de Tlaxcala",
+          "fecha_inicio": "2026-05-02",
+          "fecha_fin": "2026-05-08",
+          "tipo": "feria-pueblo",
+          "descripcion": "Las calles del centro de Tlaxcala se llenan de cruces adornadas con flores de colores. Bendición de cruces en la Catedral, desfile de carros alegóricos, danzas tradicionales. La feria popular ofrece barbacoa de hoyo, mole prieto, tlacoyos de frijol, pulque natural. Los abuelos tlaxcaltecas cuentan que la tradición viene de la época colonial, cuando los tlaxcaltecas adoptaron la cruz pero le pusieron sus propios colores.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1587334274326-d1523113a596?w=800"
         }
       ]
     },
@@ -21285,6 +21402,15 @@
           "tipo": "tradicion-estacional",
           "descripcion": "Tradicionales posadas en el barrio. Peregrinos cantando, piñatas, ponche de frutas, aguinaldos, pastorelas. Los locatarios organizan la posada para sus clientes. Noches de villancicos, luces navideñas y ambiente festivo.",
           "link": "https://www.mexicodesconocido.com.mx/"
+        },
+        {
+          "nombre": "Feria de la Cerveza Artesanal y el Pulque — Apizaco",
+          "fecha_inicio": "2026-05-22",
+          "fecha_fin": "2026-05-24",
+          "tipo": "feria-pueblo",
+          "descripcion": "Apizaco reúne a productores de cerveza artesanal y pulque natural de toda Tlaxcala. Más de 20 marcas de cheve artesanal, pulque curado de sabores (tuna, apio, avena, nuez), micheladas. Música de rock, banda y cumbia en vivo. Puestos de antojitos tlaxcaltecas: tlacoyos, barbacoa, mole de olla. La recomendación: el pulque curado de tuna roja con una orden de tlacoyos de frijol quebrado — el maridaje tlaxcalteca perfecto.",
+          "link": "https://www.facebook.com/FeriasRegionalesyPatronales",
+          "img": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800"
         }
       ]
     },
