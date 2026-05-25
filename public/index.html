@@ -275,7 +275,7 @@
 // NO service worker — siempre datos frescos
 const VERSION = 'v2.1.0-20260523';
 const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', gpsActive = false, userPos = null, userMarker = null, watchId = null;
+let tianguis = [], hoyActive = false, cercaActive = false, proximoActive = false, currentType = 'todos', currentCategory = null, currentFestType = 'todos', festDateActive = false, gpsActive = false, userPos = null, userMarker = null, watchId = null;
 let map, routingControl = null;
 
 function initMap() {
@@ -289,6 +289,9 @@ function loadData() {
     tianguis = window.RAIZ_DATA.lugares;
     document.getElementById('resultCount').textContent = tianguis.length + ' lugares';
     updateDay(); applyFilter(); addMarkers();
+}
+function getFestCount() {
+    return tianguis.filter(t => t.festividades && t.festividades.length > 0).length;
 }
 
 function updateDay() {
@@ -341,7 +344,9 @@ function setType(t) {
                 el.classList.toggle('active', el.dataset.mode==='hoy');
             });
         }
-        // Inicializar con próximos 30 días (más útil que hoy)
+        // Show ALL places with festivals (sin filtro de fecha por default)
+        // La fecha solo filtra cuando el usuario la cambia explícitamente
+        festDateActive = false;
         const today = new Date();
         document.getElementById('festDateInput').value = formatDateISO(today);
         setFestRange('mes');
@@ -367,6 +372,7 @@ function parseDate(s) {
     return new Date(y,m-1,d);
 }
 function setFestRange(r) {
+    festDateActive = true; // Activar filtro por fecha
     festRange = r;
     document.querySelectorAll('.fest-chip').forEach(el => el.classList.toggle('active',el.dataset.range===r));
     const today = new Date();
@@ -383,6 +389,7 @@ function setFestRange(r) {
     applyFilter();
 }
 function onFestDateChange() {
+    festDateActive = true; // Activar filtro por fecha
     festRange = 'custom';
     document.querySelectorAll('.fest-chip').forEach(el => el.classList.toggle('active',false));
     applyFilter();
@@ -408,33 +415,35 @@ function applyFilter() {
             if(currentFestType !== 'todos') {
                 if(!t.festividades.some(f => f.tipo === currentFestType)) return false;
             }
-            // Filtro por fecha
-            const dateStr = document.getElementById('festDateInput').value;
-            const baseDate = parseDate(dateStr);
-            if(!baseDate) return false;
-            // Calcular rango de fechas
-            let startRange = baseDate, endRange = baseDate;
-            if(festRange === 'finde') {
-                // finde = sábado + domingo
-                endRange = new Date(baseDate);
-                endRange.setDate(endRange.getDate() + 1);
-            } else if(festRange === 'semana') {
-                endRange = new Date(baseDate);
-                endRange.setDate(endRange.getDate() + 7);
-            } else if(festRange === 'mes') {
-                endRange = new Date(baseDate);
-                endRange.setDate(endRange.getDate() + 30);
+            // Filtro por fecha (solo si el usuario activó la fecha explícitamente)
+            if(festDateActive) {
+                const dateStr = document.getElementById('festDateInput').value;
+                const baseDate = parseDate(dateStr);
+                if(!baseDate) return false;
+                // Calcular rango de fechas
+                let startRange = baseDate, endRange = baseDate;
+                if(festRange === 'finde') {
+                    // finde = sábado + domingo
+                    endRange = new Date(baseDate);
+                    endRange.setDate(endRange.getDate() + 1);
+                } else if(festRange === 'semana') {
+                    endRange = new Date(baseDate);
+                    endRange.setDate(endRange.getDate() + 7);
+                } else if(festRange === 'mes') {
+                    endRange = new Date(baseDate);
+                    endRange.setDate(endRange.getDate() + 30);
+                }
+                // Normalizar a inicio/fin del día
+                startRange.setHours(0,0,0,0);
+                endRange.setHours(23,59,59,0);
+                // Verificar si alguna festividad cae en el rango
+                if(!t.festividades.some(f => {
+                    const fIni = parseDate(f.fecha_inicio);
+                    const fFin = parseDate(f.fecha_fin) || fIni;
+                    if(!fIni) return false;
+                    return fFin >= startRange && fIni <= endRange;
+                })) return false;
             }
-            // Normalizar a inicio/fin del día
-            startRange.setHours(0,0,0,0);
-            endRange.setHours(23,59,59,0);
-            // Verificar si alguna festividad cae en el rango
-            if(!t.festividades.some(f => {
-                const fIni = parseDate(f.fecha_inicio);
-                const fFin = parseDate(f.fecha_fin) || fIni;
-                if(!fIni) return false;
-                return fFin >= startRange && fIni <= endRange;
-            })) return false;
         }
 
         // 3) Sub-filtro de categoría (toggle: Comida, Ruinas, Agua, etc.)
